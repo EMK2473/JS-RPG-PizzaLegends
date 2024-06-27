@@ -7,6 +7,8 @@ class OverworldMap {
 
         this.upperImage = new Image();
         this.upperImage.src = config.upperSrc; // ceiling
+
+        this.isCutscenePlaying = true;
     }
 
     drawLowerImage(ctx, cameraPerson) {
@@ -31,12 +33,32 @@ class OverworldMap {
         return this.walls[`${x}, ${y}`] || false;
     }
 
+
+    async startCutscene(events){
+        this.isCutscenePlaying = true;
+
+        // start a loop of async events
+        // await each one
+        for (let i = 0; i < events.length; i++){
+            const eventHandler = new OverworldEvent({
+                event: events[i],
+                map: this,
+            })
+            await eventHandler.init();
+        }
+
+        this.isCutscenePlaying = false;
+
+    }
+
     addWall(x,y){
         this.walls[`${x}, ${y}`] = true;
     }
+    
     removeWall(x,y){
         delete this.walls[`${x}, ${y}`]
     }
+    
     moveWall(wasX,wasY, direction){
         this.removeWall(wasX, wasY);
         const {x,y} = utils.nextPosition(wasX, wasY, direction);
@@ -44,9 +66,14 @@ class OverworldMap {
     }
 
     mountObjects(){
-        Object.values(this.gameObjects).forEach(o => {
+        Object.keys(this.gameObjects).forEach(key => {
+
+            let object = this.gameObjects[key];
+            object.id = key;
+
+
             // TODO: determine if this object should actually mount
-            o.mount(this)
+            object.mount(this)
         });
     }
 }
@@ -66,7 +93,25 @@ window.OverworldMaps = {
             npcA: new Person({
                 x: utils.withGrid(7),
                 y: utils.withGrid(9),
-                src: "./images/characters/people/npc1.png"
+                src: "./images/characters/people/npc1.png",
+                behaviorLoop: [
+                    {type: "stand", direction: "left", time: 800},
+                    {type: "stand", direction: "up", time: 800},
+                    {type: "stand", direction: "right", time: 1200},
+                    {type: "stand", direction: "down", time: 300},
+                ]
+            }),
+            npcB: new Person({
+                x: utils.withGrid(3),
+                y: utils.withGrid(7),
+                src: "./images/characters/people/npc2.png",
+                behaviorLoop: [
+                    {type: "walk", direction: "left"},
+                    {type: "stand", direction: "right", time: 800},
+                    {type: "walk", direction: "up"},
+                    {type: "walk", direction: "right"},
+                    {type: "walk", direction: "down"},
+                ]
             }),
         },
         walls: {
@@ -114,6 +159,7 @@ window.OverworldMaps = {
             [utils.asGridCoord(0,6)] : true,
             [utils.asGridCoord(0,5)] : true,
             [utils.asGridCoord(0,4)] : true,
+
         }
     },
     Kitchen: {
@@ -170,6 +216,7 @@ window.OverworldMaps = {
             }),
             npcF: new Person({
                 isPlayerControlled: true,
+
                 x: utils.withGrid(8.5),
                 y: utils.withGrid(7),
                 src: "./images/characters/people/oKnight128-Sheet.png"
