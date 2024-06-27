@@ -37,7 +37,6 @@ class Person extends GameObject {
         
     }
 
-
     startBehavior(state, behavior){
         // set character direction to behavior direction
         this.direction = behavior.direction;

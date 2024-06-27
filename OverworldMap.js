@@ -82,8 +82,8 @@ class OverworldMap {
 
 window.OverworldMaps = {
     DemoRoom: {
-        lowerSrc: "./images/maps/DemoLower.png",
-        upperSrc: "./images/maps/DemoUpper.png",
+        lowerSrc: "./images/maps/blueFloor4.png",
+        upperSrc: "./images/maps/blueRoof.png",
         gameObjects: {
             hero: new Person ({
                 isPlayerControlled: true,
@@ -116,10 +116,10 @@ window.OverworldMaps = {
         },
         walls: {
             // table
-            [utils.asGridCoord(7,6)] : true,
-            [utils.asGridCoord(8,6)] : true,
-            [utils.asGridCoord(7,7)] : true,
-            [utils.asGridCoord(8,7)] : true,
+            // [utils.asGridCoord(7,6)] : true,
+            // [utils.asGridCoord(8,6)] : true,
+            // [utils.asGridCoord(7,7)] : true,
+            // [utils.asGridCoord(8,7)] : true,
             // top doorway
             [utils.asGridCoord(6,4)] : true,  
             [utils.asGridCoord(6,3)] : true, 
