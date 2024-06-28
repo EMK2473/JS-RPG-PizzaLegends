@@ -6,8 +6,9 @@ const utils = {
     },
 
     // function to assign grid coordinates
+    // strict no space req for passing coordinates
     asGridCoord(x,y) {
-        return`${x*16}, ${y*16}`
+        return`${x*16},${y*16}`
     },
 
     // collision util function
