@@ -11,7 +11,7 @@ const utils = {
     },
 
     // collision util function
-    // figures out what is infront of someone 
+    // figures out what is infront  
     // accepts position and direction going
     nextPosition(initialX, initialY, direction) {
         let x =  initialX;
@@ -29,7 +29,27 @@ const utils = {
         return {x, y};
     },
     
+    // more optimal code
+    // oppositeDirection(direction) {
+    //     const opposites = {
+    //         left: "right",
+    //         right: "left",
+    //         up: "down",
+    //         down: "up"
+    //     };
+        
+    //     return opposites[direction] || null; // Return null or another default if the direction is invalid
+    // },
 
+    // multiple conditional checks hinders performance
+    oppositeDirection(direction){
+        if(direction === "left"){return "right"}
+        if(direction === "right"){return "left"}
+        if(direction === "up"){return "down"}
+        return "up"
+
+    },
+    
     emitEvent(name, detail){
         const event = new CustomEvent(name, {
             detail
