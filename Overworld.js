@@ -1,5 +1,8 @@
+// contains gamestate
+// top level parent component. keeps track of states and send those states down to child components
+// contains cutscene array/queue
+
 class Overworld {
-  // top level parent component. keeps track of states and send those states down to child components
   constructor(config) {
     this.element = config.element;
     this.canvas = this.element.querySelector(".game-canvas");
@@ -48,21 +51,36 @@ class Overworld {
     step();
   }
 
+  bindActionInput() {
+    new KeyPressListener("Enter", () => {
+      // is there a person here to talk to ?
+
+      // checks for cutscene at a postion, 
+      // look through the map's game objects 
+      
+      this.map.checkForActionCutscene()
+    })
+  }
+
   init() {
     this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
-    this.map.mountObjects()
+    this.map.mountObjects();
+
+    this.bindActionInput();
+
     this.directionInput = new DirectionInput();
     this.directionInput.init();
 
     this.startGameLoop();
 
+    // firing cutscene
     this.map.startCutscene([
       { who: "hero", type: "walk", direction: "down" },
       { who: "hero", type: "walk", direction: "down" },
       { who: "npcA", type: "walk", direction: "left" },
       { who: "npcA", type: "walk", direction: "left" },
       { who: "npcA", type: "stand", direction: "up", time: 200 },
-      {type: "textMessage", text: "Wassup, dude!?"},
+      {type: "textMessage", text: "Wassup!? Click next."},
     ])
   }
 }

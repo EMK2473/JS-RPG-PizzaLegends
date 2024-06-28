@@ -1,3 +1,9 @@
+// map containers
+// contains map objects
+// contains wall methods
+// contains cutscene methods
+// contains check for if space is taken
+
 class OverworldMap {
   constructor(config) {
     this.gameObjects = config.gameObjects;
@@ -47,9 +53,22 @@ class OverworldMap {
 
     this.isCutscenePlaying = false;
 
-
     // Reset NPCs to do their idle behavior
-    Object.values(this.gameObjects).forEach(object => object.doBehaviorEvent(this))
+    Object.values(this.gameObjects).forEach((object) =>
+      object.doBehaviorEvent(this)
+    );
+  }
+
+  checkForActionCutscene() {
+    const hero = this.gameObjects["hero"];
+    const nextCoords = utils.nextPosition(hero.x, hero.y, hero.direction);
+    const match = Object.values(this.gameObjects).find((object) => {
+      return `${object.x}, ${object.y}` === `${nextCoords.x}, ${nextCoords.y}`;
+    });
+    console.log({match});
+    if (!this.isCutscenePlaying && match && match.talking.length) {
+      this.startCutscene(match.talking[0].events);
+    }
   }
 
   addWall(x, y) {
@@ -97,6 +116,14 @@ window.OverworldMaps = {
           { type: "stand", direction: "right", time: 1200 },
           { type: "stand", direction: "down", time: 300 },
         ],
+        talking: [{
+          events: [
+            {
+              type: "textMessage",
+              text: "You clicked next... Good Job. Now, click next again.",
+            },
+          ],
+        }],
       }),
       npcB: new Person({
         x: utils.withGrid(3),
@@ -109,14 +136,22 @@ window.OverworldMaps = {
           { type: "walk", direction: "right" },
           { type: "walk", direction: "down" },
         ],
+        talking: [{
+          events: [
+            {
+              type: "textMessage",
+              text: "You clicked next... Good Job! Click next, again.",
+            },
+          ],
+        }],
       }),
     },
     walls: {
       // table
-      // [utils.asGridCoord(7,6)] : true,
-      // [utils.asGridCoord(8,6)] : true,
-      // [utils.asGridCoord(7,7)] : true,
-      // [utils.asGridCoord(8,7)] : true,
+      [utils.asGridCoord(7, 6)]: true,
+      [utils.asGridCoord(8, 6)]: true,
+      [utils.asGridCoord(7, 7)]: true,
+      [utils.asGridCoord(8, 7)]: true,
       // top doorway
       [utils.asGridCoord(6, 4)]: true,
       [utils.asGridCoord(6, 3)]: true,

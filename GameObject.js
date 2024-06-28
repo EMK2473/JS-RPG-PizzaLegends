@@ -1,3 +1,5 @@
+// must accept all objects
+
 class GameObject {
   constructor(config) {
     this.id = null;
@@ -7,11 +9,13 @@ class GameObject {
     this.direction = config.direction || "down";
     this.sprite = new Sprite({
       gameObject: this,
-      src: config.src || "./images/characters/people/reaper1.png",
+      src: config.src || "./images/characters/people/hero.png",
     });
 
     this.behaviorLoop = config.behaviorLoop || [];
     this.behaviorLoopIndex = 0;
+
+    this.talking = config.talking || [];
   }
 
   mount(map) {

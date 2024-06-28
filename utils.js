@@ -1,12 +1,18 @@
 const utils = {
+
+    // function to assign grid
     withGrid(n) {
         return n * 16;
     },
 
+    // function to assign grid coordinates
     asGridCoord(x,y) {
         return`${x*16}, ${y*16}`
     },
 
+    // collision util function
+    // figures out what is infront of someone 
+    // accepts position and direction going
     nextPosition(initialX, initialY, direction) {
         let x =  initialX;
         let y = initialY;
@@ -23,6 +29,7 @@ const utils = {
         return {x, y};
     },
     
+
     emitEvent(name, detail){
         const event = new CustomEvent(name, {
             detail
