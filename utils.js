@@ -39,7 +39,8 @@ const utils = {
     //         down: "up"
     //     };
         
-    //     return opposites[direction] || null; // Return null or another default if the direction is invalid
+    //     return opposites[direction] || null; 
+    // Return null or another default if the direction is invalid
     // },
 
     // multiple conditional checks hinders performance

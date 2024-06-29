@@ -79,6 +79,7 @@ class Overworld {
     this.map.overworld = this;
     this.map.mountObjects();
   }
+  
   init() {
     this.startMap(window.OverworldMaps.Kitchen)
 
@@ -92,6 +93,8 @@ class Overworld {
 
     // firing cutscene
     this.map.startCutscene([
+      {type: "battle",},
+
       {type: "textMessage", text: "This is the first cutscene!!!!!"},
       {type: "changeMap", map: "DemoRoom"}
     ])

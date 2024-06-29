@@ -30,6 +30,7 @@ class RevealingText {
         s.classList.add("revealed")
     })
   }
+  
   init() {
     let characters = [];
 
