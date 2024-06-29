@@ -78,6 +78,7 @@ class Combatant {
     this.hudElement.querySelector(".Combatant_level").innerText = this.level;
   }
 
+  
   init(container) {
     this.createElement();
     container.appendChild(this.hudElement);

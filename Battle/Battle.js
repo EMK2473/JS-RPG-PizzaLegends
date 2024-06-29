@@ -4,9 +4,9 @@ class Battle {
         "player1": new Combatant({
           ...Pizzas.s001,
           team: "player",
-          hp: 30,
+          hp: 45,
           maxHp: 50,
-          xp: 75,
+          xp: 20,
           maxXp: 100,
           level: 1,
           status: null
