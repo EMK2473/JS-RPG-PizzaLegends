@@ -255,47 +255,38 @@ window.OverworldMaps = {
       }),
     },
   },
-  Office: {
+  WorldBase: {
+    lowerSrc: "./images/maps/worldBaseLower.png",
+    upperSrc: "./images/maps/worldBaseUpper.png",
+    gameObjects: {
+      npcB: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(10),
+        y: utils.withGrid(8),
+        src: "./images/characters/people/reaper.png",
+      }),
+      npcF: new Person({
+        x: utils.withGrid(5),
+        y: utils.withGrid(6),
+        src: "./images/characters/people/gunSlinger1.png",
+      }),
+    },
+  },
+  WorldrenSouth: {
     lowerSrc: "./images/maps/blueFloor.png",
     upperSrc: "./images/maps/blueRoof.png",
     gameObjects: {
       npcB: new Person({
+        isPlayerControlled: true,
         x: utils.withGrid(10),
         y: utils.withGrid(8),
       }),
       npcF: new Person({
         x: utils.withGrid(5),
         y: utils.withGrid(6),
-        src: "./images/characters/people/oKnight128-Sheet.png",
+        src: "./images/characters/people/gunSlinger1.png",
       }),
     },
   },
-  StartScreen: {
-    lowerSrc: "./images/maps/StartScreen2.png",
-    upperSrc: "./images/maps/KitchenUpper.png",
-    gameObjects: {
-      npcD: new Person({
-        x: utils.withGrid(2),
-        y: utils.withGrid(4),
-        src: "./images/characters/people/employee-sheet-Sheet.png",
-      }),
-      npcC: new Person({
-        x: utils.withGrid(4),
-        y: utils.withGrid(4),
-        src: "./images/characters/people/janitor-sheet-Sheet.png",
-      }),
-      npcE: new Person({
-        x: utils.withGrid(6.5),
-        y: utils.withGrid(4),
-        src: "./images/characters/people/firefighterSmall-Sheet.png",
-      }),
-      npcF: new Person({
-        isPlayerControlled: true,
 
-        x: utils.withGrid(8.5),
-        y: utils.withGrid(7),
-        src: "./images/characters/people/oKnight128-Sheet.png",
-      }),
-    },
-  },
 };
