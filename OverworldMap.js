@@ -8,6 +8,7 @@
 
 class OverworldMap {
   constructor(config) {
+    this.overworld = null;
     this.gameObjects = config.gameObjects;
 
     this.cutsceneSpaces = config.cutsceneSpaces || {};
@@ -40,7 +41,7 @@ class OverworldMap {
   }
 
   isSpaceTaken(currentX, currentY, direction) {
-    const { x, y } = utils.nextPosition(currentX, currentY, direction);
+    const {x,y} = utils.nextPosition(currentX, currentY, direction);
     return this.walls[`${x},${y}`] || false;
   }
 
@@ -221,6 +222,13 @@ window.OverworldMaps = {
             { who: "hero", type: "walk",  direction: "left" },
           ]
         }
+      ],
+      [utils.asGridCoord(5,10)]: [
+        {
+          events: [
+            { type: "changeMap", map: "Kitchen" }
+          ]
+        }
       ]
     },
   },
@@ -229,20 +237,27 @@ window.OverworldMaps = {
     upperSrc: "./images/maps/KitchenUpper.png",
     gameObjects: {
       hero: new Person({
-        x: utils.withGrid(1),
-        y: utils.withGrid(8),
+        x: utils.withGrid(5),
+        y: utils.withGrid(5),
         isPlayerControlled: true,
       }),
-      npcA: new Person({
-        x: utils.withGrid(9),
-        y: utils.withGrid(6),
-        src: "./images/characters/people/npc2.png",
+      npcB: new Person({
+        x: utils.withGrid(10),
+        y: utils.withGrid(8),
+        src: "./images/characters/people/npc3.png",
+        talking: [
+          {
+            events: [
+              {type: "textMessage", text: "Ahh, you made it.", faceHero: "npcB"}
+            ]
+          }
+        ]
       }),
     },
   },
   Office: {
-    lowerSrc: "./images/maps/office-cubicles.png",
-    upperSrc: "./images/maps/KitchenUpper.png",
+    lowerSrc: "./images/maps/blueFloor.png",
+    upperSrc: "./images/maps/blueRoof.png",
     gameObjects: {
       npcB: new Person({
         x: utils.withGrid(10),

@@ -72,9 +72,15 @@ class Overworld {
     })
   }
 
-  init() {
-    this.map = new OverworldMap(window.OverworldMaps.DemoRoom);
+
+  // sets overworld to be itself, no longer null
+  startMap(mapConfig){
+    this.map = new OverworldMap(mapConfig);
+    this.map.overworld = this;
     this.map.mountObjects();
+  }
+  init() {
+    this.startMap(window.OverworldMaps.DemoRoom)
 
     this.bindActionInput();
     this.bindHeroPositionCheck();
