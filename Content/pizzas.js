@@ -16,7 +16,7 @@ window.Pizzas = {
     "v001": {
         name: "Call Me Kale",
         type: PizzaTypes.veggie,
-        src: "./images/charcters/pizzas/v001.png",
+        src: "./images/characters/pizzas/v001.png",
         icon: "./images/icons/veggie.png"
     },
     "f001": {
