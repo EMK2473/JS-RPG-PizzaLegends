@@ -92,8 +92,8 @@ class Overworld {
 
     // firing cutscene
     this.map.startCutscene([
-      // {type: "textMessage", text: "This is the first cutscene!!!!!"},
-      // {type: "changeMap", map: "DemoRoom"}
+      {type: "textMessage", text: "This is the first cutscene!!!!!"},
+      {type: "changeMap", map: "DemoRoom"}
     ])
   }
 }
