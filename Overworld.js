@@ -81,7 +81,7 @@ class Overworld {
   }
   
   init() {
-    this.startMap(window.OverworldMaps.Kitchen)
+    this.startMap(window.OverworldMaps.WorldBase)
 
     this.bindActionInput();
     this.bindHeroPositionCheck();
@@ -93,10 +93,10 @@ class Overworld {
 
     // firing cutscene
     this.map.startCutscene([
-      {type: "battle",},
+      // {type: "battle",},
 
       {type: "textMessage", text: "This is the first cutscene!!!!!"},
-      {type: "changeMap", map: "DemoRoom"}
+      {type: "changeMap", map: "WorldBase"}
     ])
   }
 }

@@ -107,8 +107,8 @@ class OverworldMap {
 
   moveWall(wasX, wasY, direction) {
     this.removeWall(wasX, wasY);
-    const { x, y } = utils.nextPosition(wasX, wasY, direction);
-    this.addWall(x, y);
+    const { x,y } = utils.nextPosition(wasX, wasY, direction);
+    this.addWall(x,y);
   }
 
   // mountObjects() {
@@ -259,178 +259,218 @@ window.OverworldMaps = {
       }),
     },
   },
-  // WorldBase: {
-  //   lowerSrc: "./images/maps/worldBaseLower.png",
-  //   upperSrc: "./images/maps/worldBaseUpper.png",
-  //   gameObjects: {
-  //     hero: new Person({
-  //       isPlayerControlled: true,
-  //       x: utils.withGrid(10),
-  //       y: utils.withGrid(8),
-  //       src: "./images/characters/people/gunSlinger1.png",
-  //     }),
-  //     npcReaper: new Person({
-  //       x: utils.withGrid(5),
-  //       y: utils.withGrid(6),
-  //       src: "./images/characters/people/reaper.png",
-  //       behaviorLoop: [
-  //         { type: "walk", direction: "left" },
-  //         { type: "stand", direction: "right", time: 800 },
-  //         { type: "walk", direction: "up" },
-  //         { type: "walk", direction: "right" },
-  //         { type: "walk", direction: "down" },
-  //       ],
-  //       talking: [
-  //         {
-  //           events: [
-  //             { type: "textMessage", text: "I'm busy", faceHero: "npcReaper" },
-  //             { type: "textMessage", text: "Now, go away..." },
-  //             // { who: "hero", type: "walk", direction: "up" },
-  //           ],
-  //         },
-  //       ],
-  //     }),
-  //   },
-  //   walls: {
-  //     // table
-  //     [utils.asGridCoord(7, 7)]: true,
-  //     [utils.asGridCoord(8, 7)]: true,
-  //     [utils.asGridCoord(7, 8)]: true,
-  //     [utils.asGridCoord(8, 7)]: true,
-  //     // top doorway
-  //     [utils.asGridCoord(6, 4)]: true,
-  //     [utils.asGridCoord(6, 3)]: true,
-  //     [utils.asGridCoord(8, 4)]: true,
-  //     [utils.asGridCoord(8, 3)]: true,
-  //     // top wall
-  //     [utils.asGridCoord(5, 3)]: true,
-  //     [utils.asGridCoord(4, 3)]: true,
-  //     [utils.asGridCoord(3, 3)]: true,
-  //     [utils.asGridCoord(2, 3)]: true,
-  //     [utils.asGridCoord(1, 3)]: true,
-  //     // right wall
-  //     [utils.asGridCoord(8, 3)]: true,
-  //     [utils.asGridCoord(9, 3)]: true,
-  //     [utils.asGridCoord(10, 3)]: true,
-  //     [utils.asGridCoord(11, 4)]: true,
-  //     [utils.asGridCoord(11, 5)]: true,
-  //     [utils.asGridCoord(11, 6)]: true,
-  //     [utils.asGridCoord(11, 7)]: true,
-  //     [utils.asGridCoord(11, 8)]: true,
-  //     [utils.asGridCoord(11, 9)]: true,
-  //     // bottom wall
-  //     [utils.asGridCoord(10, 10)]: true,
-  //     [utils.asGridCoord(9, 10)]: true,
-  //     [utils.asGridCoord(8, 10)]: true,
-  //     [utils.asGridCoord(7, 10)]: true,
-  //     [utils.asGridCoord(6, 10)]: true,
-  //     [utils.asGridCoord(5, 10)]: false,
-  //     [utils.asGridCoord(4, 10)]: true,
-  //     [utils.asGridCoord(3, 10)]: true,
-  //     [utils.asGridCoord(2, 10)]: true,
-  //     [utils.asGridCoord(1, 10)]: true,
-  //     // left wall
-  //     [utils.asGridCoord(0, 9)]: true,
-  //     [utils.asGridCoord(0, 8)]: true,
-  //     [utils.asGridCoord(0, 7)]: true,
-  //     [utils.asGridCoord(0, 6)]: true,
-  //     [utils.asGridCoord(0, 5)]: true,
-  //     [utils.asGridCoord(0, 4)]: true,
-  //   },
-  //   cutsceneSpaces: {
-  //     [utils.asGridCoord(7, 4)]: [
-  //       {
-  //         events: [
-  //           { who: "npcReaper", type: "stand", direction: "up", time: 500 },
-  //           { who: "npcReaper", type: "walk", direction: "left" },
-  //           { type: "textMessage", text: "...", time: 500 },
-  //           { type: "textMessage", text: "...", time: 500 },
-  //           {
-  //             type: "textMessage",
-  //             text: "Don't fucking think about it",
-  //             time: 500,
-  //           },
+  WorldBase: {
+    lowerSrc: "./images/maps/worldBaseLower.png",
+    upperSrc: "./images/maps/worldBaseUpper.png",
+    gameObjects: {
+      hero: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(5),
+        y: utils.withGrid(7),
+        src: "./images/characters/people/reaper.png",
+      }),
+      npcReaper: new Person({
+        x: utils.withGrid(5),
+        y: utils.withGrid(6),
+        src: "./images/characters/people/reaper.png",
+        behaviorLoop: [
+          // { type: "walk", direction: "left" },
+          // { type: "stand", direction: "right", time: 800 },
+          // { type: "walk", direction: "up" },
+          // { type: "walk", direction: "right" },
+          // { type: "walk", direction: "down" },
+        ],
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "I'm busy", faceHero: "npcReaper" },
+              { type: "textMessage", text: "Now, go away..." },
+              // { who: "hero", type: "walk", direction: "up" },
+            ],
+          },
+        ],
+      }),
+    },
+    walls: {
+      // top doorway
+      [utils.asGridCoord(6,4)]: true,
+      [utils.asGridCoord(6,3)]: true,
+      [utils.asGridCoord(8,4)]: true,
+      [utils.asGridCoord(8,3)]: true,
+      // top wall
+      [utils.asGridCoord(5,3)]: true,
+      [utils.asGridCoord(4,3)]: true,
+      [utils.asGridCoord(3,3)]: true,
+      [utils.asGridCoord(2,3)]: true,
+      [utils.asGridCoord(1,3)]: true,
+      // right wall
+      [utils.asGridCoord(8,3)]: true,
+      [utils.asGridCoord(9,3)]: true,
+      [utils.asGridCoord(10,3)]: true,
+      [utils.asGridCoord(11,4)]: true,
+      [utils.asGridCoord(11,5)]: true,
+      [utils.asGridCoord(11,6)]: true,
+      [utils.asGridCoord(11,7)]: true,
+      [utils.asGridCoord(11,8)]: true,
+      [utils.asGridCoord(11,9)]: true,
+      // bottom wall
+      [utils.asGridCoord(10,10)]: true,
+      [utils.asGridCoord(9,10)]: true,
+      [utils.asGridCoord(8,10)]: true,
+      [utils.asGridCoord(7,10)]: true,
+      [utils.asGridCoord(6,10)]: true,
+      [utils.asGridCoord(5,10)]: false,
+      [utils.asGridCoord(4,10)]: true,
+      [utils.asGridCoord(3,10)]: true,
+      [utils.asGridCoord(2,10)]: true,
+      [utils.asGridCoord(1,10)]: true,
+      // left wall
+      [utils.asGridCoord(0,9)]: true,
+      [utils.asGridCoord(0,8)]: true,
+      [utils.asGridCoord(0,7)]: true,
+      [utils.asGridCoord(0,6)]: true,
+      [utils.asGridCoord(0,5)]: true,
+      [utils.asGridCoord(0,4)]: true,
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(7,4)]: [
+        {
+          events: [
+            { who: "npcReaper", type: "stand", direction: "up", time: 500 },
+            { who: "npcReaper", type: "walk", direction: "left" },
+            { type: "textMessage", text: "...", time: 500 },
+            { type: "textMessage", text: "...", time: 500 },
+            {
+              type: "textMessage",
+              text: "Don't fucking think about it",
+              time: 500,
+            },
 
-  //           { who: "npcReaper", type: "walk", direction: "right" },
-  //           { who: "hero", type: "walk", direction: "down" },
-  //           { who: "hero", type: "walk", direction: "left" },
-  //         ],
-  //       },
-  //     ],
-  //     [utils.asGridCoord(5, 10)]: [
-  //       {
-  //         events: [{ type: "changeMap", map: "WorldRenSouth" }],
-  //       },
-  //     ],
-  //   },
-  // },
-  // WorldRenSouth: {
-  //   lowerSrc: "./images/maps/worldBaseLower.png",
-  //   upperSrc: "./images/maps/worldBaseUpper.png",
-  //   gameObjects: {
-  //     hero: new Person({
-  //       isPlayerControlled: true,
-  //       x: utils.withGrid(10),
-  //       y: utils.withGrid(8),
-  //     }),
-  //     npcF: new Person({
-  //       x: utils.withGrid(5),
-  //       y: utils.withGrid(6),
-  //       src: "./images/characters/people/gunSlinger1.png",
-  //     }),
-  //   },
-  //   walls: {
-  //     // spaceship
-  //     [utils.asGridCoord(7, 7)]: true,
-  //     [utils.asGridCoord(8, 7)]: true,
-  //     [utils.asGridCoord(7, 8)]: true,
-  //     [utils.asGridCoord(8, 8)]: true,
-  //     // top doorway
-  //     [utils.asGridCoord(6, 4)]: true,
-  //     [utils.asGridCoord(6, 3)]: true,
-  //     [utils.asGridCoord(8, 4)]: true,
-  //     [utils.asGridCoord(8, 3)]: true,
-  //     // top wall
-  //     [utils.asGridCoord(5, 3)]: true,
-  //     [utils.asGridCoord(4, 3)]: true,
-  //     [utils.asGridCoord(3, 3)]: true,
-  //     [utils.asGridCoord(2, 3)]: true,
-  //     [utils.asGridCoord(1, 3)]: true,
-  //     // right wall
-  //     [utils.asGridCoord(8, 3)]: true,
-  //     [utils.asGridCoord(9, 3)]: true,
-  //     [utils.asGridCoord(10, 3)]: true,
-  //     [utils.asGridCoord(11, 4)]: true,
-  //     [utils.asGridCoord(11, 5)]: true,
-  //     [utils.asGridCoord(11, 6)]: true,
-  //     [utils.asGridCoord(11, 7)]: true,
-  //     [utils.asGridCoord(11, 8)]: true,
-  //     [utils.asGridCoord(11, 9)]: true,
-  //     // bottom wall
-  //     [utils.asGridCoord(10, 10)]: true,
-  //     [utils.asGridCoord(9, 10)]: true,
-  //     [utils.asGridCoord(8, 10)]: true,
-  //     [utils.asGridCoord(7, 10)]: true,
-  //     [utils.asGridCoord(6, 10)]: true,
-  //     [utils.asGridCoord(5, 10)]: false,
-  //     [utils.asGridCoord(4, 10)]: true,
-  //     [utils.asGridCoord(3, 10)]: true,
-  //     [utils.asGridCoord(2, 10)]: true,
-  //     [utils.asGridCoord(1, 10)]: true,
-  //     // left wall
-  //     [utils.asGridCoord(0, 9)]: true,
-  //     [utils.asGridCoord(0, 8)]: true,
-  //     [utils.asGridCoord(0, 7)]: true,
-  //     [utils.asGridCoord(0, 6)]: true,
-  //     [utils.asGridCoord(0, 5)]: true,
-  //     [utils.asGridCoord(0, 4)]: true,
-  //   },
-  //   cutsceneSpaces: {
-  //     [utils.asGridCoord(5, 10)]: [
-  //       {
-  //         events: [{ type: "changeMap", map: "WorldRenSouth" }],
-  //       },
-  //     ],
-  //   },
-  // },
+            { who: "npcReaper", type: "walk", direction: "right" },
+            { who: "hero", type: "walk", direction: "down" },
+            { who: "hero", type: "walk", direction: "left" },
+          ],
+        },
+      ],
+      [utils.asGridCoord(5,11)]: [
+        {
+          events: [{ type: "changeMap", map: "SouthernPath" }],
+        },
+      ],
+    },
+  },
+  SouthernPath: {
+    lowerSrc: "./images/maps/southernPath.png",
+    upperSrc: "./images/maps/blankUpper.png",
+    gameObjects: {
+      hero: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(5),
+        y: utils.withGrid(1),
+        src: "./images/characters/people/reaper.png",
+      }),
+    },
+    walls: {
+      // left wall
+      [utils.asGridCoord(4,0)]: true,
+      [utils.asGridCoord(4,1)]: true,
+      [utils.asGridCoord(4,2)]: true,
+      [utils.asGridCoord(4,3)]: true,
+      [utils.asGridCoord(4,4)]: true,
+      [utils.asGridCoord(4,5)]: true,
+      [utils.asGridCoord(4,6)]: true,
+      [utils.asGridCoord(4,7)]: true,
+      [utils.asGridCoord(4,8)]: true,
+      [utils.asGridCoord(4,9)]: true,
+      [utils.asGridCoord(4,10)]: true,
+      [utils.asGridCoord(4,11)]: true,
+      // right wall
+      [utils.asGridCoord(6,0)]: true,
+      [utils.asGridCoord(6,1)]: true,
+      [utils.asGridCoord(6,2)]: true,
+      [utils.asGridCoord(6,3)]: true,
+      [utils.asGridCoord(6,4)]: true,
+      [utils.asGridCoord(6,5)]: true,
+      [utils.asGridCoord(6,6)]: true,
+      [utils.asGridCoord(6,7)]: true,
+      [utils.asGridCoord(6,8)]: true,
+      [utils.asGridCoord(6,9)]: false,
+      [utils.asGridCoord(6,10)]: true,
+      [utils.asGridCoord(6,11)]: true,
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(5,11)]: [
+        {
+          events: [{ type: "changeMap", map: "WorldBase" }],
+        },
+      ],
+      [utils.asGridCoord(5,0)]: [
+        {
+          events: [{ type: "changeMap", map: "WorldBase" }],
+        },
+      ],
+      [utils.asGridCoord(6,9)]: [
+        {
+          events: [{ type: "changeMap", map: "SouthernSecretPath" }],
+        },
+      ]
+    },
+  },
+  SouthernSecretPath: {
+    lowerSrc: "./images/maps/southernSecretPath.png",
+    upperSrc: "./images/maps/blankUpper.png",
+    gameObjects: {
+      hero: new Person({
+        isPlayerControlled: true,
+        x: utils.withGrid(7),
+        y: utils.withGrid(9),
+        src: "./images/characters/people/reaper.png",
+      }),
+    },
+    walls: {
+      // left wall
+      [utils.asGridCoord(4,0)]: true,
+      [utils.asGridCoord(4,1)]: true,
+      [utils.asGridCoord(4,2)]: true,
+      [utils.asGridCoord(4,3)]: true,
+      [utils.asGridCoord(4,4)]: true,
+      [utils.asGridCoord(4,5)]: true,
+      [utils.asGridCoord(4,6)]: true,
+      [utils.asGridCoord(4,7)]: true,
+      [utils.asGridCoord(4,8)]: true,
+      [utils.asGridCoord(4,9)]: true,
+      [utils.asGridCoord(4,10)]: true,
+      [utils.asGridCoord(4,11)]: true,
+      // right wall
+      [utils.asGridCoord(6,0)]: true,
+      [utils.asGridCoord(6,1)]: true,
+      [utils.asGridCoord(6,2)]: true,
+      [utils.asGridCoord(6,3)]: true,
+      [utils.asGridCoord(6,4)]: true,
+      [utils.asGridCoord(6,5)]: true,
+      [utils.asGridCoord(6,6)]: true,
+      [utils.asGridCoord(6,7)]: true,
+      [utils.asGridCoord(6,8)]: true,
+      [utils.asGridCoord(6,9)]: false,
+      [utils.asGridCoord(6,10)]: true,
+      [utils.asGridCoord(6,11)]: true,
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(6,9)]: [
+        {
+          events: [{ type: "changeMap", map: "WorldBase" }],
+        },
+      ],
+      [utils.asGridCoord(5,0)]: [
+        {
+          events: [{ type: "changeMap", map: "WorldBase" }],
+        },
+      ],
+      [utils.asGridCoord(11,9)]: [
+        {
+          events: [{ type: "changeMap", map: "WorldBase" }],
+        },
+      ],
+    },
+  },
 };
