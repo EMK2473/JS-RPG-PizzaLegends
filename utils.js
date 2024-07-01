@@ -51,6 +51,15 @@ const utils = {
         return "up"
 
     },
+
+    // set timeout as a util function
+    wait(ms){
+        return new Promise(resolve => {
+            setTimeout( () =>{
+                resolve()
+            }, ms )
+        })
+    },
     
     emitEvent(name, detail){
         const event = new CustomEvent(name, {
