@@ -76,9 +76,51 @@ class Combatant {
 
     //Update level on screen
     this.hudElement.querySelector(".Combatant_level").innerText = this.level;
+
+    // update status
+    const statusElement = this.hudElement.querySelector(".Combatant_status");
+    if (this.status) {
+      statusElement.innerText = this.status.type;
+      statusElement.style.display = "block";
+    } else {
+      statusElement.innerText = "";
+      statusElement.style.display = "none";
+    }
   }
 
+  getPostEvents() {
+    
+    if (this.status){
+      return[
+        {type: "textMessage", text: `!!!!!`},
+        {type: "stateChange", recover: 5, onCaster: true },
+        {type: "textMessage", text: `Feelin' ${this.status.type}!!!!!`},
+        {type: "textMessage", text: `${this.name} recovered 5 HP!`},
+      ]
+    }
+    
+    return []
+  }
   
+
+  decrementStatus() {
+    if (this.status?.expiresIn > 0){
+      this.status.expiresIn -= 1;
+      if (this.status?.expiresIn === 0) {
+        const expiredStatusType = this.status.type;
+        this.update({
+          status: null
+        })
+        return{
+          type: "textMessage",
+          text: `Status expired! ${this.name}'s no longer feelin' ${expiredStatusType}!`
+        }
+      }
+    }
+    return null;
+  }
+
+
   init(container) {
     this.createElement();
     container.appendChild(this.hudElement);

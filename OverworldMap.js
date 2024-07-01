@@ -342,7 +342,7 @@ window.OverworldMaps = {
             { type: "textMessage", text: "...", time: 500 },
             {
               type: "textMessage",
-              text: "Don't fucking think about it",
+              text: "I wouldn't, if I were you...",
               time: 500,
             },
 

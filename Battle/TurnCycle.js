@@ -38,6 +38,26 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
+
+    // check for post action events
+    // (Do things after your original turn submission)
+    const postEvents = caster.getPostEvents();
+    for (let i = 0; i <postEvents.length; i++){
+      const event = {
+        ...postEvents[i],
+        submission,
+        action: submission.action,
+        caster,
+        target: submission.target,
+      }
+      await this.onNewEvent(event)
+    }
+
+    const expiredEvent = caster.decrementStatus();
+    if(expiredEvent){
+      await this.onNewEvent(expiredEvent)
+    }
+
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
     this.turn();
   }
@@ -45,7 +65,7 @@ class TurnCycle {
   async init() {
     await this.onNewEvent({
       type: "textMessage",
-      text: "Battle is starting!",
+      text: "The battle is starting!",
     });
 
     // starts the first turn

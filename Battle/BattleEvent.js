@@ -11,7 +11,7 @@ class BattleEvent {
     const text = this.event.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
-      .replace("{ACTION}", this.event.action?.name)
+      .replace("{ACTION}", this.event.action?.name);
 
     const message = new TextMessage({
       text,
@@ -23,35 +23,44 @@ class BattleEvent {
   }
 
   async stateChange(resolve) {
-    const { caster, target, damage } = this.event;
+    const { caster, target, damage, recover } = this.event;
     if (damage) {
       // modify hp when hit and blink
       target.update({
         hp: target.hp - damage,
-      })
+      });
 
       target.pizzaElement.classList.add("battle-damage-blink");
-      console.log(`Adding class: ${"battle-damage-blink"} to element`)
-      
-
+      console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
-      // give time in between
-      await utils.wait(600);
 
-      // stop animation
-      target.pizzaElement.classList.remove("battle-damage-blink");
-      console.log(`Removing class: ${"battle-damage-blink"} from element`)
+    if (recover) {
+      const who = this.event.onCaster ? caster : target;
+      let newHp = who.hp + recover;
+      if(newHp > who.maxHp){
+        newHp = who.maxHp;
+      } 
+      who.update({
+        hp: newHp
+      })
+    }
 
+    // give time in between
+    await utils.wait(600);
 
-      // resolve event
-      resolve();
+    // stop animation
+    target.pizzaElement.classList.remove("battle-damage-blink");
+    console.log(`Removing class: ${"battle-damage-blink"} from element`);
+
+    // resolve event
+    resolve();
   }
 
   submissionMenu(resolve) {
     const menu = new SubmissionMenu({
       caster: this.event.caster,
       enemy: this.event.enemy,
-      onComplete: submission => {
+      onComplete: (submission) => {
         // submission = what move to use and who to use it on
         resolve(submission);
       },
@@ -61,7 +70,7 @@ class BattleEvent {
 
   animation(resolve) {
     const fn = BattleAnimations[this.event.animation];
-    fn(this.event, resolve)
+    fn(this.event, resolve);
   }
 
   init(resolve) {
