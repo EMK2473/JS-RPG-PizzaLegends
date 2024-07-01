@@ -1,18 +1,16 @@
 window.BattleAnimations = {
-    async spin(event, onComplete) {
+  async spin(event, onComplete) {
+    const element = event.caster.pizzaElement;
+    const animationClassName = event.caster.team === "player" ? "battle-spin-right" : "battle-spin-left";
+    element.classList.add(animationClassName);
 
-        // add class for animation
-        const element = event.caster.pizzaElement;
-        const animationClassName = event.caster.team === "player" ? "battle-spin-right" : "battle-spin-left";
-        element.classList.add(animationClassName);
+    //Remove class when animation is fully complete
+    element.addEventListener("animationend", () => {
+      element.classList.remove(animationClassName);
+    }, { once:true });
 
-        //remove class when animation ends
-        element.addEventListener("animationend", () => {
-            element.classList.remove(animationClassName);
-        }, { once: true});
-
-        // async timing to cycle battle during animation collosion
-        await utils.wait(100);
-        onComplete();
-    }
+    //Continue battle cycle right around when the pizzas collide
+    await utils.wait(100);
+    onComplete();
+  }
 }

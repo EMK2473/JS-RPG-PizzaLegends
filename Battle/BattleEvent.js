@@ -11,7 +11,7 @@ class BattleEvent {
     const text = this.event.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
-      .replace("{ACTION}", this.event.action?.name);
+      .replace("{ACTION}", this.event.action?.name)
 
     const message = new TextMessage({
       text,
@@ -25,30 +25,33 @@ class BattleEvent {
   async stateChange(resolve) {
     const { caster, target, damage } = this.event;
     if (damage) {
-      // modify hp when hit
+      // modify hp when hit and blink
       target.update({
         hp: target.hp - damage,
       })
 
-      // sprite animation
       target.pizzaElement.classList.add("battle-damage-blink");
+      console.log(`Adding class: ${"battle-damage-blink"} to element`)
+      
 
+    }
       // give time in between
       await utils.wait(600);
 
       // stop animation
       target.pizzaElement.classList.remove("battle-damage-blink");
+      console.log(`Removing class: ${"battle-damage-blink"} from element`)
+
 
       // resolve event
       resolve();
-    }
   }
 
   submissionMenu(resolve) {
     const menu = new SubmissionMenu({
       caster: this.event.caster,
       enemy: this.event.enemy,
-      onComplete: (submission) => {
+      onComplete: submission => {
         // submission = what move to use and who to use it on
         resolve(submission);
       },

@@ -53,7 +53,7 @@ const utils = {
     },
 
     // set timeout as a util function
-    wait(ms){
+    wait(ms) {
         return new Promise(resolve => {
             setTimeout( () =>{
                 resolve()
