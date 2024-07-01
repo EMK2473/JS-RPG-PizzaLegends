@@ -4,8 +4,8 @@ class Battle {
         "player1": new Combatant({
           ...Pizzas.s001,
           team: "player",
-          hp: 45,
-          maxHp: 50,
+          hp: 100,
+          maxHp: 100,
           xp: 20,
           maxXp: 100,
           level: 1,
@@ -14,8 +14,8 @@ class Battle {
         "enemy1": new Combatant({
           ...Pizzas.v001,
           team: "enemy",
-          hp: 20,
-          maxHp: 50,
+          hp: 100,
+          maxHp: 100,
           xp: 20,
           maxXp: 100,
           level: 1,
@@ -23,8 +23,8 @@ class Battle {
         "enemy2": new Combatant({
           ...Pizzas.f001,
           team: "enemy",
-          hp: 25,
-          maxHp: 50,
+          hp: 100,
+          maxHp: 100,
           xp: 30,
           maxXp: 100,
           level: 1,
@@ -41,10 +41,10 @@ class Battle {
       this.element.classList.add("Battle");
       this.element.innerHTML = (`
       <div class="Battle_hero">
-        <img src="${'./images/characters/people/hero.png'}" alt="Hero" />
+        <img src="${'./images/characters/people/reaper.png'}" alt="Hero" />
       </div>
       <div class="Battle_enemy">
-        <img src=${'./images/characters/people/npc3.png'} alt="Enemy" />
+        <img src=${'./images/characters/people/reaper.png'} alt="Enemy" />
       </div>
       `)
     }

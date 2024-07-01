@@ -8,9 +8,11 @@
   .Battle .Combatant {
     transform: scale(2);
   }
+  
   .Battle .Combatant[data-active="false"] {
     opacity: 0;
   }
+
   .Battle .Combatant[data-active="true"] {
     opacity: 1;
   }
@@ -54,6 +56,7 @@
     padding-right: 2px;
     margin: 0;
   }
+
   .Combatant_type {
     position: absolute;
     left: 3px;
@@ -69,6 +72,7 @@
     width: 26px;
     height: 3px;
   }
+
   .Combatant_life-container > rect {
     transition: width 0.2s;
   }
@@ -80,6 +84,7 @@
     width: 26px;
     height: 2px;
   }
+  
   .Combatant_level {
     position: absolute;
     font-size: 12px;
@@ -106,9 +111,11 @@
     color: white;
     margin: 0;
   }
+  
   .Combatant_status[data-status="saucy"] {
     color: red;
   }
+  
   .Combatant_status[data-status="clumsy"] {
     background: #582a79;
   }
@@ -118,17 +125,21 @@
     transform: scale(2);
     background: url(../images/characters/pizzas/pizza-shadow.png) no-repeat no-repeat;
   }
+  
   .Pizza[data-team="player"] {
     bottom: 73px;
     left: 51px;
   }
+  
   .Pizza[data-team="enemy"] {
     top: 47px;
     right: 100px;
   }
+  
   .Pizza[data-active="false"] {
     opacity:0;
   }
+  
   .Pizza[data-active="true"] {
     opacity:1;
   }

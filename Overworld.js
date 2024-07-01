@@ -96,7 +96,7 @@ class Overworld {
       {type: "battle",},
 
       {type: "textMessage", text: "This is the first cutscene!!!!!"},
-      {type: "changeMap", map: "Kitchen"}
+      {type: "changeMap", map: "WorldBase"}
     ])
   }
 }
