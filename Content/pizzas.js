@@ -1,3 +1,8 @@
+// Pizzas are essentially "units", or "pokemon"
+// Content is where we define properties for each unit
+// This will not include default and base values, as those are defined in the constructor
+// This will include individual properties, such as icons, img src, types, and name 
+
 window.PizzaTypes = {
     normal: "normal",
     spicy: "spicy",
