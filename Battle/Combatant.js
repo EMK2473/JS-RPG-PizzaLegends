@@ -5,7 +5,7 @@ class Combatant {
     // for example:
     // hp: 100;
     // this.hp = 100;
-    Object.keys(config).forEach(key => {
+    Object.keys(config).forEach((key) => {
       this[key] = config[key];
     });
     this.battle = battle;
@@ -63,7 +63,7 @@ class Combatant {
   }
 
   update(changes = {}) {
-    Object.keys(changes).forEach(key => {
+    Object.keys(changes).forEach((key) => {
       this[key] = changes[key];
     });
 
@@ -89,37 +89,34 @@ class Combatant {
   }
 
   getPostEvents() {
-    
-    if (this.status){
-      return[
-        {type: "textMessage", text: `!!!!!`},
-        {type: "stateChange", recover: 5, onCaster: true },
-        {type: "textMessage", text: `Feelin' ${this.status.type}!!!!!`},
-        {type: "textMessage", text: `${this.name} recovered 5 HP!`},
-      ]
+    if (this.status) {
+      return [
+        { type: "textMessage", text: `!!!!!` },
+        { type: "stateChange", recover: 5, onCaster: true },
+        { type: "textMessage", text: `Feelin' ${this.status.type}!!!!!` },
+        { type: "textMessage", text: `${this.name} recovered 5 HP!` },
+      ];
     }
-    
-    return []
+
+    return [];
   }
-  
 
   decrementStatus() {
-    if (this.status?.expiresIn > 0){
+    if (this.status?.expiresIn > 0) {
       this.status.expiresIn -= 1;
       if (this.status?.expiresIn === 0) {
         const expiredStatusType = this.status.type;
         this.update({
-          status: null
-        })
-        return{
+          status: null,
+        });
+        return {
           type: "textMessage",
-          text: `Status expired! ${this.name}'s no longer feelin' ${expiredStatusType}!`
-        }
+          text: `Status expired! ${this.name}'s no longer feelin' ${expiredStatusType}!`,
+        };
       }
     }
     return null;
   }
-
 
   init(container) {
     this.createElement();

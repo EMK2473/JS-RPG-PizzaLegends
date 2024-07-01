@@ -37,12 +37,12 @@ class BattleEvent {
     if (recover) {
       const who = this.event.onCaster ? caster : target;
       let newHp = who.hp + recover;
-      if(newHp > who.maxHp){
+      if (newHp > who.maxHp) {
         newHp = who.maxHp;
-      } 
+      }
       who.update({
-        hp: newHp
-      })
+        hp: newHp,
+      });
     }
 
     // give time in between
