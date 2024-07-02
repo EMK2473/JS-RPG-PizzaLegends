@@ -45,6 +45,12 @@ class Battle {
       player: "player1",
       enemy: "enemy1",
     };
+
+    this.items = [
+      { actionId: "item_recoverStatus", instanceId: "p1", team: "player"},
+      { actionId: "item_recoverStatus", instanceId: "p2", team: "player"},
+      { actionId: "item_recoverStatus", instanceId: "p3", team: "enemy"},
+    ]
   }
 
   createElement() {

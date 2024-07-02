@@ -1,10 +1,28 @@
 class SubmissionMenu {
-  constructor({ caster, enemy, onComplete }) {
+  constructor({ caster, enemy, onComplete, items }) {
     this.caster = caster;
     this.enemy = enemy;
     this.onComplete = onComplete;
+
+    let quantityMap = {};
+    items.forEach(item => {
+      if (item.team === caster.team) {
+        let existing = quantityMap[item.actionId];
+        if (existing) {
+          existing.quantity += 1;
+        } else {
+          quantityMap[item.actionId] = {
+            actionId: item.actionId,
+            quantity: 1,
+            instanceId: item.instanceId,
+          };
+        }
+      }
+    });
+    this.items = Object.values(quantityMap);
   }
 
+  // constructs menu options
   getPages() {
     const backOption = {
       label: "Back",
@@ -53,20 +71,32 @@ class SubmissionMenu {
         backOption,
       ],
       items: [
-        // items will go here
+        ...this.items.map((item) => {
+          const action = Actions[item.actionId];
+          return {
+            label: action.name,
+            description: action.description,
+            right: () => {
+              return 'x'+item.quantity
+            },
+            handler: () => {
+              this.menuSubmit(action, item.instanceId);
+            },
+          };
+        }),
         backOption,
       ],
     };
   }
 
   menuSubmit(action, instanceId = null) {
-
-
     this.keyboardMenu?.end();
 
     this.onComplete({
       action,
       target: action.targetType === "friendly" ? this.caster : this.enemy,
+      instanceId
+
     });
   }
 
