@@ -10,7 +10,21 @@ class Battle {
           xp: 20,
           maxXp: 100,
           level: 1,
-          status: { type: "saucy"},
+          status: { type: "saucy" },
+          isPlayerControlled: true,
+        },
+        this
+      ),
+      player2: new Combatant(
+        {
+          ...Pizzas.s002,
+          team: "player",
+          hp: 100,
+          maxHp: 100,
+          xp: 0,
+          maxXp: 100,
+          level: 1,
+          status: { type: "saucy" },
           isPlayerControlled: true,
         },
         this
@@ -47,11 +61,11 @@ class Battle {
     };
 
     this.items = [
-      { actionId: "item_recoverStatus", instanceId: "p1", team: "player"},
-      { actionId: "item_recoverStatus", instanceId: "p2", team: "player"},
-      { actionId: "item_recoverHp", instanceId: "p4", team: "player"},
-      { actionId: "item_recoverStatus", instanceId: "p3", team: "enemy"},
-    ]
+      { actionId: "item_recoverStatus", instanceId: "p1", team: "player" },
+      { actionId: "item_recoverStatus", instanceId: "p2", team: "player" },
+      { actionId: "item_recoverHp", instanceId: "p4", team: "player" },
+      { actionId: "item_recoverStatus", instanceId: "p3", team: "enemy" },
+    ];
   }
 
   createElement() {

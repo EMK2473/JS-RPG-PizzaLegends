@@ -39,7 +39,7 @@ window.Actions = {
   },
   item_recoverStatus: {
     name: "Heating Lamp",
-    description: "Feeling fresh and warm",
+    description: "Warming up removes statuses",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used a {ACTION}!" },
@@ -50,7 +50,7 @@ window.Actions = {
   },
   item_recoverHp: {
     name: "Grated Parmesean and Mozzarella",
-    description: "Cheesy never felt so good",
+    description: "Being this cheesy never felt so good",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} sprinkles some {ACTION}!" },

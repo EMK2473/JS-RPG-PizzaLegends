@@ -21,6 +21,21 @@ class TurnCycle {
       enemy
     })
 
+
+    // stop here if we are replacing this pizza
+    if(submission.replacement) {
+      await this.onNewEvent({
+        type: "replace",
+        replacement: submission.replacement
+      })
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `Go get 'em", ${submission.replacement.name}!`
+      })
+      this.nextTurn();
+      return;
+    }
+
     if(submission.instanceId) {
       this.battle.items = this.battle.items.filter( i => i.instanceId !== submission.instanceId)
     }
@@ -61,6 +76,12 @@ class TurnCycle {
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
     this.turn();
 
+  }
+
+  // next turn method for when mid turn events happen (swapping/replacement)
+  nextTurn(){
+    this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
+    this.turn();
   }
 
   async init() {

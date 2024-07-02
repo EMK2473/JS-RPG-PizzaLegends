@@ -70,17 +70,45 @@ class BattleEvent {
     resolve();
   }
 
+  // handles submission menu => battle events
   submissionMenu(resolve) {
+    const { caster }= this.event;
     const menu = new SubmissionMenu({
       caster: this.event.caster,
       enemy: this.event.enemy,
       items: this.battle.items,
+      replacements : Object.values(this.battle.combatants).filter(c => {
+        return c.id !== caster.id && c.team === caster.team && c.hp > 0;
+      }),
       onComplete: (submission) => {
         // submission = what move to use and who to use it on
         resolve(submission);
       },
     });
     menu.init(this.battle.element);
+  }
+
+  // handles checking prev Combatant
+  // active combatants object on Battle.js
+  async replace(resolve){
+    const {replacement } = this.event;
+
+    // clear out old combatant, set to null
+    const prevCombatant = this.battle.combatants[this.battle.activeCombatants[replacement.team]]
+    this.battle.activeCombatants[replacement.team] = null;
+    prevCombatant.update();
+    await utils.wait(400);
+
+
+    // in with the new combatant
+    this.battle.activeCombatants[replacement.team] = replacement.id;
+    replacement.update();
+    await utils.wait(400)
+    
+    resolve();
+
+
+
   }
 
   animation(resolve) {
