@@ -177,6 +177,8 @@ window.OverworldMaps = {
       [utils.asGridCoord(6, 3)]: true,
       [utils.asGridCoord(8, 4)]: true,
       [utils.asGridCoord(8, 3)]: true,
+
+      //small map walls 
       // top wall
       [utils.asGridCoord(5, 3)]: true,
       [utils.asGridCoord(4, 3)]: true,
@@ -260,14 +262,14 @@ window.OverworldMaps = {
     },
   },
   WorldBase: {
-    lowerSrc: "./images/maps/worldBaseLower.png",
-    upperSrc: "./images/maps/worldBaseUpper.png",
+    lowerSrc: "./images/maps/forestWorld.png",
+    upperSrc: "./images/maps/forestUpper.png",
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
         x: utils.withGrid(5),
         y: utils.withGrid(7),
-        src: "./images/characters/people/reaper.png",
+        src: "./images/characters/people/muscoveyJones.png",
       }),
       npcReaper: new Person({
         x: utils.withGrid(5),
@@ -292,48 +294,48 @@ window.OverworldMaps = {
       }),
     },
     walls: {
-      // top doorway
-      [utils.asGridCoord(6,4)]: true,
-      [utils.asGridCoord(6,3)]: true,
-      [utils.asGridCoord(8,4)]: true,
-      [utils.asGridCoord(8,3)]: true,
-      // top wall
-      [utils.asGridCoord(5,3)]: true,
-      [utils.asGridCoord(4,3)]: true,
-      [utils.asGridCoord(3,3)]: true,
-      [utils.asGridCoord(2,3)]: true,
-      [utils.asGridCoord(1,3)]: true,
-      // right wall
-      [utils.asGridCoord(8,3)]: true,
-      [utils.asGridCoord(9,3)]: true,
-      [utils.asGridCoord(10,3)]: true,
-      [utils.asGridCoord(11,4)]: true,
-      [utils.asGridCoord(11,5)]: true,
-      [utils.asGridCoord(11,6)]: true,
-      [utils.asGridCoord(11,7)]: true,
-      [utils.asGridCoord(11,8)]: true,
-      [utils.asGridCoord(11,9)]: true,
-      // bottom wall
-      [utils.asGridCoord(10,10)]: true,
-      [utils.asGridCoord(9,10)]: true,
-      [utils.asGridCoord(8,10)]: true,
-      [utils.asGridCoord(7,10)]: true,
-      [utils.asGridCoord(6,10)]: true,
-      [utils.asGridCoord(5,10)]: false,
-      [utils.asGridCoord(4,10)]: true,
-      [utils.asGridCoord(3,10)]: true,
-      [utils.asGridCoord(2,10)]: true,
-      [utils.asGridCoord(1,10)]: true,
-      // left wall
-      [utils.asGridCoord(0,9)]: true,
-      [utils.asGridCoord(0,8)]: true,
-      [utils.asGridCoord(0,7)]: true,
-      [utils.asGridCoord(0,6)]: true,
-      [utils.asGridCoord(0,5)]: true,
-      [utils.asGridCoord(0,4)]: true,
+      // // top doorway
+      // [utils.asGridCoord(6,4)]: true,
+      // [utils.asGridCoord(6,3)]: true,
+      // [utils.asGridCoord(8,4)]: true,
+      // [utils.asGridCoord(8,3)]: true,
+      // // top wall
+      // [utils.asGridCoord(5,3)]: true,
+      // [utils.asGridCoord(4,3)]: true,
+      // [utils.asGridCoord(3,3)]: true,
+      // [utils.asGridCoord(2,3)]: true,
+      // [utils.asGridCoord(1,3)]: true,
+      // // right wall
+      // [utils.asGridCoord(8,3)]: true,
+      // [utils.asGridCoord(9,3)]: true,
+      // [utils.asGridCoord(10,3)]: true,
+      // [utils.asGridCoord(11,4)]: true,
+      // [utils.asGridCoord(11,5)]: true,
+      // [utils.asGridCoord(11,6)]: true,
+      // [utils.asGridCoord(11,7)]: true,
+      // [utils.asGridCoord(11,8)]: true,
+      // [utils.asGridCoord(11,9)]: true,
+      // // bottom wall
+      // [utils.asGridCoord(10,10)]: true,
+      // [utils.asGridCoord(9,10)]: true,
+      // [utils.asGridCoord(8,10)]: true,
+      // [utils.asGridCoord(7,10)]: true,
+      // [utils.asGridCoord(6,10)]: true,
+      // [utils.asGridCoord(5,10)]: false,
+      // [utils.asGridCoord(4,10)]: true,
+      // [utils.asGridCoord(3,10)]: true,
+      // [utils.asGridCoord(2,10)]: true,
+      // [utils.asGridCoord(1,10)]: true,
+      // // left wall
+      // [utils.asGridCoord(0,9)]: true,
+      // [utils.asGridCoord(0,8)]: true,
+      // [utils.asGridCoord(0,7)]: true,
+      // [utils.asGridCoord(0,6)]: true,
+      // [utils.asGridCoord(0,5)]: true,
+      // [utils.asGridCoord(0,4)]: true,
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(7,4)]: [
+      [utils.asGridCoord(11,2)]: [
         {
           events: [
             { who: "npcReaper", type: "stand", direction: "up", time: 500 },
@@ -348,11 +350,12 @@ window.OverworldMaps = {
 
             { who: "npcReaper", type: "walk", direction: "right" },
             { who: "hero", type: "walk", direction: "down" },
-            { who: "hero", type: "walk", direction: "left" },
+            { who: "hero", type: "walk", direction: "down" },
+            { who: "hero", type: "walk", direction: "down" },
           ],
         },
       ],
-      [utils.asGridCoord(5,11)]: [
+      [utils.asGridCoord(12,23)]: [
         {
           events: [{ type: "changeMap", map: "SouthernPath" }],
         },
@@ -367,7 +370,7 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(5),
         y: utils.withGrid(1),
-        src: "./images/characters/people/reaper.png",
+        src: "./images/characters/people/muscoveyJones.png",
       }),
     },
     walls: {
@@ -424,7 +427,7 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(7),
         y: utils.withGrid(9),
-        src: "./images/characters/people/reaper.png",
+        src: "./images/characters/people/muscoveyJones.png",
       }),
     },
     walls: {
