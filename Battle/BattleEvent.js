@@ -88,6 +88,19 @@ class BattleEvent {
     menu.init(this.battle.element);
   }
 
+  replacementMenu(resolve){
+    const menu = new ReplacementMenu({
+        replacements: Object.values(this.battle.combatants).filter( c => {
+          return c.team === this.event.team && c.hp > 0
+        }),
+        onComplete: replacement => {
+        resolve(replacement)
+      }
+
+    })
+    menu.init( this.battle.element )
+  }
+
   // handles checking prev Combatant
   // active combatants object on Battle.js
   async replace(resolve){

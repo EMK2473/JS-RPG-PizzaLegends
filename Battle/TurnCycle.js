@@ -53,6 +53,45 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
+
+    // Check if target died?
+    const targetDead = submission.target.hp <= 0;
+    if(targetDead) {
+      await this.onNewEvent({
+        type: "textMessage", text: `${submission.target.name} is ded X_X !`
+      })
+    }
+
+    // Check if a team won?
+    const winner = this.getWinningTeam();
+    if(winner){
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `Winner!`
+      })
+      // ToDo: end battle and return to overworld
+      // end battle when someone wins
+      return;
+    }
+
+    // If we have dead target, but no winner, bring in replacement
+    if(targetDead){
+      const replacement = await this.onNewEvent({
+        type: "replacementMenu",
+        team: submission.target.team,
+      })
+      await this.onNewEvent({
+        type: "replace",
+        replacement: replacement
+      })
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `${replacement.name} appears!`
+      })
+    }
+
+
+
     //Check for post events
     //(Do things AFTER your original turn submission)
     const postEvents = caster.getPostEvents();
@@ -76,6 +115,20 @@ class TurnCycle {
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
     this.turn();
 
+  }
+
+
+  getWinningTeam(){
+    let aliveTeams = {    };
+    Object.values(this.battle.combatants).forEach( c => {
+    if (c.hp>0 ){
+      aliveTeams[c.team] = true;
+    }
+    })
+
+    if(!aliveTeams["player"]){ return "enemy"}
+    if(!aliveTeams["enemy"]){ return "player"}
+    return null
   }
 
   // next turn method for when mid turn events happen (swapping/replacement)
