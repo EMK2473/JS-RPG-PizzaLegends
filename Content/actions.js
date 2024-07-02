@@ -5,7 +5,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 5 },
+      { type: "stateChange", damage: 10 },
     ],
   },
   saucyStatus: {

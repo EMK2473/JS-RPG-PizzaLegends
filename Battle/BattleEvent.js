@@ -62,6 +62,7 @@ class BattleEvent {
     // give time in between
     await utils.wait(600);
 
+
     // stop animation
     target.pizzaElement.classList.remove("battle-damage-blink");
     console.log(`Removing class: ${"battle-damage-blink"} from element`);
@@ -117,6 +118,10 @@ class BattleEvent {
     this.battle.activeCombatants[replacement.team] = replacement.id;
     replacement.update();
     await utils.wait(400)
+    
+
+    this.battle.playerTeam.update();
+    this.battle.enemyTeam.update();
     
     resolve();
 
