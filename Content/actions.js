@@ -48,6 +48,17 @@ window.Actions = {
 
     ],
   },
+  item_recoverHp: {
+    name: "Grated Parmesean and Mozzarella",
+    description: "Cheesy never felt so good",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} sprinkles some {ACTION}!" },
+      { type: "stateChange", recover: 10 },
+      { type: "textMessage", text: "{CASTER} recovered some HP!" },
+
+    ],
+  },
 };
 
 // Items
