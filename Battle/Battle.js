@@ -5,12 +5,13 @@ class Battle {
         {
           ...Pizzas.s001,
           team: "player",
-          hp: 80,
+          hp: 20,
           maxHp: 100,
           xp: 20,
           maxXp: 100,
           level: 1,
-          status: null
+          status: null,
+          isPlayerControlled: true,
         },
         this
       ),
@@ -18,7 +19,7 @@ class Battle {
         {
           ...Pizzas.v001,
           team: "enemy",
-          hp: 100,
+          hp: 25,
           maxHp: 100,
           xp: 20,
           maxXp: 100,
@@ -54,7 +55,7 @@ class Battle {
         <img src="${"./images/characters/people/reaper.png"}" alt="Hero" />
       </div>
       <div class="Battle_enemy">
-        <img src=${"./images/characters/people/reaper.png"} alt="Enemy" />
+        <img src=${"./images/characters/people/npc1.png"} alt="Enemy" />
       </div>
       `;
   }

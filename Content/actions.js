@@ -12,7 +12,7 @@ window.Actions = {
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "stateChange", status: { type: "saucy", expires: 1 } },
+      { type: "stateChange", status: { type: "saucy", expires: 2 } },
       { type: "textMessage", text: "{CASTER} gained {STATUS}!" },
     ],
   },

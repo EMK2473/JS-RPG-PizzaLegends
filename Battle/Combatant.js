@@ -105,7 +105,7 @@ class Combatant {
       return [
         { type: "textMessage", text: `!!!!!` },
         { type: "stateChange", recover: 5, onCaster: true },
-        { type: "textMessage", text: `Feelin' ${this.status.type}!!!!!` },
+        // { type: "textMessage", text: `Feelin' ${this.status.type}!!!!!` },
         { type: "textMessage", text: `${this.name} recovered 5 HP!` },
       ];
     }
@@ -116,15 +116,14 @@ class Combatant {
   decrementStatus() {
     if (this.status?.expiresIn > 0) {
       this.status.expiresIn -= 1;
-      if (this.status?.expiresIn === 0) {
-        const expiredStatusType = this.status.type;
+      if (this.status.expiresIn === 0) {
         this.update({
-          status: null,
-        });
+          status: null
+        })
         return {
           type: "textMessage",
           text: `Status expired! ${this.name}'s no longer feelin' ${expiredStatusType}!`,
-        };
+        }
       }
     }
     return null;

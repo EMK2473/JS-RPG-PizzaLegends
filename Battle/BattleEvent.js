@@ -25,9 +25,7 @@ class BattleEvent {
   async stateChange(resolve) {
     const { caster, target, damage, recover, status, action } = this.event;
     let who = this.event.onCaster ? caster : target;
-    if(action.targetType === "friendly") {
-      who = caster;
-    }
+
     if (damage) {
       // modify hp when hit and blink
       target.update({

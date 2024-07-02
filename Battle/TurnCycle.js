@@ -5,71 +5,69 @@ class TurnCycle {
   constructor({ battle, onNewEvent }) {
     this.battle = battle;
     this.onNewEvent = onNewEvent;
-    this.currentTeam = "player";
-    //  or "enemy"
+    this.currentTeam = "player"; //or "enemy"
   }
 
-  // will create promises and wait for them to resolve
   async turn() {
-    // caster -  reference to combatant class.
-    // Who's the caster rn?
+    //Get the caster
     const casterId = this.battle.activeCombatants[this.currentTeam];
     const caster = this.battle.combatants[casterId];
-    const enemyId =
-      this.battle.activeCombatants[
-        caster.team === "player" ? "enemy" : "player"
-      ];
+    const enemyId = this.battle.activeCombatants[caster.team === "player" ? "enemy" : "player"]
     const enemy = this.battle.combatants[enemyId];
+
     const submission = await this.onNewEvent({
       type: "submissionMenu",
       caster,
-      enemy,
-    });
+      enemy
+    })
 
     const resultingEvents = caster.getReplacedEvents(submission.action.success);
 
-
-    for (let i = 0; i < resultingEvents.length; i++) {
+    for (let i=0; i<resultingEvents.length; i++) {
       const event = {
         ...resultingEvents[i],
         submission,
         action: submission.action,
         caster,
         target: submission.target,
-      };
+      }
       await this.onNewEvent(event);
     }
 
-    // check for post action events
-    // (Do things after your original turn submission)
+    //Check for post events
+    //(Do things AFTER your original turn submission)
     const postEvents = caster.getPostEvents();
-    for (let i = 0; i < postEvents.length; i++) {
+    for (let i=0; i < postEvents.length; i++ ) {
       const event = {
         ...postEvents[i],
         submission,
         action: submission.action,
         caster,
-        target: submission.target,
-      };
+        target: submission.target, 
+      }
       await this.onNewEvent(event);
     }
 
+    //Check for status expire
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
-      await this.onNewEvent(expiredEvent);
+      await this.onNewEvent(expiredEvent)
     }
 
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
     this.turn();
+
   }
 
   async init() {
-    await this.onNewEvent({
-      type: "textMessage",
-      text: "The battle is starting!",
-    });
+    // await this.onNewEvent({
+    //   type: "textMessage",
+    //   text: "The battle is starting!"
+    // })
 
-    // starts the first turn
+    //Start the first turn!
     this.turn();
+
   }
+
 }
