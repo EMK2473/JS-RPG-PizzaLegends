@@ -60,7 +60,7 @@
 }
 
 .battle-spin-right {
-  animation: battle-spin-right 2s;
+  animation: battle-spin-right 1.5s;
 }
 
 @keyframes battle-spin-left {
@@ -76,7 +76,7 @@
 }
 
 .battle-spin-left {
-  animation: battle-spin-left 2s;
+  animation: battle-spin-left 1.5s;
 }
 
 .glob-orb {
@@ -106,7 +106,7 @@
 .battle-glob-right {
   left: 70px;
   top: 104px;
-  animation: battle-glob-right 2s forwards;
+  animation: battle-glob-right 1.5s forwards;
 }
 
 @keyframes battle-glob-left {
@@ -130,5 +130,5 @@
 .battle-glob-left {
   left: 227px;
   top: 56px;
-  animation: battle-glob-left 2s forwards;
+  animation: battle-glob-left 1.5s forwards;
 }

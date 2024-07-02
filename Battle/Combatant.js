@@ -106,7 +106,7 @@ class Combatant {
         { type: "textMessage", text: `!!!!!` },
         { type: "stateChange", recover: 5, onCaster: true },
         // { type: "textMessage", text: `Feelin' ${this.status.type}!!!!!` },
-        { type: "textMessage", text: `${this.name} recovered 5 HP!` },
+        { type: "textMessage", text: ` Saucy ${this.name} recovered 5 HP!` },
       ];
     }
 
