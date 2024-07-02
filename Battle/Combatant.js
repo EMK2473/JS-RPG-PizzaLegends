@@ -89,6 +89,7 @@ class Combatant {
   }
 
   getReplacedEvents(originalEvents) {
+    // 1/3 chance to fall over
     if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
       return [{
         type: "textMessage",

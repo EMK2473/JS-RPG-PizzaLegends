@@ -21,6 +21,7 @@ window.Actions = {
     targetType: "enemy",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
+      {type: "animation", animation: "glob", color: "#dafd2a"},
       { type: "stateChange", status: { type: "clumsy", expires: 3 } },
       { type: "textMessage", text: "{TARGET} became clumsy!" },
 
