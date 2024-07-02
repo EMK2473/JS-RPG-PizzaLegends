@@ -12,5 +12,5 @@ window.BattleAnimations = {
     //Continue battle cycle right around when the pizzas collide
     await utils.wait(100);
     onComplete();
-  }
+  },
 }

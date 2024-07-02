@@ -11,7 +11,7 @@ class BattleEvent {
     const text = this.event.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
-      .replace("{ACTION}", this.event.action?.name);
+      .replace("{ACTION}", this.event.action?.name)
 
     const message = new TextMessage({
       text,
@@ -23,7 +23,11 @@ class BattleEvent {
   }
 
   async stateChange(resolve) {
-    const { caster, target, damage, recover } = this.event;
+    const { caster, target, damage, recover, status, action } = this.event;
+    let who = this.event.onCaster ? caster : target;
+    if(action.targetType === "friendly") {
+      who = caster;
+    }
     if (damage) {
       // modify hp when hit and blink
       target.update({
@@ -35,7 +39,7 @@ class BattleEvent {
     }
 
     if (recover) {
-      const who = this.event.onCaster ? caster : target;
+      // const who = this.event.onCaster ? caster : target;
       let newHp = who.hp + recover;
       if (newHp > who.maxHp) {
         newHp = who.maxHp;
@@ -43,6 +47,18 @@ class BattleEvent {
       who.update({
         hp: newHp,
       });
+    }
+
+    if(status){
+      who.update({
+        status: {...status}
+      })
+    }
+
+    if (status === null) {
+      who.update({
+        status: null
+      })
     }
 
     // give time in between

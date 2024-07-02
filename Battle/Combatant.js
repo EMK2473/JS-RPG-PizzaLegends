@@ -63,7 +63,7 @@ class Combatant {
   }
 
   update(changes = {}) {
-    Object.keys(changes).forEach((key) => {
+    Object.keys(changes).forEach(key => {
       this[key] = changes[key];
     });
 
@@ -88,8 +88,19 @@ class Combatant {
     }
   }
 
+  getReplacedEvents(originalEvents) {
+    if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
+      return [{
+        type: "textMessage",
+        text: `${this.name} falls over!`,
+    }];
+    }
+
+    return originalEvents;
+  }
+
   getPostEvents() {
-    if (this.status) {
+    if (this.status?.type === "saucy") {
       return [
         { type: "textMessage", text: `!!!!!` },
         { type: "stateChange", recover: 5, onCaster: true },
