@@ -107,8 +107,8 @@ class OverworldMap {
 
   moveWall(wasX, wasY, direction) {
     this.removeWall(wasX, wasY);
-    const { x,y } = utils.nextPosition(wasX, wasY, direction);
-    this.addWall(x,y);
+    const { x, y } = utils.nextPosition(wasX, wasY, direction);
+    this.addWall(x, y);
   }
 
   // mountObjects() {
@@ -131,7 +131,6 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(5),
         y: utils.withGrid(6),
-
       }),
       npcA: new Person({
         x: utils.withGrid(7),
@@ -147,8 +146,9 @@ window.OverworldMaps = {
           {
             events: [
               { type: "textMessage", text: "I'm busy", faceHero: "npcA" },
-              { type: "textMessage", text: "Now, go away..." },
-              { who: "hero", type: "walk", direction: "up" },
+              { type: "battle", enemyId: "beth" },
+              // { type: "textMessage", text: "Now, go away..." },
+              // { who: "hero", type: "walk", direction: "up" },
             ],
           },
         ],
@@ -156,7 +156,17 @@ window.OverworldMaps = {
       npcB: new Person({
         x: utils.withGrid(8),
         y: utils.withGrid(5),
-        src: "./images/characters/people/npc2.png",
+        src: "./images/characters/people/erio.png",
+        talking: [
+          {
+            events: [
+              { type: "textMessage", text: "Bahaha!", faceHero: "npcB"},
+              { type: "battle", enemyId: "erio" },
+              // { type: "textMessage", text: "Now, go away..." },
+              // { who: "hero", type: "walk", direction: "up" },
+            ],
+          },
+        ]
         // behaviorLoop: [
         //   { type: "walk", direction: "left" },
         //   { type: "stand", direction: "right", time: 800 },
@@ -178,7 +188,7 @@ window.OverworldMaps = {
       [utils.asGridCoord(8, 4)]: true,
       [utils.asGridCoord(8, 3)]: true,
 
-      //small map walls 
+      //small map walls
       // top wall
       [utils.asGridCoord(5, 3)]: true,
       [utils.asGridCoord(4, 3)]: true,
@@ -335,7 +345,7 @@ window.OverworldMaps = {
       // [utils.asGridCoord(0,4)]: true,
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(11,2)]: [
+      [utils.asGridCoord(11, 2)]: [
         {
           events: [
             { who: "npcReaper", type: "stand", direction: "up", time: 500 },
@@ -344,7 +354,7 @@ window.OverworldMaps = {
             { type: "textMessage", text: "...", time: 500 },
             {
               type: "textMessage",
-              text: "I wouldn't, if I were you...",
+              text: "You're not welcome inside the tree",
               time: 500,
             },
 
@@ -355,7 +365,7 @@ window.OverworldMaps = {
           ],
         },
       ],
-      [utils.asGridCoord(12,23)]: [
+      [utils.asGridCoord(12, 23)]: [
         {
           events: [{ type: "changeMap", map: "SouthernPath" }],
         },
@@ -375,48 +385,48 @@ window.OverworldMaps = {
     },
     walls: {
       // left wall
-      [utils.asGridCoord(4,0)]: true,
-      [utils.asGridCoord(4,1)]: true,
-      [utils.asGridCoord(4,2)]: true,
-      [utils.asGridCoord(4,3)]: true,
-      [utils.asGridCoord(4,4)]: true,
-      [utils.asGridCoord(4,5)]: true,
-      [utils.asGridCoord(4,6)]: true,
-      [utils.asGridCoord(4,7)]: true,
-      [utils.asGridCoord(4,8)]: true,
-      [utils.asGridCoord(4,9)]: true,
-      [utils.asGridCoord(4,10)]: true,
-      [utils.asGridCoord(4,11)]: true,
+      [utils.asGridCoord(4, 0)]: true,
+      [utils.asGridCoord(4, 1)]: true,
+      [utils.asGridCoord(4, 2)]: true,
+      [utils.asGridCoord(4, 3)]: true,
+      [utils.asGridCoord(4, 4)]: true,
+      [utils.asGridCoord(4, 5)]: true,
+      [utils.asGridCoord(4, 6)]: true,
+      [utils.asGridCoord(4, 7)]: true,
+      [utils.asGridCoord(4, 8)]: true,
+      [utils.asGridCoord(4, 9)]: true,
+      [utils.asGridCoord(4, 10)]: true,
+      [utils.asGridCoord(4, 11)]: true,
       // right wall
-      [utils.asGridCoord(6,0)]: true,
-      [utils.asGridCoord(6,1)]: true,
-      [utils.asGridCoord(6,2)]: true,
-      [utils.asGridCoord(6,3)]: true,
-      [utils.asGridCoord(6,4)]: true,
-      [utils.asGridCoord(6,5)]: true,
-      [utils.asGridCoord(6,6)]: true,
-      [utils.asGridCoord(6,7)]: true,
-      [utils.asGridCoord(6,8)]: true,
-      [utils.asGridCoord(6,9)]: false,
-      [utils.asGridCoord(6,10)]: true,
-      [utils.asGridCoord(6,11)]: true,
+      [utils.asGridCoord(6, 0)]: true,
+      [utils.asGridCoord(6, 1)]: true,
+      [utils.asGridCoord(6, 2)]: true,
+      [utils.asGridCoord(6, 3)]: true,
+      [utils.asGridCoord(6, 4)]: true,
+      [utils.asGridCoord(6, 5)]: true,
+      [utils.asGridCoord(6, 6)]: true,
+      [utils.asGridCoord(6, 7)]: true,
+      [utils.asGridCoord(6, 8)]: true,
+      [utils.asGridCoord(6, 9)]: false,
+      [utils.asGridCoord(6, 10)]: true,
+      [utils.asGridCoord(6, 11)]: true,
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(5,11)]: [
+      [utils.asGridCoord(5, 11)]: [
         {
           events: [{ type: "changeMap", map: "WorldBase" }],
         },
       ],
-      [utils.asGridCoord(5,0)]: [
+      [utils.asGridCoord(5, 0)]: [
         {
           events: [{ type: "changeMap", map: "WorldBase" }],
         },
       ],
-      [utils.asGridCoord(6,9)]: [
+      [utils.asGridCoord(6, 9)]: [
         {
           events: [{ type: "changeMap", map: "SouthernSecretPath" }],
         },
-      ]
+      ],
     },
   },
   SouthernSecretPath: {
@@ -432,44 +442,44 @@ window.OverworldMaps = {
     },
     walls: {
       // left wall
-      [utils.asGridCoord(4,0)]: true,
-      [utils.asGridCoord(4,1)]: true,
-      [utils.asGridCoord(4,2)]: true,
-      [utils.asGridCoord(4,3)]: true,
-      [utils.asGridCoord(4,4)]: true,
-      [utils.asGridCoord(4,5)]: true,
-      [utils.asGridCoord(4,6)]: true,
-      [utils.asGridCoord(4,7)]: true,
-      [utils.asGridCoord(4,8)]: true,
-      [utils.asGridCoord(4,9)]: true,
-      [utils.asGridCoord(4,10)]: true,
-      [utils.asGridCoord(4,11)]: true,
+      [utils.asGridCoord(4, 0)]: true,
+      [utils.asGridCoord(4, 1)]: true,
+      [utils.asGridCoord(4, 2)]: true,
+      [utils.asGridCoord(4, 3)]: true,
+      [utils.asGridCoord(4, 4)]: true,
+      [utils.asGridCoord(4, 5)]: true,
+      [utils.asGridCoord(4, 6)]: true,
+      [utils.asGridCoord(4, 7)]: true,
+      [utils.asGridCoord(4, 8)]: true,
+      [utils.asGridCoord(4, 9)]: true,
+      [utils.asGridCoord(4, 10)]: true,
+      [utils.asGridCoord(4, 11)]: true,
       // right wall
-      [utils.asGridCoord(6,0)]: true,
-      [utils.asGridCoord(6,1)]: true,
-      [utils.asGridCoord(6,2)]: true,
-      [utils.asGridCoord(6,3)]: true,
-      [utils.asGridCoord(6,4)]: true,
-      [utils.asGridCoord(6,5)]: true,
-      [utils.asGridCoord(6,6)]: true,
-      [utils.asGridCoord(6,7)]: true,
-      [utils.asGridCoord(6,8)]: true,
-      [utils.asGridCoord(6,9)]: false,
-      [utils.asGridCoord(6,10)]: true,
-      [utils.asGridCoord(6,11)]: true,
+      [utils.asGridCoord(6, 0)]: true,
+      [utils.asGridCoord(6, 1)]: true,
+      [utils.asGridCoord(6, 2)]: true,
+      [utils.asGridCoord(6, 3)]: true,
+      [utils.asGridCoord(6, 4)]: true,
+      [utils.asGridCoord(6, 5)]: true,
+      [utils.asGridCoord(6, 6)]: true,
+      [utils.asGridCoord(6, 7)]: true,
+      [utils.asGridCoord(6, 8)]: true,
+      [utils.asGridCoord(6, 9)]: false,
+      [utils.asGridCoord(6, 10)]: true,
+      [utils.asGridCoord(6, 11)]: true,
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(6,9)]: [
+      [utils.asGridCoord(6, 9)]: [
         {
           events: [{ type: "changeMap", map: "WorldBase" }],
         },
       ],
-      [utils.asGridCoord(5,0)]: [
+      [utils.asGridCoord(5, 0)]: [
         {
           events: [{ type: "changeMap", map: "WorldBase" }],
         },
       ],
-      [utils.asGridCoord(11,9)]: [
+      [utils.asGridCoord(11, 9)]: [
         {
           events: [{ type: "changeMap", map: "WorldBase" }],
         },
