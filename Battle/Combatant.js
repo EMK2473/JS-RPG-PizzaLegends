@@ -1,10 +1,14 @@
+// defines the combatant class
+// used to define characters in combat
+// contains getters for hp, xp, and isActive
+// also contains getElement() for rendering combatants and their data
+// also contains update() 
+// update() === method for updating combatant battle state
+
 class Combatant {
   constructor(config, battle) {
-    // For Each key on the object, set this key to config key
-    // this automatically assigns any properties to the object,
-    // for example:
-    // hp: 100;
-    // this.hp = 100;
+    //  automatically assigns any properties to the object
+
     Object.keys(config).forEach((key) => {
       this[key] = config[key];
     });
@@ -22,6 +26,10 @@ class Combatant {
 
   get isActive() {
     return this.battle.activeCombatants[this.team] === this.id;
+  }
+
+  get givesXp() {
+    return this.level * 20;
   }
 
   // utilize data attributes to give specific styling to each combatant
@@ -88,6 +96,7 @@ class Combatant {
     }
   }
 
+  // gets events for changing status conditions
   getReplacedEvents(originalEvents) {
     // 1/3 chance to fall over
     if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
@@ -100,6 +109,7 @@ class Combatant {
     return originalEvents;
   }
 
+  // gets post events 
   getPostEvents() {
     if (this.status?.type === "saucy") {
       return [
@@ -113,6 +123,7 @@ class Combatant {
     return [];
   }
 
+  // decrements statuses
   decrementStatus() {
     if (this.status?.expiresIn > 0) {
       this.status.expiresIn -= 1;

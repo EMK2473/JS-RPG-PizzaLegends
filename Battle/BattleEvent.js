@@ -1,3 +1,8 @@
+// battle event class
+// handles battle messages
+// handles state changes
+// handles giving xp
+
 class BattleEvent {
   constructor(event, battle) {
     this.event = event;
@@ -11,7 +16,7 @@ class BattleEvent {
     const text = this.event.text
       .replace("{CASTER}", this.event.caster?.name)
       .replace("{TARGET}", this.event.target?.name)
-      .replace("{ACTION}", this.event.action?.name)
+      .replace("{ACTION}", this.event.action?.name);
 
     const message = new TextMessage({
       text,
@@ -47,21 +52,20 @@ class BattleEvent {
       });
     }
 
-    if(status){
+    if (status) {
       who.update({
-        status: {...status}
-      })
+        status: { ...status },
+      });
     }
 
     if (status === null) {
       who.update({
-        status: null
-      })
+        status: null,
+      });
     }
 
     // give time in between
     await utils.wait(600);
-
 
     // stop animation
     target.pizzaElement.classList.remove("battle-damage-blink");
@@ -73,12 +77,12 @@ class BattleEvent {
 
   // handles submission menu => battle events
   submissionMenu(resolve) {
-    const { caster }= this.event;
+    const { caster } = this.event;
     const menu = new SubmissionMenu({
       caster: this.event.caster,
       enemy: this.event.enemy,
       items: this.battle.items,
-      replacements : Object.values(this.battle.combatants).filter(c => {
+      replacements: Object.values(this.battle.combatants).filter((c) => {
         return c.id !== caster.id && c.team === caster.team && c.hp > 0;
       }),
       onComplete: (submission) => {
@@ -89,44 +93,65 @@ class BattleEvent {
     menu.init(this.battle.element);
   }
 
-  replacementMenu(resolve){
+  replacementMenu(resolve) {
     const menu = new ReplacementMenu({
-        replacements: Object.values(this.battle.combatants).filter( c => {
-          return c.team === this.event.team && c.hp > 0
-        }),
-        onComplete: replacement => {
-        resolve(replacement)
-      }
-
-    })
-    menu.init( this.battle.element )
+      replacements: Object.values(this.battle.combatants).filter((c) => {
+        return c.team === this.event.team && c.hp > 0;
+      }),
+      onComplete: (replacement) => {
+        resolve(replacement);
+      },
+    });
+    menu.init(this.battle.element);
   }
 
   // handles checking prev Combatant
   // active combatants object on Battle.js
-  async replace(resolve){
-    const {replacement } = this.event;
+  async replace(resolve) {
+    const { replacement } = this.event;
 
     // clear out old combatant, set to null
-    const prevCombatant = this.battle.combatants[this.battle.activeCombatants[replacement.team]]
+    const prevCombatant =
+      this.battle.combatants[this.battle.activeCombatants[replacement.team]];
     this.battle.activeCombatants[replacement.team] = null;
     prevCombatant.update();
     await utils.wait(400);
 
-
     // in with the new combatant
     this.battle.activeCombatants[replacement.team] = replacement.id;
     replacement.update();
-    await utils.wait(400)
-    
+    await utils.wait(400);
 
     this.battle.playerTeam.update();
     this.battle.enemyTeam.update();
-    
+
     resolve();
+  }
 
+  giveXp(resolve) {
+    let amount = this.event.xp;
+    const { combatant } = this.event;
+    const step = () => {
+      if (amount > 0) {
+        amount -= 1;
+        combatant.xp += 1;
 
+        if(combatant.xp === combatant.maxXp){
+          combatant.xp = 0;
+          combatant.maxXp = 100;
+          combatant.level += 1
+        }
+        // check if xp levels up (hits max xp)
 
+        combatant.update();
+        requestAnimationFrame(step);
+        return;
+      }
+      resolve();
+    console.log(combatant.xp)
+
+    };
+    requestAnimationFrame(step);
   }
 
   animation(resolve) {

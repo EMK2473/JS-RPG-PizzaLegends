@@ -1,3 +1,7 @@
+// initializes the turnCycle
+// turn cycle initializes battle events
+// 
+
 class Battle {
   constructor() {
     this.combatants = {
@@ -7,7 +11,7 @@ class Battle {
           team: "player",
           hp: 20,
           maxHp: 100,
-          xp: 20,
+          xp: 95,
           maxXp: 100,
           level: 1,
           status: { type: "saucy" },
