@@ -26,5 +26,17 @@ window.Enemies = {
           level: 1,
         },
       }
+    },
+    "lyle": {
+      name: "Lyle",
+      src: "./images/characters/people/npc3.png",
+      pizzas: {
+        "a": {
+          hp: 1,
+          pizzaId: "c001",
+          maxHp: 50,
+          level: 1,
+        },
+      }
     }
   }

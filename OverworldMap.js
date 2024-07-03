@@ -263,8 +263,11 @@ window.OverworldMaps = {
               {
                 type: "textMessage",
                 text: "Ahh, you made it.",
+                
                 faceHero: "npcB",
               },
+              { type: "battle", enemyId: "lyle" },
+
             ],
           },
         ],

@@ -44,4 +44,12 @@ window.Pizzas = {
     icon: "./images/icons/fungi.png",
     actions: ["damage1"],
   },
+  c001: {
+    name: "Nuclear 'za",
+    description: "Radiation Supreme",
+    type: PizzaTypes.spicy,
+    src: "./images/characters/pizzas/c001.png",
+    icon: "./images/icons/spicy.png",
+    actions: ["damage1", "clumsyStatus", "saucyStatus",],
+  },
 };
