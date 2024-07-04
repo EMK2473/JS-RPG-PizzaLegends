@@ -50,6 +50,9 @@ class BattleEvent {
       who.update({
         hp: newHp,
       });
+      
+      target.pizzaElement.classList.add("battle-damage-blink");
+      console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
 
     if (status) {

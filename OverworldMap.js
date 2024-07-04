@@ -263,7 +263,11 @@ window.OverworldMaps = {
               {
                 type: "textMessage",
                 text: "Ahh, you made it.",
-                
+                faceHero: "npcB",
+              },
+              {
+                type: "textMessage",
+                text: "Prepare to die!",
                 faceHero: "npcB",
               },
               { type: "battle", enemyId: "lyle" },
@@ -272,6 +276,14 @@ window.OverworldMaps = {
           },
         ],
       }),
+      
+    },
+    cutsceneSpaces: {
+      [utils.asGridCoord(5, 10)]: [
+        {
+          events: [{ type: "changeMap", map: "DemoRoom" }],
+        },
+      ],
     },
   },
   WorldBase: {
@@ -282,7 +294,7 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(5),
         y: utils.withGrid(7),
-        src: "./images/characters/people/muscoveyJones.png",
+        src: "./images/characters/people/hero.png",
       }),
       npcReaper: new Person({
         x: utils.withGrid(5),
@@ -383,7 +395,7 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(5),
         y: utils.withGrid(1),
-        src: "./images/characters/people/muscoveyJones.png",
+        src: "./images/characters/people/hero.png",
       }),
     },
     walls: {
@@ -440,7 +452,7 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(7),
         y: utils.withGrid(9),
-        src: "./images/characters/people/muscoveyJones.png",
+        src: "./images/characters/people/hero.png",
       }),
     },
     walls: {

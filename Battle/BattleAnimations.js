@@ -1,4 +1,6 @@
 window.BattleAnimations = {
+
+  
   async spin(event, onComplete) {
     const element = event.caster.pizzaElement;
     const animationClassName =
