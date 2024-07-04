@@ -1,67 +1,107 @@
-class PauseMenu{
-    constructor( { onComplete }) {
-        this.onComplete = onComplete;
+class PauseMenu {
+  constructor({ onComplete }) {
+    this.onComplete = onComplete;
+  }
 
-    }
-
-
-    getOptions(pageKey){
-        if(pageKey === "root"){
-            return[
-                /// all pizzas
-                {
-                    label: "Save",
-                    description: "Save your progress",
-                    handler: () => {
-                        // come back to 
-                    }
-                },
-                {
-                    label: "Close",
-                    description: "Close the pause menu",
-                    handler: () => {
-                        this.close();
-                    }
-                },
-            ]
-        }
-
-    }
-
-    createElement(){
-        this.element = document.createElement("div");
-        this.element.classList.add("PauseMenu");
-        this.element.innerHTML = (`
-            <h2>Pause Menu</h2>
-            `)
-    }
-
-
-
-
-
-    close(){
-        this.esc?.unbind();
-        this.keyboardMenu.end();
-        this.element.remove();
-        this.onComplete();
-    }
-
-
-    async init(container) {
-        this.createElement();
-        this.keyboardMenu = new KeyboardMenu({
-            descriptionContainer: container
-        })
-        this.keyboardMenu.init(this.element);
-        this.keyboardMenu.setOptions(this.getOptions("root"));
-
-        container.appendChild(this.element);
-
-
-        utils.wait(200);
-        this.esc = new KeyPressListener("Escape", () => {
+  getOptions(pageKey) {
+    if (pageKey === "root") {
+      // case1: show the first page
+      const lineupPizzas = playerState.lineup.map((id) => {
+        const { pizzaId } = playerState.pizzas[id];
+        const base = Pizzas[pizzaId];
+        return {
+          label: base.name,
+          description: base.description,
+          handler: () => {
+            this.keyboardMenu.setOptions(this.getOptions(id));
+          },
+        };
+      });
+      return [
+        ...lineupPizzas,
+        {
+          label: "Save",
+          description: "Save your progress",
+          handler: () => {
+            // come back to
+          },
+        },
+        {
+          label: "Close",
+          description: "Close the pause menu",
+          handler: () => {
             this.close();
-        })
+          },
+        },
+      ];
     }
+    // case2 show options for just one pizza by (id)
+
+    const unequipped = Object.keys(playerState.pizzas).filter(id => {
+        return playerState.lineup.indexOf(id)=== -1;
+    }).map(id => {
+        const {pizzaId} = playerState.pizzas[id];
+        const base = Pizzas[pizzaId];
+        return{
+            label: `Swap for ${base.name}`,
+            description: base.description,
+            handler: () => {
+                playerState.swapLineup(pageKey, id);
+            this.keyboardMenu.setOptions( this.getOptions( "root" ));
+            }
+        }
+    })
+
+    return [
+        ...unequipped,
+      // swap for any unequipped pizza...
+
+      {
+        label: "Move to front",
+        description: "move this pizza to the front of the list",
+        handler: () => {
+            playerState.moveToFront(pageKey);
+            this.keyboardMenu.setOptions( this.getOptions("root") );
+        },
+      },
+      {
+        label: "Back",
+        description: "Back to root menu",
+        handler: () => {
+            this.keyboardMenu.setOptions(this.getOptions("root"));
+        },
+      },
+    ];
+  }
+
+  createElement() {
+    this.element = document.createElement("div");
+    this.element.classList.add("PauseMenu");
+    this.element.innerHTML = `
+            <h2>Pause Menu</h2>
+            `;
+  }
+
+  close() {
+    this.esc?.unbind();
+    this.keyboardMenu.end();
+    this.element.remove();
+    this.onComplete();
+  }
+
+  async init(container) {
+    this.createElement();
+    this.keyboardMenu = new KeyboardMenu({
+      descriptionContainer: container,
+    });
+    this.keyboardMenu.init(this.element);
+    this.keyboardMenu.setOptions(this.getOptions("root"));
+
+    container.appendChild(this.element);
+
+    utils.wait(200);
+    this.esc = new KeyPressListener("Escape", () => {
+      this.close();
+    });
+  }
 }

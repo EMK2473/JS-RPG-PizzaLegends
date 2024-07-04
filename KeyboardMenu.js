@@ -1,5 +1,5 @@
 class KeyboardMenu {
-  constructor(config) {
+  constructor(config = {}) {
     this.options = [];
     this.up = null;
     this.down = null;
@@ -28,9 +28,10 @@ class KeyboardMenu {
       .join("");
 
     this.element.querySelectorAll("button").forEach((button) => {
+
       button.addEventListener("click", () => {
         console.log("CLICK CLICK");
-        const chosenOption = this.options[Number(button.dataset.button)];
+        const chosenOption = this.options[ Number(button.dataset.button)];
         chosenOption.handler();
       });
 
