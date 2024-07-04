@@ -1,5 +1,5 @@
 // map containers
-// contains map objects
+// contains map objects and map state
 // contains wall methods
 // contains cutscene methods
 // contains behavior loops
@@ -22,6 +22,8 @@ class OverworldMap {
     this.upperImage.src = config.upperSrc; // ceiling
 
     this.isCutscenePlaying = false;
+
+    this.isPaused = false;
   }
 
   drawLowerImage(ctx, cameraPerson) {

@@ -1,6 +1,7 @@
 // contains gamestate
 // top level parent component. keeps track of states and send those states down to child components
 // contains cutscene array/queue
+// contains key binds for "enter" and "escape" keys
 
 class Overworld {
   constructor(config) {
@@ -43,10 +44,14 @@ class Overworld {
       this.map.drawUpperImage(this.ctx, cameraPerson);
       
       
+
+      if(!this.map.isPaused){
+
       // console.log("stepping");
       requestAnimationFrame(() => {
         step();
       });
+    }
     };
     step();
   }
@@ -58,6 +63,13 @@ class Overworld {
       
       this.map.checkForActionCutscene()
       // is there a person here to talk to ?
+    })
+    new KeyPressListener("Escape", () => {
+      if(!this.map.isCutscenePlaying) {
+        this.map.startCutscene([
+          { type: "pause" }
+        ])
+      }
     })
   }
 
