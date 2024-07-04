@@ -140,9 +140,9 @@ window.OverworldMaps = {
         src: "./images/characters/people/npc1.png",
         behaviorLoop: [
           { type: "stand", direction: "left", time: 800 },
-          { type: "stand", direction: "up", time: 800 },
+          { type: "stand", direction: "up", time: 900 },
           { type: "stand", direction: "right", time: 1200 },
-          { type: "stand", direction: "down", time: 300 },
+          { type: "stand", direction: "down", time: 700 },
         ],
         talking: [
           {
@@ -159,13 +159,17 @@ window.OverworldMaps = {
         x: utils.withGrid(8),
         y: utils.withGrid(5),
         src: "./images/characters/people/erio.png",
+        behaviorLoop: [
+          { type: "stand", direction: "left", time: 1500 },
+          { type: "stand", direction: "down", time: 1300 },
+          // { type: "stand", direction: "right", time: 1200 },
+          { type: "stand", direction: "down", time: 1000 },
+        ],
         talking: [
           {
             events: [
               { type: "textMessage", text: "Bahaha!", faceHero: "npcB"},
               { type: "battle", enemyId: "erio" },
-              // { type: "textMessage", text: "Now, go away..." },
-              // { who: "hero", type: "walk", direction: "up" },
             ],
           },
         ]
