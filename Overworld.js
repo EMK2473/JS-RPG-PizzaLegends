@@ -86,10 +86,16 @@ class Overworld {
 
 
   // on init, startMap sets overworld to be itself(mapConfig ), no longer null
-  startMap(mapConfig){
+  startMap(mapConfig, heroInitialState=null){
     this.map = new OverworldMap(mapConfig);
     this.map.overworld = this;
     this.map.mountObjects();
+
+    if(heroInitialState) {
+      this.map.gameObjects.hero.x = heroInitialState.x;
+      this.map.gameObjects.hero.y = heroInitialState.y;
+      this.map.gameObjects.hero.direction = heroInitialState.direction;
+    }
   }
   
   init() {
@@ -98,7 +104,7 @@ class Overworld {
     this.hud.init(document.querySelector(".game-container"));
 
 
-    this.startMap(window.OverworldMaps.DemoRoom)
+    this.startMap(window.OverworldMaps.Street)
 
     this.bindActionInput();
     this.bindHeroPositionCheck();
