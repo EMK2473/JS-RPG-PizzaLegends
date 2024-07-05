@@ -85,7 +85,7 @@ class Overworld {
   }
 
 
-  // sets overworld to be itself, no longer null
+  // on init, startMap sets overworld to be itself(mapConfig ), no longer null
   startMap(mapConfig){
     this.map = new OverworldMap(mapConfig);
     this.map.overworld = this;

@@ -3,7 +3,7 @@ class PlayerState {
       this.pizzas = {
         "p1": {
           pizzaId: "s001",
-          hp: 5,
+          hp: 60,
           maxHp: 100,
           xp: 90,
           maxXp: 100,
@@ -12,7 +12,7 @@ class PlayerState {
         },
         "p2": {
           pizzaId: "s002",
-          hp: 5,
+          hp: 65,
           maxHp: 100,
           xp: 75,
           maxXp: 100,

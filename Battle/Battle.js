@@ -106,6 +106,11 @@ class Battle {
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("Battle");
+    // for each enemy here?
+    // switch case or flags for different positionings?
+    // for example, bossConfig =  set boss in middle and have 2 small enemies in front, new hp bars
+    // 
+    // break down html into individual calls and move 
     this.element.innerHTML = `
       <div class="Battle_hero">
         <img src="${"./images/characters/people/reaper.png"}" alt="Hero" />
