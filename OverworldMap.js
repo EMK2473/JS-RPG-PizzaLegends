@@ -326,7 +326,7 @@ window.OverworldMaps = {
           events: [{ type: "changeMap", 
               map: "Street",
               x: utils.withGrid(29),
-              y: utils.withGrid(10),
+              y: utils.withGrid(9),
               direction: "down",
               
             }],
