@@ -11,6 +11,7 @@ class CraftingMenu{
                 label: base.name,
                 description: base.description,
                 handler: () => {
+                    playerState.addPizza(id);
                 //   this.keyboardMenu.setOptions(this.getOptions(id));
                 // create way to add pizza
                 this.close();
