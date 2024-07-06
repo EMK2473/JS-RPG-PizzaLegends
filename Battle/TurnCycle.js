@@ -7,9 +7,51 @@ class TurnCycle {
     this.onNewEvent = onNewEvent;
     this.onWinner = onWinner;
     this.currentTeam = "player"; //or "enemy"
+    
+    
+    this.turnCounter = 0;    // Create and display the TurnCounter in the DOM
+    this.turnCounterElement = this.createTurnCounterElement();
+    this.updateTurnCounterDisplay();
+  }
+
+  createTurnCounterElement() {
+    // Create the turn counter element
+    const turnCounterElement = document.createElement("div");
+    turnCounterElement.id = "turn-counter";
+    turnCounterElement.style.position = "absolute"; // Adjust as needed
+    turnCounterElement.style.top = "10px"; // Adjust as needed
+    turnCounterElement.style.right = "10px"; // Adjust as needed
+    turnCounterElement.style.padding = "10px"; // Adjust as needed
+    turnCounterElement.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // Adjust as needed
+    turnCounterElement.style.color = "white"; // Adjust as needed
+    turnCounterElement.style.borderRadius = "5px"; // Adjust as needed
+    turnCounterElement.style.fontFamily = "Arial, sans-serif"; // Adjust as needed
+    turnCounterElement.style.fontSize = "16px"; // Adjust as needed
+
+    // Add the element to the DOM
+    document.body.appendChild(turnCounterElement);
+
+    return turnCounterElement;
+  }
+
+  updateTurnCounterDisplay() {
+    // Update the content of the turn counter element
+    if (this.turnCounterElement) {
+      this.turnCounterElement.textContent = `Turn: ${this.turnCounter}`;
+    }
   }
 
   async turn() {
+
+     // Check if the current team is player and then increment the TurnCounter
+ if (this.currentTeam === "player") {
+  this.turnCounter += 1;
+  this.updateTurnCounterDisplay();
+  // await this.onNewEvent({
+  //   type: "textMessage",
+  //   text: `Turn ${this.turnCounter} begins!`,
+  // });
+}
     //Get the caster
     const casterId = this.battle.activeCombatants[this.currentTeam];
     const caster = this.battle.combatants[casterId];
@@ -138,9 +180,19 @@ class TurnCycle {
       await this.onNewEvent(expiredEvent);
     }
 
-    this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
-    this.turn();
-  }
+//  // Check if the current team is player and then increment the TurnCounter
+//  if (this.currentTeam === "player") {
+//   this.turnCounter += 1;
+//   this.updateTurnCounterDisplay();
+//   await this.onNewEvent({
+//     type: "textMessage",
+//     text: `Turn ${this.turnCounter} begins!`,
+//   });
+// }
+
+this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
+this.turn();
+}
 
   getWinningTeam() {
     let aliveTeams = {};

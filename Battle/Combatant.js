@@ -7,7 +7,7 @@
 
 
 
-TODO: 
+// TODO: 
 // Allow multiple status effects, stacking vertically (for each?)
 // Add ATK UP, DEF UP and create Icons for them
 // 
