@@ -8,7 +8,7 @@ class TitleScreen {
     return [
       {
         label: "New Game",
-        description: "Start a new adventure!",
+        description: "Start a new game.",
         handler: () => {
           // come back
           this.close();
@@ -17,8 +17,8 @@ class TitleScreen {
       },
       saveFile
         ? {
-            label: "Continue Game",
-            description: "Resume your adventure!",
+            label: "Continue",
+            description: "Resume your game.",
             handler: () => {
               this.close();
               resolve(saveFile);
