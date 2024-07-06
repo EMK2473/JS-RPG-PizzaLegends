@@ -5,9 +5,8 @@ class SubmissionMenu {
     this.replacements = replacements;
     this.onComplete = onComplete;
 
-
     let quantityMap = {};
-    items.forEach(item => {
+    items.forEach((item) => {
       if (item.team === caster.team) {
         let existing = quantityMap[item.actionId];
         if (existing) {
@@ -80,7 +79,7 @@ class SubmissionMenu {
             label: action.name,
             description: action.description,
             right: () => {
-              return 'x'+item.quantity
+              return "x" + item.quantity;
             },
             handler: () => {
               this.menuSubmit(action, item.instanceId);
@@ -96,7 +95,6 @@ class SubmissionMenu {
             description: replacement.description,
             handler: () => {
               this.menuSubmitReplacements(replacement);
-              
             },
           };
         }),
@@ -109,9 +107,8 @@ class SubmissionMenu {
   menuSubmitReplacements(replacement) {
     this.keyboardMenu?.end();
     this.onComplete({
-      replacement
-    })
-
+      replacement,
+    });
   }
 
   // handles item submission on pages
@@ -121,8 +118,7 @@ class SubmissionMenu {
     this.onComplete({
       action,
       target: action.targetType === "friendly" ? this.caster : this.enemy,
-      instanceId
-
+      instanceId,
     });
   }
 
