@@ -5,6 +5,16 @@
 // also contains update() 
 // update() === method for updating combatant battle state
 
+
+
+TODO: 
+// Allow multiple status effects, stacking vertically (for each?)
+// Add ATK UP, DEF UP and create Icons for them
+// 
+
+
+
+
 class Combatant {
   constructor(config, battle) {
     //  automatically assigns any properties to the object
@@ -17,12 +27,12 @@ class Combatant {
   }
 
   get hpPercent() {
-    const percent = (this.hp / this.maxHp) * 100;
+    const percent = this.hp / this.maxHp * 100;
     return percent > 0 ? percent : 0;
   }
 
   get xpPercent() {
-    return (this.xp / this.maxXp) * 100;
+    return this.xp / this.maxXp * 100;
   }
 
   get isActive() {
@@ -99,32 +109,34 @@ class Combatant {
 
   // gets events for changing status conditions
   getReplacedEvents(originalEvents) {
-    // 1/3 chance to fall over
+
     if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
-      return [{
-        type: "textMessage",
-        text: `${this.name} falls over!`,
-    }];
+      return [
+        { type: "textMessage", text: `${this.name} flops over!` },
+      ]
     }
-
     return originalEvents;
-  }
 
-  // gets post events 
+
+  }
+  
+
   getPostEvents() {
     if (this.status?.type === "saucy") {
       return [
-        { type: "textMessage", text: `!!!!!` },
-        { type: "stateChange", recover: 5, onCaster: true },
-        // { type: "textMessage", text: `Feelin' ${this.status.type}!!!!!` },
-        { type: "textMessage", text: ` Saucy ${this.name} recovered 5 HP!` },
-      ];
+        { type: "textMessage", text: "Feelin' saucy!" },
+        { type: "stateChange", recover: 5, onCaster: true }
+      ]
+    } 
+    if (this.status?.type === "DEF ^") {
+      return [
+        { type: "textMessage", text: `${this.name} DEF went up!` },
+      ]
     }
 
     return [];
   }
 
-  // decrements statuses
   decrementStatus() {
     if (this.status?.expiresIn > 0) {
       this.status.expiresIn -= 1;
@@ -134,12 +146,13 @@ class Combatant {
         })
         return {
           type: "textMessage",
-          text: `Status expired! ${this.name}'s no longer feelin' ${expiredStatusType}!`,
+          text: "Status expired!"
         }
       }
     }
     return null;
   }
+
 
   init(container) {
     this.createElement();

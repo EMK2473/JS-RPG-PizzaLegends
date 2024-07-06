@@ -33,7 +33,7 @@ class PlayerState {
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },
-      { actionId: "item_recoverHp", instanceId: "item3" },
+      { actionId: "item_defenseUp", instanceId: "item3" },
     ];
     this.storyFlags = {};
   }

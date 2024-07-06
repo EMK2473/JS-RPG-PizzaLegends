@@ -14,27 +14,28 @@ window.Actions = {
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "stateChange", status: { type: "saucy", expires: 2 } },
+      { type: "stateChange", status: { type: "saucy", expiresIn: 4 } },
       { type: "textMessage", text: "{CASTER} gained {STATUS}!" },
     ],
   },
   clumsyStatus: {
-    name: "Olive oil",
-    description: "Slippery and Dangerous",
+    name: "Confusion",
+    description: "Confuse your enemy",
     targetType: "enemy",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "glob", color: "#dafd2a" },
-      { type: "stateChange", status: { type: "clumsy", expires: 3 } },
-      { type: "textMessage", text: "{TARGET} became clumsy!" },
+      { type: "stateChange", status: { type: "clumsy", expiresIn: 5 } },
+      { type: "textMessage", text: "{TARGET} became confused!" },
     ],
   },
-  saucyStatus2: {
-    name: "SUPER TOMATO SQUEEEEZE!!!!!",
-    description: "Super Powerful Tomato squeeze",
+  defenseUpStatus: {
+    name: "DEF ^",
+    description: "Increase your def",
+    targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "stateChange", status: { type: "saucy", expires: 3 } },
+      { type: "stateChange", status: { type: "DEF ^", expiresIn: 4 } },
     ],
   },
   item_recoverStatus: {
@@ -56,7 +57,17 @@ window.Actions = {
       { type: "textMessage", text: "{CASTER} sprinkles some {ACTION}!" },
       { type: "stateChange", recover: 15 },
       { type: "textMessage", text: "{CASTER} recovered some HP!" },
-      { type: "stateChange", status: { type: "saucy", expires: 3 } },
+      { type: "stateChange", status: { type: "saucy", expiresIn: 3 } },
+
+    ],
+  },
+  item_defenseUp: {
+    name: "Defense Up",
+    description: "Increase your defense for 4 turns",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} {ACTION}!" },
+      { type: "stateChange", status: { type: "DEF ^", expiresIn: 4 } },
 
     ],
   },
