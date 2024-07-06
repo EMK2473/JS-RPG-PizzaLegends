@@ -18,18 +18,15 @@ class TurnCycle {
     // Create the turn counter element
     const turnCounterElement = document.createElement("div");
     turnCounterElement.id = "turn-counter";
-    turnCounterElement.style.position = "absolute"; // Adjust as needed
-    turnCounterElement.style.top = "10px"; // Adjust as needed
-    turnCounterElement.style.right = "10px"; // Adjust as needed
-    turnCounterElement.style.padding = "10px"; // Adjust as needed
-    turnCounterElement.style.backgroundColor = "rgba(0, 0, 0, 0.5)"; // Adjust as needed
-    turnCounterElement.style.color = "white"; // Adjust as needed
-    turnCounterElement.style.borderRadius = "5px"; // Adjust as needed
-    turnCounterElement.style.fontFamily = "Arial, sans-serif"; // Adjust as needed
-    turnCounterElement.style.fontSize = "16px"; // Adjust as needed
 
-    // Add the element to the DOM
-    document.body.appendChild(turnCounterElement);
+    // Find the game-container element and append the turn counter to it
+    const gameContainer = document.querySelector(".game-container");
+    if (gameContainer) {
+      gameContainer.appendChild(turnCounterElement);
+    } else {
+      // Fallback: if .game-container is not found, append to body
+      document.body.appendChild(turnCounterElement);
+    }
 
     return turnCounterElement;
   }

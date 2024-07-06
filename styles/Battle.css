@@ -34,6 +34,23 @@
   right: 2px;
 }
 
+
+#turn-counter {
+  position: absolute;
+  top: -5px; 
+  left: 40px;
+  padding: 10px; 
+  margin-bottom: 55px;
+  background-color: rgba(0, 0, 0, 0.5); 
+  color: white; 
+  border-radius: 5px; 
+  font-family: Arial, sans-serif; 
+  font-size: 16px; 
+  transform: scale(0.5);
+  opacity: .75;
+}
+
+
 /* Battle Animations */
 /* Similar to tackle or scratch from pokemon */
 
