@@ -7,61 +7,7 @@ class Battle {
     this.enemy = enemy;
     this.onComplete = onComplete;
 
-    this.combatants = {
-      // player1: new Combatant(
-      //   {
-      //     ...Pizzas.s001,
-      //     team: "player",
-      //     hp: 20,
-      //     maxHp: 100,
-      //     xp: 95,
-      //     maxXp: 100,
-      //     level: 1,
-      //     status: { type: "saucy" },
-      //     isPlayerControlled: true,
-      //   },
-      //   this
-      // ),
-      // player2: new Combatant(
-      //   {
-      //     ...Pizzas.s002,
-      //     team: "player",
-      //     hp: 100,
-      //     maxHp: 100,
-      //     xp: 0,
-      //     maxXp: 100,
-      //     level: 1,
-      //     status: { type: "saucy" },
-      //     isPlayerControlled: true,
-      //   },
-      //   this
-      // ),
-      // enemy1: new Combatant(
-      //   {
-      //     ...Pizzas.v001,
-      //     team: "enemy",
-      //     hp: 1,
-      //     maxHp: 100,
-      //     xp: 20,
-      //     maxXp: 100,
-      //     level: 1,
-      //     status: null,
-      //   },
-      //   this
-      // ),
-      // enemy2: new Combatant(
-      //   {
-      //     ...Pizzas.f001,
-      //     team: "enemy",
-      //     hp: 1,
-      //     maxHp: 100,
-      //     xp: 30,
-      //     maxXp: 100,
-      //     level: 1,
-      //   },
-      //   this
-      // ),
-    };
+    this.combatants = {};
 
     this.activeCombatants = {
       player: null,
