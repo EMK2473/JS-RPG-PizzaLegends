@@ -27,12 +27,11 @@ class TurnCycle {
       // Fallback: if .game-container is not found, append to body
       document.body.appendChild(turnCounterElement);
     }
-
     return turnCounterElement;
   }
 
   updateTurnCounterDisplay() {
-    // Update the content of the turn counter element
+    // Update the turn counter element
     if (this.turnCounterElement) {
       this.turnCounterElement.textContent = `Turn: ${this.turnCounter}`;
     }

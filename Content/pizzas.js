@@ -18,7 +18,7 @@ window.Pizzas = {
     type: PizzaTypes.spicy,
     src: "./images/characters/pizzas/sliceSamurai.png",
     icon: "./images/icons/spicy.png",
-    actions: ["slice", "clumsyStatus", "saucyStatus"],
+    actions: ["slice", "confusedStatus", "saucyStatus"],
   },
   s002: {
     name: "Bacon Fighter",
@@ -34,7 +34,7 @@ window.Pizzas = {
     type: PizzaTypes.spicy,
     src: "./images/characters/pizzas/bahamut.png",
     icon: "./images/icons/fighter.png",
-    actions: ["gigaFlare", "clumsyStatus", "saucyStatus"],
+    actions: ["gigaFlare", "confusedStatus", "saucyStatus"],
   },
   mageUnit: {
     name: "Mage",
@@ -82,6 +82,6 @@ window.Pizzas = {
     type: PizzaTypes.spicy,
     src: "./images/characters/pizzas/bahamutLeft.png",
     icon: "./images/icons/spicy.png",
-    actions: ["gigaFlare", "clumsyStatus", "saucyStatus"],
+    actions: ["gigaFlare", "confusedStatus", "saucyStatus"],
   },
 };

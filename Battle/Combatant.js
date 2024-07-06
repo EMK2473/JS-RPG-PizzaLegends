@@ -110,7 +110,7 @@ class Combatant {
   // gets events for changing status conditions
   getReplacedEvents(originalEvents) {
 
-    if (this.status?.type === "clumsy" && utils.randomFromArray([true, false, false])) {
+    if (this.status?.type === "confused" && utils.randomFromArray([true, false, false])) {
       return [
         { type: "textMessage", text: `${this.name} flops over!` },
       ]

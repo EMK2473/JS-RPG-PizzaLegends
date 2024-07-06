@@ -18,14 +18,14 @@ window.Actions = {
       { type: "textMessage", text: "{CASTER} gained {STATUS}!" },
     ],
   },
-  clumsyStatus: {
+  confusedStatus: {
     name: "Confusion",
     description: "Confuse your enemy",
     targetType: "enemy",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "glob", color: "#dafd2a" },
-      { type: "stateChange", status: { type: "clumsy", expiresIn: 5 } },
+      { type: "stateChange", status: { type: "confused", expiresIn: 5 } },
       { type: "textMessage", text: "{TARGET} became confused!" },
     ],
   },
