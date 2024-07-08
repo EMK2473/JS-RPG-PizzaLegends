@@ -1,5 +1,5 @@
 // must accept all objects
-
+// loads the sprite for characters
 class GameObject {
   constructor(config) {
     this.id = null;

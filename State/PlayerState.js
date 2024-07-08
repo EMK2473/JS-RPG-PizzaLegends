@@ -10,26 +10,49 @@ class PlayerState {
         level: 1,
         status: null,
       },
-      // p2: {
-      //   pizzaId: "s002",
-      //   hp: 65,
-      //   maxHp: 100,
-      //   xp: 75,
-      //   maxXp: 100,
-      //   level: 1,
-      //   status: null,
-      // },
-      // "p3": {
-      //   pizzaId: "bahamut",
-      //   hp: 100,
-      //   maxHp: 100,
-      //   xp: 0,
-      //   maxXp: 100,
-      //   level: 1,
-      //   status: null,
-      // }
+      p2: {
+        pizzaId: "s002",
+        hp:100,
+        maxHp: 100,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
+      p3: {
+        pizzaId: "bahamut",
+        maxHp: 150,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
+      p4: {
+        pizzaId: "mageUnit",
+        maxHp: 60,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
+      p5: {
+        pizzaId: "samuraiUnit",
+        maxHp: 75,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
+      p6: {
+        pizzaId: "warriorUnit",
+        maxHp: 100,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
     };
-    this.lineup = ["p1"];
+    this.lineup = ["p4","p5", "p6","p1","p2","p3"].slice(0,3);
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },

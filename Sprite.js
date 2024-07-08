@@ -1,3 +1,5 @@
+// 
+
 class Sprite {
   constructor(config) {
     // Set up the image
@@ -76,6 +78,7 @@ class Sprite {
     const [frameX, frameY] = this.frame;
 
     // config for sprite sheet @ 32 x 32 sheet from Aseprite
+    // this is where we can start using larger sprite sheets (256x256 maybe)
     this.isLoaded && ctx.drawImage(this.image, frameX * 32, frameY * 32, 32, 32, x, y, 32, 32);
 
     this.updateAnimationProgress();

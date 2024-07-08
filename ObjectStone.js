@@ -1,14 +1,14 @@
-class PizzaStone extends GameObject {
+class ObjectStone extends GameObject {
     constructor(config) {
         super(config);
         this.sprite = new Sprite({
             gameObject: this,
-            src: "./images/characters/pizza-stone.png",
+            src: "./images/characters/purple-stone.png",
             // frame for used
             // frame for unused
             animations: {
-                "used-down" : [ [0,0] ],
-                "unused-down": [ [1,0] ]
+                "used-down" : [ [1,0] ],
+                "unused-down": [ [0,0] ]
             },
             currentAnimation: "used-down"
         });
@@ -20,12 +20,13 @@ class PizzaStone extends GameObject {
            {
             required: [this.storyFlag],
             events: [
-                {type: "textMessage", text: "You have already used this."}
+                {type: "textMessage", text: "There is nothing there."}
             ]
            },
            {
             events: [
-                { type: "textMessage", text: "Approaching the legendary pizza stone..."},
+                { type: "textMessage", text: "An orb resonating with energy..."},
+                { type: "textMessage", text: "It's warm to the touch."},
                 { type: "craftingMenu", pizzas: this.pizzas},
                 {type: "addStoryFlag", flag: this.storyFlag }
             ]

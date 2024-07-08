@@ -204,10 +204,10 @@ window.OverworldMaps = {
         //   { type: "walk", direction: "down" },
         // ],
       }),
-      pizzaStone: new PizzaStone({
+      objectStone: new ObjectStone({
         x: utils.withGrid(2),
         y: utils.withGrid(7),
-        storyFlag: "USED_PIZZA_STONE",
+        storyFlag: "USED_OBJECT_STONE",
         pizzas: ["bahamut", "mageUnit", "samuraiUnit", "warriorUnit"]
       })
     },
