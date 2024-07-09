@@ -7,13 +7,14 @@ class TurnCycle {
     this.onNewEvent = onNewEvent;
     this.onWinner = onWinner;
     this.currentTeam = "player"; //or "enemy"
-    
-    
-    this.turnCounter = 0;    // Create and display the TurnCounter in the DOM
+
+    this.turnCounter = 0; // Create and display the TurnCounter in the DOM
     this.turnCounterElement = this.createTurnCounterElement();
     this.updateTurnCounterDisplay();
   }
 
+
+  // Methods
   createTurnCounterElement() {
     // Create the turn counter element
     const turnCounterElement = document.createElement("div");
@@ -38,16 +39,15 @@ class TurnCycle {
   }
 
   async turn() {
-
-     // Check if the current team is player and then increment the TurnCounter
- if (this.currentTeam === "player") {
-  this.turnCounter += 1;
-  this.updateTurnCounterDisplay();
-  // await this.onNewEvent({
-  //   type: "textMessage",
-  //   text: `Turn ${this.turnCounter} begins!`,
-  // });
-}
+    // Check if the current team is player and then increment the TurnCounter
+    if (this.currentTeam === "player") {
+      this.turnCounter += 1;
+      this.updateTurnCounterDisplay();
+      // await this.onNewEvent({
+      //   type: "textMessage",
+      //   text: `Turn ${this.turnCounter} begins!`,
+      // });
+    }
     //Get the caster
     const casterId = this.battle.activeCombatants[this.currentTeam];
     const caster = this.battle.combatants[casterId];
@@ -77,14 +77,11 @@ class TurnCycle {
       return;
     }
 
-
-    
     if (submission.instanceId) {
-    
       // add to list to persist to player state post battle
-      this.battle.usedInstanceIds[submission.instanceId] = true
+      this.battle.usedInstanceIds[submission.instanceId] = true;
 
-    // removing item from battle state
+      // removing item from battle state
       this.battle.items = this.battle.items.filter(
         (i) => i.instanceId !== submission.instanceId
       );
@@ -117,8 +114,8 @@ class TurnCycle {
 
         await this.onNewEvent({
           type: "textMessage",
-          text: `${this.currentTeam} Gained ${xp} XP!`
-        })
+          text: `${this.currentTeam} Gained ${xp} XP!`,
+        });
         await this.onNewEvent({
           type: "giveXp",
           xp,
@@ -134,7 +131,7 @@ class TurnCycle {
         type: "textMessage",
         text: `Winner!`,
       });
-      this.onWinner( winner )
+      this.onWinner(winner);
       // ToDo: end battle and return to overworld
       // end battle when someone wins
       return;
@@ -176,19 +173,19 @@ class TurnCycle {
       await this.onNewEvent(expiredEvent);
     }
 
-//  // Check if the current team is player and then increment the TurnCounter
-//  if (this.currentTeam === "player") {
-//   this.turnCounter += 1;
-//   this.updateTurnCounterDisplay();
-//   await this.onNewEvent({
-//     type: "textMessage",
-//     text: `Turn ${this.turnCounter} begins!`,
-//   });
-// }
+    //  // Check if the current team is player and then increment the TurnCounter
+    //  if (this.currentTeam === "player") {
+    //   this.turnCounter += 1;
+    //   this.updateTurnCounterDisplay();
+    //   await this.onNewEvent({
+    //     type: "textMessage",
+    //     text: `Turn ${this.turnCounter} begins!`,
+    //   });
+    // }
 
-this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
-this.turn();
-}
+    this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
+    this.turn();
+  }
 
   getWinningTeam() {
     let aliveTeams = {};
@@ -216,8 +213,8 @@ this.turn();
   async init() {
     await this.onNewEvent({
       type: "textMessage",
-      text: `${this.battle.enemy.name} wants to throw down!`
-    })
+      text: `${this.battle.enemy.name} wants to throw down!`,
+    });
 
     //Start the first turn!
     this.turn();

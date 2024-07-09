@@ -20,7 +20,7 @@ class CraftingMenu{
         })
     }
 
-
+    // Methods
     createElement(){
         this.element = document.createElement("div");
         this.element.classList.add("CraftingMenu");

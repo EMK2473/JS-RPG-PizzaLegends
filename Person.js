@@ -15,6 +15,7 @@ class Person extends GameObject {
         }
     }
 
+    // Methods
     update(state){
         if (this.movingProgressRemaining > 0){
         this.updatePosition();

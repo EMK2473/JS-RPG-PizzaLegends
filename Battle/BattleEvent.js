@@ -27,6 +27,7 @@ class BattleEvent {
     message.init(this.battle.element);
   }
 
+  // Methods
   // this is where def, atk, etc would be changed
   async stateChange(resolve) {
     const { caster, target, damage, recover, status, action } = this.event;

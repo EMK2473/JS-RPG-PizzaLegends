@@ -11,7 +11,7 @@ class Progress {
         
     }
 
-
+    // Methods
     save(){
         window.localStorage.setItem(this.saveFileKey, JSON.stringify({
             mapId: this.mapId,

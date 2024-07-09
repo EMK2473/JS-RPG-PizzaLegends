@@ -1,6 +1,6 @@
-window.BattleAnimations = {
+// Window level Object, contains different animations
 
-  
+window.BattleAnimations = {
   async spin(event, onComplete) {
     const element = event.caster.pizzaElement;
     const animationClassName =

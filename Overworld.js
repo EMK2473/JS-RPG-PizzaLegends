@@ -11,6 +11,8 @@ class Overworld {
     this.map = null;
   }
 
+
+  // Methods
   // recursive game loop
   startGameLoop() {
     const step = () => {

@@ -1,3 +1,5 @@
+// Utility functions stored ins separate file 
+
 const utils = {
 
     // function to assign grid

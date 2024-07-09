@@ -5,7 +5,7 @@ class Team {
         this.combatants = [];
     }
 
-
+    // Methods
     createElement(){
         this.element = document.createElement("div");
         this.element.classList.add("Team");

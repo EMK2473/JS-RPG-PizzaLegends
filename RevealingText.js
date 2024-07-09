@@ -8,7 +8,7 @@ class RevealingText {
     this.isDone = false;
   }
 
-
+  // Methods
   revealOneCharacter(list){
     const next = list.splice(0,1)[0];
     next.span.classList.add("revealed");

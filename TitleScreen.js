@@ -3,6 +3,9 @@ class TitleScreen {
     this.progress = progress;
   }
 
+
+
+  // Methods
   getOptions(resolve) {
     const saveFile = this.progress.getSaveFile();
     return [

@@ -7,6 +7,8 @@ class KeyboardMenu {
     this.descriptionContainer = config.descriptionContainer || null;
   }
 
+
+  // Methods
   setOptions(options) {
     this.options = options;
     this.element.innerHTML = this.options

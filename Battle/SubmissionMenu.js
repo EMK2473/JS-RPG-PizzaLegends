@@ -23,6 +23,7 @@ class SubmissionMenu {
     this.items = Object.values(quantityMap);
   }
 
+  // Methods
   // constructs menu options
   getPages() {
     const backOption = {

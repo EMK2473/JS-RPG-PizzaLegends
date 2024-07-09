@@ -1,3 +1,6 @@
+// Window level Object, contains different enemies and their properties
+
+
 window.Enemies = {
     "erio": {
       name: "Erio",

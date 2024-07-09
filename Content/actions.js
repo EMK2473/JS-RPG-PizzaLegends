@@ -1,3 +1,6 @@
+// Window level Object, contains different actions
+
+
 window.Actions = {
   slice: {
     name: "Slice!",

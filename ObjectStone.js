@@ -34,7 +34,7 @@ class ObjectStone extends GameObject {
         ]
     }
 
-
+    // Methods
     update(){
         this.sprite.currentAnimation = playerState.storyFlags[this.storyFlag]
         ? "used-down" : "unused-down"

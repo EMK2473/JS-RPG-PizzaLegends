@@ -35,6 +35,7 @@ class PlayerState {
     this.storyFlags = {};
   }
 
+  // Methods
   // extend the system to pass in what level you want to start pizza at
   addPizza(pizzaId) {
     const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);

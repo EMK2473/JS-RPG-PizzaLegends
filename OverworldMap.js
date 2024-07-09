@@ -26,6 +26,8 @@ class OverworldMap {
     this.isPaused = false;
   }
 
+
+  // Methods
   drawLowerImage(ctx, cameraPerson) {
     ctx.drawImage(
       this.lowerImage,

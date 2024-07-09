@@ -4,6 +4,7 @@ class PauseMenu {
     this.onComplete = onComplete;
   }
 
+  // Methods
   getOptions(pageKey) {
     if (pageKey === "root") {
       // case1: show the first page

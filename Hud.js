@@ -2,7 +2,9 @@ class Hud {
   constructor() {
     this.scoreboards = [];
   }
-
+  
+  
+  // Methods
   update() {
     this.scoreboards.forEach(s => {
         // update me

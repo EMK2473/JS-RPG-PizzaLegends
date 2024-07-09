@@ -5,6 +5,9 @@ class TextMessage {
     this.element = null;
   }
 
+
+
+  // Methods
   createElement() {
     // create Text element on document
     this.element = document.createElement("div");

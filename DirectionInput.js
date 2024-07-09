@@ -14,7 +14,8 @@ class DirectionInput {
         }
     
     }
-
+    
+    // Methods
     get direction() {
         return this.heldDirections[0];
     }

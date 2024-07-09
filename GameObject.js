@@ -18,6 +18,7 @@ class GameObject {
     this.talking = config.talking || [];
   }
 
+  // Methods
   mount(map) {
     console.log("mounting!");
     this.isMounted = true;

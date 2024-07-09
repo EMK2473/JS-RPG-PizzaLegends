@@ -40,6 +40,8 @@ class Sprite {
     this.gameObject = config.gameObject;
   }
 
+
+  // Methods
   get frame() {
     return this.animations[this.currentAnimation][this.currentAnimationFrame];
   }

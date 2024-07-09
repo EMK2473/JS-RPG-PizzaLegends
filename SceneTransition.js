@@ -3,6 +3,7 @@ class SceneTransition {
         this.element = null;
     }
 
+    // Methods
     createElement() {
         this.element = document.createElement("div");
         this.element.classList.add("SceneTransition");
