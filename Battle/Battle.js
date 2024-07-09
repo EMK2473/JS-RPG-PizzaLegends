@@ -35,6 +35,9 @@ class Battle {
     this.usedInstanceIds = {};
   }
 
+
+
+  
   addCombatant(id, team, config) {
     this.combatants[id] = new Combatant(
       {

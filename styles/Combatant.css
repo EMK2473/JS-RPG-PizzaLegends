@@ -129,14 +129,19 @@
     background: url(../images/characters/pizzas/pizza-shadow.png) no-repeat no-repeat;
   }
   
+
+  /* adjust to move pizza/unit in battle scene */
   .Pizza[data-team="player"] {
-    bottom: 73px;
-    left: 51px;
+    bottom: 55px;
+    left: 75px;
   }
   
+  /* adjust to move enemy pizza/unit in battle scene */
+
   .Pizza[data-team="enemy"] {
-    top: 47px;
-    right: 100px;
+    top: 65px;
+    right: 80px;
+    
   }
   
   .Pizza[data-active="false"] {

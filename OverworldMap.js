@@ -162,17 +162,11 @@ window.OverworldMaps = {
               { type: "battle", enemyId: "beth" },
               { type: "addStoryFlag", flag: "DEFEATED_BETH"},
               { type: "textMessage", text: "You crushed me like red pepper flakes!", faceHero: "npcA" },
-
-              // { type: "textMessage", text: "Now, go away..." },
-              // { who: "hero", type: "walk", direction: "up" },
             ],
           },
           {
             events: [
               { type: "textMessage", text: "Erio wants to meet you", faceHero: "npcA" },
-              // { type: "battle", enemyId: "beth" },
-              // { type: "textMessage", text: "Now, go away..." },
-              // { who: "hero", type: "walk", direction: "up" },
             ],
           },
         ],
@@ -208,7 +202,7 @@ window.OverworldMaps = {
         x: utils.withGrid(2),
         y: utils.withGrid(7),
         storyFlag: "USED_OBJECT_STONE",
-        pizzas: ["bahamut", "mageUnit", "samuraiUnit", "warriorUnit"]
+        pizzas: ["bahamut"]
       })
     },
     walls: {
@@ -336,7 +330,7 @@ window.OverworldMaps = {
   },
   WorldBase: {
     id: "WorldBase",
-    lowerSrc: "./images/maps/forestWorld.png",
+    lowerSrc: "./images/maps/test3200.png",
     upperSrc: "./images/maps/forestUpper.png",
     gameObjects: {
       hero: new Person({

@@ -26,8 +26,11 @@
   bottom: 57px;
   left: 1px;
 }
+
+/* targets sprite sheet for hero position (-64 faces up) */
 .Battle_hero img {
-  transform: translateY(-64px); /* Nudge hero spritesheet */
+  transform: translateY(-32px); 
+  /* Nudge hero spritesheet */
 }
 .Battle_enemy {
   top: 42px;
