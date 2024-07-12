@@ -32,7 +32,7 @@ window.Enemies = {
     },
     "lyle": {
       name: "Lyle",
-      src: "./images/characters/people/npc3.png",
+      src: "./images/characters/people/gunSlinger12.png",
       pizzas: {
         "a": {
           pizzaId: "c001",

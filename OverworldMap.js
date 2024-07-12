@@ -201,10 +201,10 @@ window.OverworldMaps = {
       //   // ],
       // }),
       objectStone: new ObjectStone({
-        x: utils.withGrid(2),
+        x: utils.withGrid(37),
         y: utils.withGrid(7),
         storyFlag: "USED_OBJECT_STONE",
-        pizzas: ["bahamut", "elderDruid"]
+        pizzas: ["cerberus","bahamut", "elderDruid"]
       })
     },
     walls: {
@@ -294,7 +294,7 @@ window.OverworldMaps = {
       npcB: new Person({
         x: utils.withGrid(2),
         y: utils.withGrid(36),
-        src: "./images/characters/people/npc3.png",
+        src: "./images/characters/people/gunSlinger12.png",
         talking: [
           {
             events: [
@@ -314,7 +314,12 @@ window.OverworldMaps = {
           },
         ],
       }),
-      
+      objectStone: new ObjectStone({
+        x: utils.withGrid(7),
+        y: utils.withGrid(37),
+        storyFlag: "USED_OBJECT_STONE2",
+        pizzas: ["cerberus","bahamut", "elderDruid"]
+      })
     },
     cutsceneSpaces: {
       [utils.asGridCoord(35, 39)]: [

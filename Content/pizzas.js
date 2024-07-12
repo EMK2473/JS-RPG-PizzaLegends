@@ -31,6 +31,14 @@ window.Pizzas = {
     icon: "./images/icons/defender.png",
     actions: ["extraCrispy", "smokedApplewood"],
   },
+  cerberus: {
+    name: "Cerberus",
+    description: "Three Headed Guard Dog of Hell.",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/cerberus.png",
+    icon: "./images/icons/fighter.png",
+    actions: ["gigaFlare", "confusedStatus", "saucyStatus"],
+  },
   bahamut: {
     name: "Supreme Bahamut",
     description: "A literal god. You should be kneeling right now.",

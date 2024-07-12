@@ -26,7 +26,7 @@ class PlayerState {
         status: null,
       },
     };
-    this.lineup = ["p4","p5", "p6"].slice(0,3);
+    this.lineup = [].slice(0,3);
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },
