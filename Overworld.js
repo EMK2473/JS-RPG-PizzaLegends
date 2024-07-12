@@ -161,7 +161,7 @@ class Overworld {
 
     // firing cutscene
     // this.map.startCutscene([
-      // {type: "battle", enemyId: "beth"},
+      // {type: "battle", enemyId: "lyle"},
 
     //   {type: "textMessage", text: "This is the first cutscene!!!!!"},
     //   {type: "changeMap", map: "WorldBase"}

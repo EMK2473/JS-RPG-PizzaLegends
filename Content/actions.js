@@ -88,6 +88,20 @@ window.Actions = {
 
     ],
   },
+  tripleBite: {
+    name: "Triple Bite",
+    description: "Three times the bite!",
+    success: [
+      { type: "textMessage", text: "{CASTER} used {ACTION}!" },
+      { type: "animation", animation: "triple_Bite"},
+      { type: "stateChange", damage: 5  },
+      { type: "animation", animation: "triple_Bite"},
+      { type: "stateChange", damage: 10  },
+      { type: "animation", animation: "triple_Bite"},
+      { type: "stateChange", damage: 15  },
+
+    ],
+  },
   extraCrispy: {
     name: "Extra Crispy",
     description: "🥓🥓🥓",

@@ -1,6 +1,30 @@
 class PlayerState {
   constructor() {
     this.pizzas = {
+      p1: {
+        pizzaId: "bahamut",
+        maxHp: 100,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
+      p2: {
+        pizzaId: "elderDruid",
+        maxHp: 100,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
+      p3: {
+        pizzaId: "cerberus",
+        maxHp: 100,
+        xp: 0,
+        maxXp: 100,
+        level: 1,
+        status: null,
+      },
       p4: {
         pizzaId: "mageUnit",
         maxHp: 60,
@@ -26,7 +50,7 @@ class PlayerState {
         status: null,
       },
     };
-    this.lineup = [].slice(0,3);
+    this.lineup = ["p3"].slice(0,3);
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },

@@ -143,8 +143,9 @@ window.OverworldMaps = {
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
-        x: utils.withGrid(5),
-        y: utils.withGrid(6),
+        x: utils.withGrid(7),
+        y: utils.withGrid(7),
+        direction: "down",
       }),
       // npcA: new Person({
       //   x: utils.withGrid(7),
@@ -204,7 +205,7 @@ window.OverworldMaps = {
         x: utils.withGrid(37),
         y: utils.withGrid(7),
         storyFlag: "USED_OBJECT_STONE",
-        pizzas: ["cerberus","bahamut", "elderDruid"]
+        pizzas: ["cerberus"]
       })
     },
     walls: {
@@ -318,7 +319,7 @@ window.OverworldMaps = {
         x: utils.withGrid(7),
         y: utils.withGrid(37),
         storyFlag: "USED_OBJECT_STONE2",
-        pizzas: ["cerberus","bahamut", "elderDruid"]
+        pizzas: ["bahamut",]
       })
     },
     cutsceneSpaces: {
