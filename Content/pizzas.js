@@ -29,7 +29,7 @@ window.Pizzas = {
     type: PizzaTypes.defensive,
     src: "./images/characters/pizzas/baconFighter.png",
     icon: "./images/icons/defender.png",
-    actions: ["extraCrispy", "smokedApplewood",],
+    actions: ["extraCrispy", "smokedApplewood"],
   },
   bahamut: {
     name: "Supreme Bahamut",
@@ -70,5 +70,13 @@ window.Pizzas = {
     src: "./images/characters/pizzas/bahamutLeft.png",
     icon: "./images/icons/spicy.png",
     actions: ["gigaFlare", "confusedStatus", "saucyStatus"],
+  },
+  elderDruid: {
+    name: "Elder Druid",
+    description: "Very old druid.",
+    type: PizzaTypes.spicy,
+    src: "./images/characters/pizzas/druid64.png",
+    icon: "./images/icons/spicy.png",
+    actions: ["gigaFlare"],
   },
 };

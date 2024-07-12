@@ -10,11 +10,6 @@
 // TODO: 
 // Allow multiple status effects, stacking vertically (for each?)
 // Add ATK UP, DEF UP and create Icons for them
-// 
-
-
-
-
 class Combatant {
   constructor(config, battle) {
     //  automatically assigns any properties to the object
