@@ -896,7 +896,7 @@ window.OverworldMaps = {
   },
   Spiral: {
     id: "Spiral",
-    lowerSrc: "./images/maps/spiral.png",
+    lowerSrc: "./images/maps/crypt.png",
     upperSrc: "./images/maps/blankUpper.png",
     gameObjects: {
       hero: new Person({

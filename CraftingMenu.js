@@ -4,8 +4,6 @@ class CraftingMenu {
     this.onComplete = onComplete;
   }
 
-  //   this.keyboardMenu.setOptions(this.getOptions(id));
-  // create way to add pizza
   getOptions() {
     return this.pizzas.map((id) => {
       const base = Pizzas[id];
@@ -14,26 +12,26 @@ class CraftingMenu {
         description: base.description,
         handler: () => {
           playerState.addPizza(id);
-          this.close();
+          const pizzaName = base.name; // Get the pizza's name
+          this.close(pizzaName); // Pass pizzaName to close method
         },
       };
     });
   }
 
-  // Methods
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("CraftingMenu");
     this.element.classList.add("overlayMenu");
     this.element.innerHTML = `
-            <h2> Absorb lost soul.</h2>
-            `;
+      <h2> Absorb lost soul.</h2>
+    `;
   }
 
-  close() {
+  close(pizzaName) {
     this.keyboardMenu.end();
     this.element.remove();
-    this.onComplete();
+    this.onComplete(`${pizzaName}'s soul was absorbed.`); // Pass message with pizzaName
   }
 
   init(container) {
