@@ -39,6 +39,14 @@ window.Pizzas = {
     icon: "./images/icons/defender.png",
     actions: ["tripleBite", "confusedStatus", ],
   },
+  thanatos: {
+    name: "Thanatos",
+    description: "Death personified.",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/thanatos32.png",
+    icon: "./images/icons/fighter.png",
+    actions: ["gigaFlare", "confusedStatus", ],
+  },
   bahamut: {
     name: "Bahamut",
     description: "A literal god. You should be kneeling right now.",
@@ -80,10 +88,10 @@ window.Pizzas = {
     actions: ["gigaFlare", "confusedStatus", "saucyStatus"],
   },
   elderDruid: {
-    name: "Elder Druid",
+    name: "Thantos",
     description: "Very old druid.",
     type: PizzaTypes.spicy,
-    src: "./images/characters/pizzas/druid64.png",
+    src: "./images/characters/pizzas/thanatosRight.png",
     icon: "./images/icons/spicy.png",
     actions: ["gigaFlare"],
   },

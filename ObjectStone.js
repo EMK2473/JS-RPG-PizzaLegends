@@ -20,7 +20,7 @@ class ObjectStone extends GameObject {
            {
             required: [this.storyFlag],
             events: [
-                {type: "textMessage", text: "There is nothing there."}
+                {type: "textMessage", text: "There is nothing left."}
             ]
            },
            {

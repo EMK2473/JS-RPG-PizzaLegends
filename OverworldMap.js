@@ -141,8 +141,8 @@ window.OverworldMaps = {
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
-        x: utils.withGrid(7),
-        y: utils.withGrid(7),
+        x: utils.withGrid(15),
+        y: utils.withGrid(19),
         direction: "down",
       }),
       cerberus: new Person({
@@ -247,10 +247,10 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "Ruins",
-              x: utils.withGrid(1),
-              y: utils.withGrid(2),
-              direction: "right",
+              map: "Crypt",
+              x: utils.withGrid(2),
+              y: utils.withGrid(11),
+              direction: "up",
             },
           ],
         },
@@ -894,8 +894,8 @@ window.OverworldMaps = {
       ],
     },
   },
-  Spiral: {
-    id: "Spiral",
+  Crypt: {
+    id: "Crypt",
     lowerSrc: "./images/maps/crypt.png",
     upperSrc: "./images/maps/blankUpper.png",
     gameObjects: {
@@ -903,6 +903,28 @@ window.OverworldMaps = {
         isPlayerControlled: true,
         x: utils.withGrid(0),
         y: utils.withGrid(4),
+      }),
+      lyle: new Person({
+        x: utils.withGrid(2),
+        y: utils.withGrid(4),
+        src: "./images/maps/blankUpper.png",
+        talking: [
+          {
+            events: [
+              {
+                type: "textMessage",
+                text: "You feel a deadly cold chill...",
+              },
+              { type: "battle", enemyId: "lyle" },
+            ],
+          },
+        ],
+      }),
+      objectStone: new ObjectStone({
+        x: utils.withGrid(3),
+        y: utils.withGrid(5),
+        storyFlag: "USED_OBJECT_STONE2",
+        pizzas: ["thanatos"],
       }),
     },
     cutsceneSpaces: {
