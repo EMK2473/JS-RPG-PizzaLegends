@@ -12,11 +12,66 @@ class Combatant {
     constructor(config, battle) {
       //  automatically assigns any properties to the object
   
+      this.hp = typeof(this.hp) ==="undefined" ? this.maxHp : this.hp;
+      this.battle = battle;
+
+      this.name = config.name || 'Unknown';
+      this.level = config.level || 1;
+      this.hp = config.hp || 100;
+      this.maxHp = config.maxHp || 100;
+      this.xp = config.xp || 0;
+      this.maxXp = this.calculateNextLevelXp();
+      this.attackPower = config.attackPower || 10;
+      this.armor = config.armor || 5;
+      this.defense = config.defense || 5;
+      this.speed = config.speed || 10;
+      this.power = config.power || 10;
+
       Object.keys(config).forEach((key) => {
         this[key] = config[key];
       });
-      this.hp = typeof(this.hp) ==="undefined" ? this.maxHp : this.hp;
-      this.battle = battle;
+    }
+    levelUp() {
+      this.level += 1;
+      this.maxXp = this.calculateNextLevelXp();
+      // Increase stats on level up
+      this.hp += 20;
+      this.maxHp += 20;
+      this.attackPower += 2;
+      this.armor += 1.5;
+      this.defense += 1;
+      this.speed += 2.5;
+      this.power += 2;
+  
+    }
+
+    calculateNextLevelXp() {
+      return this.level * 100; // Example formula, you can adjust as needed
+    }
+
+    calculateDamage() {
+      this.effectiveAttackPower = this.attackPower + this.power * 0.5;
+      let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
+  
+      // Calculate random modifier based on current power
+      let randomModifier = Math.floor(Math.random() * (this.power + 1));
+  
+      // Add the random modifier to the base damage
+      let totalDamage = baseDamage + randomModifier;
+  
+      // Round the total damage based on the decimal part
+      let decimalPart = totalDamage - Math.floor(totalDamage);
+      if (decimalPart > 0.66) {
+        return Math.ceil(totalDamage);
+      } else {
+        return Math.floor(totalDamage);
+      }
+    }
+    
+
+    calculateArmor(){
+      let armor = (this.armor + Math.floor(this.defense * 0.5));
+      return armor;
     }
   
     // Methods
@@ -110,12 +165,15 @@ class Combatant {
         ]
       }
       return originalEvents;
-  
-  
     }
     
   
     getPostEvents() {
+      if (this.status?.type === "burn") {
+        return [
+          { type: "stateChange", damage: 10, onCaster: false }
+        ]
+      } 
       if (this.status?.type === "saucy") {
         return [
           { type: "textMessage", text: "Feelin' saucy!" },
@@ -127,7 +185,6 @@ class Combatant {
           { type: "textMessage", text: `${this.name} DEF went up!` },
         ]
       }
-  
       return [];
     }
   

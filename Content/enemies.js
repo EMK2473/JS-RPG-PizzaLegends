@@ -35,7 +35,7 @@ window.Enemies = {
       src: "./images/characters/people/gunSlinger12.png",
       pizzas: {
         "a": {
-          pizzaId: "elderDruid",
+          pizzaId: "elderDruid",hp: 160,
           maxHp: 160,
           level: 100,
         },

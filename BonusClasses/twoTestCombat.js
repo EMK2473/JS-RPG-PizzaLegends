@@ -116,6 +116,7 @@ class Character {
         return Math.ceil(totalDamage);
       } else {
         return Math.floor(totalDamage);
+        
       }
     }
   

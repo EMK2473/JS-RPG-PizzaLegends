@@ -1,6 +1,11 @@
 // Window level Object, contains different actions
 
 
+// {
+//   type: "stateChange",
+//   damage: (caster, target) => window.calculateDamage(10, 1.2) // Example multiplier
+// },
+
 window.Actions = {
   slice: {
     name: "Slice!",
@@ -8,7 +13,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 10 },
+      { type: "stateChange", calculateDamage:true },
     ],
   },
   saucyStatus: {
@@ -30,6 +35,16 @@ window.Actions = {
       { type: "animation", animation: "glob", color: "#dafd2a" },
       { type: "stateChange", status: { type: "confused", expiresIn: 5 } },
       { type: "textMessage", text: "{TARGET} became confused!" },
+    ],
+  },
+  burnStatus: {
+    name: "Burn",
+    description: "Burning damage over time",
+    targetType: "enemy",
+    success: [
+      { type: "textMessage", text: "{CASTER} used {ACTION}!" },
+      { type: "animation", animation: "fastGlob", color: "#dafd2a" },
+      { type: "stateChange",status: { type: "burn", expiresIn: 3 }, },
     ],
   },
   defenseUpStatus: {
@@ -80,11 +95,11 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "glob", color: "#3c1361" },
-      { type: "stateChange", damage: 5  },
+      { type: "stateChange", calculateDamage: true },
       { type: "animation", animation: "glob", color: "#52307c" },
-      { type: "stateChange", damage: 10  },
+      { type: "stateChange", calculateDamage: true },
       { type: "animation", animation: "glob", color: "#bca0dc" },
-      { type: "stateChange", damage: 15  },
+      { type: "stateChange", calculateDamage: true },
 
     ],
   },

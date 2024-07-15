@@ -38,8 +38,15 @@ class TurnCycle {
     }
   }
 
+  removeTurnCounterElement() {
+    if (this.turnCounterElement && this.turnCounterElement.parentNode) {
+      this.turnCounterElement.parentNode.removeChild(this.turnCounterElement);
+    }
+  }
+
   async turn() {
     // Check if the current team is player and then increment the TurnCounter
+
     if (this.currentTeam === "player") {
       this.turnCounter += 1;
       this.updateTurnCounterDisplay();
@@ -128,6 +135,7 @@ class TurnCycle {
     // Check if a team won?
     const winner = this.getWinningTeam();
     if (winner) {
+      this.removeTurnCounterElement();
       await this.onNewEvent({
         type: "textMessage",
         text: `Winner!`,

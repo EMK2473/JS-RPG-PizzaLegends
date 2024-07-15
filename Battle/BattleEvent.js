@@ -30,13 +30,43 @@ class BattleEvent {
   // Methods
   // this is where def, atk, etc would be changed
   async stateChange(resolve) {
-    const { caster, target, damage, recover, status, action } = this.event;
+    const { caster, target, damage, recover, status, action, calculateDamage } =
+      this.event;
     let who = this.event.onCaster ? caster : target;
 
-    if (damage) {
+    let finalDamage = damage; // default to static damage if no calculation needed
+
+
+    if (calculateDamage) {
+      // calculate caster damage
+      finalDamage = caster.calculateDamage();
+
+      // calculate target's armor
+      const targetArmor = target.calculateArmor();
+      console.log( `Target's Armor: ${targetArmor}`)
+      console.log(`Damage Before Armor: ${finalDamage}`)
+
+      // resolve damage and armor
+      finalDamage -= targetArmor;
+      console.log(`Calculated Damage: ${finalDamage}`); 
+    }
+
+    if (finalDamage) {
+      // Display the damage value
+      const damageElement = document.createElement("div");
+      damageElement.classList.add("damage-value");
+      damageElement.textContent =`dmg: ` + finalDamage ;
+      const gameContainer = document.querySelector(".game-container");
+      gameContainer.appendChild(damageElement);
+      console.log("damage element created");
+
+      // Remove the damage value after 2 seconds
+      setTimeout(() => {
+        damageElement.remove();
+      }, 1100);
       // modify hp when hit and blink
       target.update({
-        hp: target.hp - damage,
+        hp: target.hp - finalDamage,
       });
 
       target.pizzaElement.classList.add("battle-damage-blink");
@@ -44,7 +74,6 @@ class BattleEvent {
     }
 
     if (recover) {
-      // const who = this.event.onCaster ? caster : target;
       let newHp = who.hp + recover;
       if (newHp > who.maxHp) {
         newHp = who.maxHp;
@@ -52,7 +81,7 @@ class BattleEvent {
       who.update({
         hp: newHp,
       });
-      
+
       target.pizzaElement.classList.add("battle-damage-blink");
       console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
@@ -141,10 +170,10 @@ class BattleEvent {
         amount -= 1;
         combatant.xp += 1;
 
-        if(combatant.xp === combatant.maxXp){
+        if (combatant.xp === combatant.maxXp) {
           combatant.xp = 0;
           combatant.maxXp = 100;
-          combatant.level += 1
+          combatant.levelUp();
         }
         // check if xp levels up (hits max xp)
 
@@ -153,8 +182,7 @@ class BattleEvent {
         return;
       }
       resolve();
-    console.log(combatant.xp)
-
+      console.log(combatant.xp);
     };
     requestAnimationFrame(step);
   }

@@ -8,6 +8,9 @@ window.PizzaTypes = {
   offensive: "offensive",
   defensive: "defensive",
   support: "support",
+  brawler: "brawler",
+  ruinic: "ruinic",
+  arcane: "arcane",
   spicy: "spicy",
   veggie: "veggie",
   fungi: "fungi",
@@ -32,7 +35,7 @@ window.Pizzas = {
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/closure.png",
     icon: fighterIcon,
-    actions: ["slice", "confusedStatus", "saucyStatus"],
+    actions: ["burnStatus", "confusedStatus", "saucyStatus"],
   },empathy: {
     name: "Empathy",
     description: "What's left",
