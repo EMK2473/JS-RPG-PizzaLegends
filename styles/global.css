@@ -1,10 +1,10 @@
 :root {
   --border-color: #291D4D;
-  --dialog-background: #FFF3b4;
-  --menu-background: #FFE8D2;
-  --menu-border-color: #A48465;
-  --menu-font-color: #3a160D;
-  --menu-selected-background: #7fc2ff ;
+  --dialog-background: #f5f3ea;
+  --menu-background: #6e0e04;
+  --menu-border-color: #e57505;
+  --menu-font-color: #d86d52;
+  --menu-selected-background: #b1d7fa ;
 }
 
 * {

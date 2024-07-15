@@ -161,11 +161,26 @@ window.OverworldMaps = {
           },
         ],
       }),
-      objectStone: new ObjectStone({
+      objectStone1: new ObjectStone({
         x: utils.withGrid(37),
         y: utils.withGrid(7),
-        storyFlag: "USED_OBJECT_STONE",
-        pizzas: ["cerberus"],
+        storyFlag: "USED_OBJECT_STONE1",
+        src: "./images/characters/blue-stone.png",
+        pizzas: ["sadness", "empathy"],
+      }),
+      objectStone2: new ObjectStone({
+        x: utils.withGrid(38),
+        y: utils.withGrid(7),
+        storyFlag: "USED_OBJECT_STONE2",
+        src: "./images/characters/green-stone.png",
+        pizzas: [ "memorial", "growth"],
+      }),
+      objectStone3: new ObjectStone({
+        x: utils.withGrid(39),
+        y: utils.withGrid(7),
+        storyFlag: "USED_OBJECT_STONE3",
+        src: "./images/characters/gold-stone.png",
+        pizzas: ["closure", "reflection"],
       }),
     },
     walls: {
@@ -289,11 +304,19 @@ window.OverworldMaps = {
           },
         ],
       }),
-      objectStone: new ObjectStone({
+      objectStone3: new ObjectStone({
         x: utils.withGrid(19),
         y: utils.withGrid(37),
-        storyFlag: "USED_OBJECT_STONE2",
-        pizzas: ["bahamut"],
+        storyFlag: "USED_OBJECT_STONE3",
+        src: "./images/characters/gold-stone.png",
+        pizzas: ["cerberus"],
+      }),
+      objectStone4: new ObjectStone({
+        x: utils.withGrid(19),
+        y: utils.withGrid(38),
+        storyFlag: "USED_OBJECT_STONE4",
+        src: "./images/characters/white-stone.png",
+        pizzas: ["thanatos"],
       }),
     },
     walls: {
@@ -920,10 +943,18 @@ window.OverworldMaps = {
           },
         ],
       }),
-      objectStone: new ObjectStone({
-        x: utils.withGrid(3),
+      objectStone34: new ObjectStone({
+        x: utils.withGrid(4),
         y: utils.withGrid(5),
-        storyFlag: "USED_OBJECT_STONE2",
+        storyFlag: "USED_OBJECT_STONE4",
+        src: "./images/characters/gold-stone.png",
+        pizzas: ["cerberus"],
+      }),
+      objectStone5: new ObjectStone({
+        x: utils.withGrid(4),
+        y: utils.withGrid(6),
+        storyFlag: "USED_OBJECT_STONE5",
+        src: "./images/characters/white-stone.png",
         pizzas: ["thanatos"],
       }),
     },

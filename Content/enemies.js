@@ -36,7 +36,7 @@ window.Enemies = {
       pizzas: {
         "a": {
           pizzaId: "elderDruid",
-          maxHp: 120,
+          maxHp: 160,
           level: 100,
         },
       }

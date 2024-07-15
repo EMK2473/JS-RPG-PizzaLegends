@@ -50,6 +50,33 @@ class Battle {
     this.activeCombatants[team] = this.activeCombatants[team] || id;
   }
 
+  removeCombatant(id, team) {
+    // Check if the combatant exists
+    if (!this.combatants[id]) {
+      console.warn(`Combatant with id ${id} does not exist.`);
+      return;
+    }
+  
+    // Remove the combatant
+    delete this.combatants[id];
+  
+    // Update active combatants
+    if (this.activeCombatants[team] === id) {
+      // Find the next available combatant in the same team
+      const nextCombatantId = Object.keys(this.combatants).find(
+        combatantId => this.combatants[combatantId].team === team
+      );
+  
+      // Update the active combatant for the team
+      if (nextCombatantId) {
+        this.activeCombatants[team] = nextCombatantId;
+      } else {
+        delete this.activeCombatants[team];
+      }
+    }
+  }
+  
+
   createElement() {
     this.element = document.createElement("div");
     this.element.classList.add("Battle");
@@ -109,8 +136,10 @@ class Battle {
               playerStatePizzza.xp = combatant.xp;
               playerStatePizzza.maxXp = combatant.maxXp;
               playerStatePizzza.level = combatant.level;
-            }
+            } 
           });
+
+
 
           // get rid of player used items
           playerState.items = playerState.items.filter((item) => {

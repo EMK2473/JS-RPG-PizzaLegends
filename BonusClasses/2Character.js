@@ -51,7 +51,8 @@
         this.level += 1;
         this.maxXp = this.calculateNextLevelXp();
         // Increase stats on level up
-        this.maxHP += 10; // Example increment, you can adjust as needed
+        this.hp +=20;
+        this.maxHP += 20; // Example increment, you can adjust as needed
         this.attackPower += 2;
         this.armor += 2;
         this.defense += 1;

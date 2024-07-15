@@ -14,29 +14,67 @@ window.PizzaTypes = {
   chill: "chill",
 };
 
+const fighterIcon = "./images/icons/fighter.png"
+const defenderIcon = "./images/icons/defender.png"
+const supportIcon = "./images/icons/support.png"
+
 window.Pizzas = {
-  s001: {
-    name: "Slice Samurai",
-    description: "Supreme Slicer",
+  acceptance: {
+    name: "Acceptance",
+    description: "What's left",
     type: PizzaTypes.offensive,
-    src: "./images/characters/pizzas/sliceSamurai.png",
-    icon: "./images/icons/fighter.png",
+    src: "./images/characters/pizzas/acceptance.png",
+    icon: fighterIcon,
+    actions: ["slice", "confusedStatus"],
+  },closure: {
+    name: "Closure",
+    description: "What's left",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/closure.png",
+    icon: fighterIcon,
     actions: ["slice", "confusedStatus", "saucyStatus"],
-  },
-  s002: {
-    name: "Bacon Fighter",
-    description: "Big ol' bacon lover who fears no pizza",
-    type: PizzaTypes.defensive,
-    src: "./images/characters/pizzas/baconFighter.png",
-    icon: "./images/icons/defender.png",
-    actions: ["extraCrispy", "smokedApplewood"],
+  },empathy: {
+    name: "Empathy",
+    description: "What's left",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/empathy.png",
+    icon: fighterIcon,
+    actions: ["slice", "confusedStatus", "saucyStatus"],
+  },growth: {
+    name: "Growth",
+    description: "What's left",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/growth.png",
+    icon: fighterIcon,
+    actions: ["slice", "confusedStatus", "saucyStatus"],
+  },memorial: {
+    name: "Memorial",
+    description: "What's left",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/memorial.png",
+    icon: fighterIcon,
+    actions: ["slice", "confusedStatus", "saucyStatus"],
+  },reflection: {
+    name: "Reflection",
+    description: "What's left",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/reflection.png",
+    icon: fighterIcon,
+    actions: ["slice", "confusedStatus", "saucyStatus"],
+  },sadness: {
+    name: "Sadness",
+    description: "What's left",
+    type: PizzaTypes.offensive,
+    src: "./images/characters/pizzas/sadness.png",
+    icon: fighterIcon,
+    actions: ["slice", "confusedStatus", "saucyStatus"],
   },
   cerberus: {
     name: "Cerberus",
     description: "Three Headed Guard Dog of Hell.",
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/cerberus.png",
-    icon: "./images/icons/defender.png",
+    icon: defenderIcon,
     actions: ["tripleBite", "confusedStatus", ],
   },
   thanatos: {
@@ -44,7 +82,7 @@ window.Pizzas = {
     description: "Death personified.",
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/thanatos32.png",
-    icon: "./images/icons/fighter.png",
+    icon: fighterIcon,
     actions: ["gigaFlare", "confusedStatus", ],
   },
   bahamut: {
@@ -52,7 +90,7 @@ window.Pizzas = {
     description: "A literal god. You should be kneeling right now.",
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/bahamut.png",
-    icon: "./images/icons/fighter.png",
+    icon: fighterIcon,
     actions: ["gigaFlare", "confusedStatus",],
   },
   mageUnit: {
@@ -60,7 +98,7 @@ window.Pizzas = {
     description: "An arcane mage.",
     type: PizzaTypes.support,
     src: "./images/characters/pizzas/mageUnit.png",
-    icon: "./images/icons/defender.png",
+    icon: supportIcon,
     actions: ["slice"],
   },
   samuraiUnit: {

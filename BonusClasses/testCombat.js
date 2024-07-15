@@ -11,9 +11,8 @@ class Character {
       this.armor = 5;
       this.defense = 5;
       this.speed = 10;
-      this.strength = 10;
-      this.dexterity = 10;
-      this.intelligence = 10;
+      this.power = 10;
+
   
       // Override default values with values from characterConfig
       Object.keys(characterConfig).forEach((key) => {
@@ -24,9 +23,9 @@ class Character {
       this.calculateAttackPower();
     }
   
-    // Method to calculate effective attack power based on strength
+    // Method to calculate effective attack power based on power
     calculateAttackPower() {
-      this.effectiveAttackPower = this.attackPower + this.strength * 0.5; // Example formula, adjust as needed
+      this.effectiveAttackPower = this.attackPower + this.power * 0.5; // Example formula, adjust as needed
     }
   
     // Method to take damage
@@ -52,14 +51,12 @@ class Character {
       this.maxXp = this.calculateNextLevelXp();
       // Increase stats on level up
       this.hp += 20;
-      this.maxHP += 20; // Example increment, you can adjust as needed
+      this.maxHP += 20; 
       this.attackPower += 2;
-      this.armor += 2;
+      this.armor += 1.5;
       this.defense += 1;
-      this.speed += 1;
-      this.strength += 2; // Increase strength more significantly
-      this.dexterity += 1;
-      this.intelligence += 1;
+      this.speed += 2.5;
+      this.power += 2; 
   
       // Recalculate effective attack power after leveling up
       this.calculateAttackPower();
@@ -73,8 +70,8 @@ class Character {
     calculateDamage() {
         let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
       
-        // Calculate random modifier based on current strength
-        let randomModifier = Math.floor(Math.random() * (this.strength + 1));
+        // Calculate random modifier based on current power
+        let randomModifier = Math.floor(Math.random() * (this.power + 1));
       
         // Add the random modifier to the base damage
         let totalDamage = baseDamage + randomModifier;
@@ -100,15 +97,13 @@ class Character {
   Armor: ${this.armor}
   Defense: ${this.defense}
   Speed: ${this.speed}
-  Strength: ${this.strength}
-  Dexterity: ${this.dexterity}
-  Intelligence: ${this.intelligence}
+  Power: ${this.power}
   Damage Before Armor: ${this.calculateDamage()}`;
     }
   
-    // Method to attack another character
+    // Method to attack 
     attack(target) {
-      let damage = this.calculateDamage() - target.armor;
+      let damage = this.calculateDamage() - (target.armor + target.defense);
       if (damage < 0) damage = 0;
       target.takeDamage(damage);
       console.log(`${this.name} attacks ${target.name} for ${damage} damage.`);
@@ -118,30 +113,30 @@ class Character {
   // Example usage
   const heroConfig = {
     name: 'Hero',
-    level: 5,
-    hp: 120,
-    maxHP: 120,
-    attackPower: 15,
-    armor: 7,
-    defense: 7,
-    speed: 12,
-    strength: 12,
-    dexterity: 11,
-    intelligence: 11
+    // level: 5,
+    // hp: 200,
+    // maxHP: 200,
+    // attackPower: 15,
+    // armor: 7,
+    // defense: 7,
+    // speed: 12,
+    // power: 12,
+    // dexterity: 11,
+    // intelligence: 11
   };
   
   const villainConfig = {
     name: 'Villain',
-    level: 5,
-    hp: 120,
-    maxHP: 120,
-    attackPower: 15,
-    armor: 7,
-    defense: 7,
-    speed: 12,
-    strength: 12,
-    dexterity: 11,
-    intelligence: 11
+    // level: 5,
+    // hp: 200,
+    // maxHP: 200,
+    // attackPower: 15,
+    // armor: 7,
+    // defense: 7,
+    // speed: 12,
+    // power: 12,
+    // dexterity: 11,
+    // intelligence: 11
   };
   
   const hero = new Character(heroConfig);
@@ -167,6 +162,23 @@ function combatEncounter(character1, character2) {
     }
   }
   
+  villain.gainXp(1000)
+  hero.gainXp(100);
+    console.log("level2:", hero.displayStats());
+    hero.gainXp(200);
+    console.log("level3:",hero.displayStats());
+    hero.gainXp(300);
+    console.log("level4:",hero.displayStats());
+    hero.gainXp(400);
+    console.log("level5:",hero.displayStats());
+    hero.gainXp(500);
+    console.log("level6:",hero.displayStats());
+    hero.gainXp(600);
+    console.log("level7:",hero.displayStats());
+    hero.gainXp(700);
+    console.log(hero.displayStats());
+
+
   combatEncounter(hero, villain);
   const winner = combatEncounter(hero, villain);
 

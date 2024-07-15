@@ -107,6 +107,7 @@ class TurnCycle {
         type: "textMessage",
         text: `${submission.target.name} died X_X !`,
       });
+      // TODO: remove dead pizzas from lineup and playerstate on battle resolution. not on turn end.
 
       if (submission.target.team === "enemy") {
         const playerActivePizzaId = this.battle.activeCombatants.player;

@@ -3,7 +3,7 @@ class ObjectStone extends GameObject {
         super(config);
         this.sprite = new Sprite({
             gameObject: this,
-            src: "./images/characters/purple-stone.png",
+            src: config.src,
             // frame for used
             // frame for unused
             animations: {
