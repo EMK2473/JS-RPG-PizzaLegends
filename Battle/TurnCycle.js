@@ -64,13 +64,19 @@ class TurnCycle {
       ];
     const enemy = this.battle.combatants[enemyId];
 
+    const targetTeam = this.currentTeam === "player" ? "enemy" : "player";
+    const targetId = this.battle.activeCombatants[targetTeam];
+    const target = this.battle.combatants[targetId];
+
     const submission = await this.onNewEvent({
       type: "submissionMenu",
       caster,
+      target,
       enemy,
     });
 
     // stop here if we are replacing this pizza
+    // TODO Potentially refactor so that if you swap, you can still do an action/item
     if (submission.replacement) {
       await this.onNewEvent({
         type: "replace",
@@ -164,33 +170,25 @@ class TurnCycle {
 
     //Check for post events
     //(Do things AFTER your original turn submission)
-    const postEvents = caster.getPostEvents();
-    for (let i = 0; i < postEvents.length; i++) {
-      const event = {
-        ...postEvents[i],
-        submission,
-        action: submission.action,
-        caster,
-        target: submission.target,
-      };
-      await this.onNewEvent(event);
-    }
+      // Apply post events after the action
+  const postEvents = caster.getPostEvents();
+  for (let i = 0; i < postEvents.length; i++) {
+    const event = {
+      ...postEvents[i],
+      submission,
+      action: submission.action,
+      caster,
+      target: submission.target,
+    };
+    await this.onNewEvent(event);
+  }
+    
 
     //Check for status expire
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
     }
-
-    //  // Check if the current team is player and then increment the TurnCounter
-    //  if (this.currentTeam === "player") {
-    //   this.turnCounter += 1;
-    //   this.updateTurnCounterDisplay();
-    //   await this.onNewEvent({
-    //     type: "textMessage",
-    //     text: `Turn ${this.turnCounter} begins!`,
-    //   });
-    // }
 
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";
     this.turn();

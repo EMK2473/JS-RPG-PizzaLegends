@@ -56,17 +56,17 @@ class Battle {
       console.warn(`Combatant with id ${id} does not exist.`);
       return;
     }
-  
+
     // Remove the combatant
     delete this.combatants[id];
-  
+
     // Update active combatants
     if (this.activeCombatants[team] === id) {
       // Find the next available combatant in the same team
       const nextCombatantId = Object.keys(this.combatants).find(
-        combatantId => this.combatants[combatantId].team === team
+        (combatantId) => this.combatants[combatantId].team === team
       );
-  
+
       // Update the active combatant for the team
       if (nextCombatantId) {
         this.activeCombatants[team] = nextCombatantId;
@@ -75,7 +75,6 @@ class Battle {
       }
     }
   }
-  
 
   createElement() {
     this.element = document.createElement("div");
@@ -83,8 +82,8 @@ class Battle {
     // for each enemy here?
     // switch case or flags for different positionings?
     // for example, bossConfig =  set boss in middle and have 2 small enemies in front, new hp bars
-    // 
-    // break down html into individual calls and move 
+    //
+    // break down html into individual calls and move
     this.element.innerHTML = `
       <div class="Battle_hero">
         <img src="${"./images/characters/people/reaper.png"}" alt="Hero" />
@@ -117,6 +116,25 @@ class Battle {
     this.playerTeam.init(this.element);
     this.enemyTeam.init(this.element);
 
+    // Check if there are no combatants in either team
+    if (
+      this.playerTeam.combatants.length === 0 ||
+      this.enemyTeam.combatants.length === 0
+    ) {
+      // Create a battle event to display the message
+      const event = {
+        type: "textMessage",
+        text: "You have no one to fight for you.",
+      };
+      const battleEvent = new BattleEvent(event, this);
+      battleEvent.init(() => {
+        // Remove the battle element and complete the battle
+        this.element.remove();
+        this.onComplete(false);
+      });
+      return;
+    }
+
     // sets up turn cycle upon initialization
     this.turnCycle = new TurnCycle({
       battle: this,
@@ -136,19 +154,16 @@ class Battle {
               playerStatePizzza.xp = combatant.xp;
               playerStatePizzza.maxXp = combatant.maxXp;
               playerStatePizzza.level = combatant.level;
-            } 
+            }
           });
-
-
 
           // get rid of player used items
           playerState.items = playerState.items.filter((item) => {
             return !this.usedInstanceIds[item.instanceId];
           });
 
-
           // send a signal to update
-          utils.emitEvent("PlayerStateUpdated")
+          utils.emitEvent("PlayerStateUpdated");
         }
 
         this.element.remove();

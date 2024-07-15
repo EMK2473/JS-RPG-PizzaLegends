@@ -63,7 +63,7 @@ class BattleEvent {
       // Remove the damage value after 2 seconds
       setTimeout(() => {
         damageElement.remove();
-      }, 1100);
+      }, 900);
       // modify hp when hit and blink
       target.update({
         hp: target.hp - finalDamage,

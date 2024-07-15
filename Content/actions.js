@@ -44,7 +44,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "fastGlob", color: "#dafd2a" },
-      { type: "stateChange",status: { type: "burn", expiresIn: 3 }, },
+      { type: "stateChange",status: { type: "burn", expiresIn: 3 }},
     ],
   },
   defenseUpStatus: {

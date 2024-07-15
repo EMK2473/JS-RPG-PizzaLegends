@@ -141,8 +141,8 @@ window.OverworldMaps = {
     gameObjects: {
       hero: new Person({
         isPlayerControlled: true,
-        x: utils.withGrid(36),
-        y: utils.withGrid(6),
+        x: utils.withGrid(21),
+        y: utils.withGrid(14),
         direction: "down",
       }),
       cerberus: new Person({
@@ -162,22 +162,22 @@ window.OverworldMaps = {
         ],
       }),
       objectStone1: new ObjectStone({
-        x: utils.withGrid(37),
-        y: utils.withGrid(7),
+        x: utils.withGrid(33),
+        y: utils.withGrid(6),
         storyFlag: "USED_OBJECT_STONE1",
         src: "./images/characters/blue-stone.png",
         pizzas: ["sadness", "empathy"],
       }),
       objectStone2: new ObjectStone({
-        x: utils.withGrid(38),
+        x: utils.withGrid(32),
         y: utils.withGrid(7),
         storyFlag: "USED_OBJECT_STONE2",
         src: "./images/characters/green-stone.png",
         pizzas: [ "memorial", "growth"],
       }),
       objectStone3: new ObjectStone({
-        x: utils.withGrid(39),
-        y: utils.withGrid(7),
+        x: utils.withGrid(31),
+        y: utils.withGrid(8),
         storyFlag: "USED_OBJECT_STONE3",
         src: "./images/characters/gold-stone.png",
         pizzas: ["closure", "reflection"],

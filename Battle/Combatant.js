@@ -46,11 +46,11 @@ class Combatant {
     }
 
     calculateNextLevelXp() {
-      return this.level * 100; // Example formula, you can adjust as needed
+      return this.level * 100; // adjust later
     }
 
     calculateDamage() {
-      this.effectiveAttackPower = this.attackPower + this.power * 0.5;
+      this.effectiveAttackPower = this.attackPower + (this.power * 0.5);
       let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
   
       // Calculate random modifier based on current power
@@ -91,6 +91,7 @@ class Combatant {
     get givesXp() {
       return this.level * 20;
     }
+
   
     // utilize data attributes to give specific styling to each combatant
     createElement() {
@@ -158,7 +159,6 @@ class Combatant {
   
     // gets events for changing status conditions
     getReplacedEvents(originalEvents) {
-  
       if (this.status?.type === "confused" && utils.randomFromArray([true, false, false])) {
         return [
           { type: "textMessage", text: `${this.name} flops over!` },
@@ -169,11 +169,6 @@ class Combatant {
     
   
     getPostEvents() {
-      if (this.status?.type === "burn") {
-        return [
-          { type: "stateChange", damage: 10, onCaster: false }
-        ]
-      } 
       if (this.status?.type === "saucy") {
         return [
           { type: "textMessage", text: "Feelin' saucy!" },
@@ -185,8 +180,15 @@ class Combatant {
           { type: "textMessage", text: `${this.name} DEF went up!` },
         ]
       }
+      if (this.status?.type === "burn" ) {
+        return [
+          { type: "textMessage", text: `${this.name} is burning!` },
+          { type: "stateChange", damage: 10, onSelf: true } 
+        ];
+      } 
       return [];
     }
+
   
     decrementStatus() {
       if (this.status?.expiresIn > 0) {
