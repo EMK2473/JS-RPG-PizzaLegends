@@ -1,7 +1,8 @@
 - Remove dead Spawn (pizzas) after battle ✅
-- Case for if all Spawn die, display death screen/restart game.
+- Create animation state and define animation frames
 - Burn Status (Damage per turn on enemy. Currently damages player)
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. )
+- Case for if all Spawn die, display death screen/restart game.
 - New Object Stone Art (design for Spawns)
 - New Level Art / New Spawn Art
 - Story Cutscenes (Start basic, use transitions)

@@ -3,6 +3,8 @@ class Person extends GameObject {
         super(config);
         this.movingProgressRemaining = 0;
         this.isStanding = false;
+        
+        this.isIdle = false;
 
         // change for swapping control of different players or control of multiple
         this.isPlayerControlled = config.isPlayerControlled || false;
@@ -69,6 +71,17 @@ class Person extends GameObject {
                 this.isStanding = false;
             },  behavior.time)
         }
+
+        if (behavior.type === "idle") {
+            this.isIdle = true;
+            const idleAnimation = () => {
+              if (this.isIdle) {
+                this.updateSprite(state);
+                requestAnimationFrame(idleAnimation);
+              }
+            };
+            idleAnimation();
+          }
     }
     
     updatePosition(){
@@ -90,7 +103,11 @@ class Person extends GameObject {
         if (this.movingProgressRemaining > 0) {
             this.sprite.setAnimation("walk-"+this.direction)
             return;
+        }        
+        if (this.isIdle) {
+            this.sprite.setAnimation("idle");
+        } else {
+            this.sprite.setAnimation("idle-" + this.direction);
         }
-        this.sprite.setAnimation("idle-"+this.direction);
     }
 }

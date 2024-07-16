@@ -47,26 +47,37 @@
   background-color: rgba(0, 0, 0, 0.5); 
   color: white; 
   border-radius: 5px; 
-  font-family: "IM Fell English SC", serif; 
+  font-family: 'Aldrich', sans-serif;
   font-size: 16px; 
   transform: scale(0.5);
   opacity: .75;
 }
 
 
+.damage-container {
+  display: flex;
+  justify-content: start; /* Aligns items to the start horizontally */
+  width: 50px
+}
+
 .damage-value {
+  font-family: 'Aldrich', sans-serif;
   position: absolute;
-  top: 10px; /* Adjust as needed */
-  left: 40%;
+  top: 3px; 
+  left: 30%;
   transform: translateX(-50%);
+  transform: scale(.7);
   background-color: red;
   color: white;
   font-size: small;
   padding: 5px;
   border-radius: 5px;
-  opacity: .5;
-  transition: opacity 2s ease-out;
+  transition: opacity 1s ease-out;
+  gap: 25px; /* Adds space between damage elements */
+
 }
+
+
 
 
 @keyframes fadeOut {

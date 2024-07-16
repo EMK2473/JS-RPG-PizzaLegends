@@ -145,6 +145,15 @@ window.OverworldMaps = {
         y: utils.withGrid(14),
         direction: "down",
       }),
+      fire: new Person({
+        x: utils.withGrid(32),
+        y: utils.withGrid(6),
+        direction: "down",
+        src: "./images/characters/people/fire.png",
+        behaviorLoop: [
+          { type: "idle", time: 1000},
+        ],
+      }),
       cerberus: new Person({
         x: utils.withGrid(37),
         y: utils.withGrid(5),

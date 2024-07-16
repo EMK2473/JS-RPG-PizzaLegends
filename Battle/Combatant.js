@@ -9,12 +9,11 @@
 
 
 class Combatant {
-    constructor(config, battle) {
-      //  automatically assigns any properties to the object
-  
-      this.hp = typeof(this.hp) ==="undefined" ? this.maxHp : this.hp;
+    constructor(config, battle) {  
       this.battle = battle;
 
+
+      this.hp = typeof(this.hp) ==="undefined" ? this.maxHp : this.hp;
       this.name = config.name || 'Unknown';
       this.level = config.level || 1;
       this.maxHp = config.maxHp || 100;
@@ -26,10 +25,14 @@ class Combatant {
       this.speed = config.speed || 10;
       this.power = config.power || 10;
 
+
+      //  automatically assigns any properties to the object
       Object.keys(config).forEach((key) => {
         this[key] = config[key];
       });
     }
+
+    
     levelUp() {
       this.level += 1;
       this.maxXp = this.calculateNextLevelXp();
