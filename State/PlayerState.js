@@ -32,6 +32,16 @@ class PlayerState {
     console.log(this);
   }
 
+
+  removePizza(pizzaId){
+    delete this.pizzas[pizzaId];
+    const lineupIndex = this.lineup.indexOf(pizzaId);
+    if(lineupIndex !== -1){
+      this.lineup.splice(lineupIndex, 1)
+    }
+    utils.emitEvent("LineupChanged")
+  }
+
   swapLineup(oldId, incomingId) {
     const oldIndex = this.lineup.indexOf(oldId);
     this.lineup[oldIndex] = incomingId;

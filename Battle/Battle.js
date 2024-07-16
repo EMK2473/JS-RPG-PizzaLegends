@@ -145,6 +145,7 @@ class Battle {
         });
       },
       onWinner: (winner) => {
+        console.log("Before updating playerState.pizzas:", playerState.pizzas);
         if (winner === "player") {
           Object.keys(playerState.pizzas).forEach((id) => {
             const playerStatePizzza = playerState.pizzas[id];
@@ -154,6 +155,34 @@ class Battle {
               playerStatePizzza.xp = combatant.xp;
               playerStatePizzza.maxXp = combatant.maxXp;
               playerStatePizzza.level = combatant.level;
+
+              if (combatant.hp <= 0) {
+                playerState.removePizza(id);
+              }
+            }
+          });
+
+          // get rid of player used items
+          playerState.items = playerState.items.filter((item) => {
+            return !this.usedInstanceIds[item.instanceId];
+          });
+
+          // send a signal to update
+          utils.emitEvent("PlayerStateUpdated");
+        } else {
+          Object.keys(playerState.pizzas).forEach((id) => {
+            const playerStatePizzza = playerState.pizzas[id];
+            const combatant = this.combatants[id];
+            if (combatant) {
+              playerStatePizzza.hp = combatant.hp;
+              playerStatePizzza.xp = combatant.xp;
+              playerStatePizzza.maxXp = combatant.maxXp;
+              playerStatePizzza.level = combatant.level;
+
+              // Check if combatant's HP is 0 and remove it from playerState
+              if (combatant.hp <= 0) {
+                playerState.removePizza(id);
+              }
             }
           });
 
@@ -165,6 +194,8 @@ class Battle {
           // send a signal to update
           utils.emitEvent("PlayerStateUpdated");
         }
+
+        console.log("After updating playerState.pizzas:", playerState.pizzas);
 
         this.element.remove();
         this.onComplete(winner === "player");

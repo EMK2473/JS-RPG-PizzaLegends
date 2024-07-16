@@ -21,7 +21,7 @@ class TitleScreen {
       saveFile
         ? {
             label: "Continue",
-            description: "Resume your game.",
+            description: "Resume your saved game.",
             handler: () => {
               this.close();
               resolve(saveFile);

@@ -17,7 +17,6 @@ class Combatant {
 
       this.name = config.name || 'Unknown';
       this.level = config.level || 1;
-      this.hp = config.hp || 100;
       this.maxHp = config.maxHp || 100;
       this.xp = config.xp || 0;
       this.maxXp = this.calculateNextLevelXp();
