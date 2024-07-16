@@ -42,7 +42,7 @@ class Combatant {
       this.defense += 1;
       this.speed += 2.5;
       this.power += 2;
-  
+
     }
 
     // calculateNextLevelXp() {
@@ -59,9 +59,9 @@ class Combatant {
       // add the random modifier to the base damage
       let totalDamage = baseDamage + randomModifier;
   
-      // round the total damage based on the decimal part
-      let decimalPart = totalDamage - Math.floor(totalDamage);
-      if (decimalPart > 0.66) {
+      // round the total damage at 2/3 threshold
+      let threshold = totalDamage - Math.floor(totalDamage);
+      if (threshold > 0.66) {
         return Math.ceil(totalDamage);
       } else {
         return Math.floor(totalDamage);
