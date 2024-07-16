@@ -169,6 +169,7 @@ class Battle {
 
           // send a signal to update
           utils.emitEvent("PlayerStateUpdated");
+          // if winner === "enemy"
         } else {
           Object.keys(playerState.pizzas).forEach((id) => {
             const playerStatePizzza = playerState.pizzas[id];

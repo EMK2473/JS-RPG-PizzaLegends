@@ -7,4 +7,5 @@
 - Story Cutscenes (Start basic, use transitions)
 - Story Script ( basic script to develop )
 - Design Menu Color Schemes/Organize Css Variables/
-- Clean Up Code
+- Clean Up Code/Remove Console Logs/ 
+- Check for DRY, SOLID, and Big0 principles 
