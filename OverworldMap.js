@@ -146,12 +146,39 @@ window.OverworldMaps = {
         direction: "down",
       }),
       fire: new Person({
-        x: utils.withGrid(32),
-        y: utils.withGrid(6),
+        x: utils.withGrid(34),
+        y: utils.withGrid(7),
         direction: "down",
         src: "./images/characters/people/fire.png",
         behaviorLoop: [
-          { type: "idle", time: 1000},
+          { type: "idle"},
+        ],
+      }),
+      fire2: new Person({
+        x: utils.withGrid(30),
+        y: utils.withGrid(4),
+        direction: "down",
+        src: "./images/characters/people/fire.png",
+        behaviorLoop: [
+          { type: "idle"},
+        ],
+      }),
+      fire3: new Person({
+        x: utils.withGrid(29),
+        y: utils.withGrid(4),
+        direction: "down",
+        src: "./images/characters/people/fire.png",
+        behaviorLoop: [
+          { type: "idle"},
+        ],
+      }),
+      fire4: new Person({
+        x: utils.withGrid(33),
+        y: utils.withGrid(5),
+        direction: "down",
+        src: "./images/characters/people/fire.png",
+        behaviorLoop: [
+          { type: "idle"},
         ],
       }),
       cerberus: new Person({
