@@ -1,0 +1,10 @@
+Remove dead Spawn(pizzas) after battle
+Burn Status (Damage per turn on enemy. Currently damages player)
+Animations for Idle Objects 
+Create Objects with looping animations (torch, smoke, etc.)
+Allow swapping before passing turn
+New Level Art / New Spawn Art
+Organize Css Variables/Clean Up Code
+New Object Stone Art (design for Spawns)
+Story Cutscenes (Start basic, use transitions)
+Story Script ( basic script to develop )
