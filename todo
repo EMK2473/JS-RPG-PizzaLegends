@@ -1,5 +1,6 @@
 - Remove dead Spawn (pizzas) after battle ✅
-- Create animation state and define animation frames
+- Create animation state and define animation frames ✅
+- Create Stat increase or decrese statuses
 - Burn Status (Damage per turn on enemy. Currently damages player)
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. )
 - Case for if all Spawn die, display death screen/restart game.

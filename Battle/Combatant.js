@@ -18,7 +18,7 @@ class Combatant {
       this.level = config.level || 1;
       this.maxHp = config.maxHp || 100;
       this.xp = config.xp || 0;
-      this.maxXp = this.calculateNextLevelXp();
+      this.maxXp = config.maxXp || 100;
       this.attackPower = config.attackPower || 10;
       this.armor = config.armor || 5;
       this.defense = config.defense || 5;
@@ -35,8 +35,6 @@ class Combatant {
     
     levelUp() {
       this.level += 1;
-      this.maxXp = this.calculateNextLevelXp();
-      // Increase stats on level up
       this.hp += 20;
       this.maxHp += 20;
       this.attackPower += 2;
@@ -47,9 +45,9 @@ class Combatant {
   
     }
 
-    calculateNextLevelXp() {
-      return this.level * 100; // adjust later
-    }
+    // calculateNextLevelXp() {
+    //   return this.level * 100; // adjust later
+    // }
 
     calculateDamage() {
       this.effectiveAttackPower = this.attackPower + (this.power * 0.5);
@@ -185,7 +183,6 @@ class Combatant {
       if (this.status?.type === "burn" ) {
         return [
           { type: "textMessage", text: `${this.name} is burning!` },
-          { type: "stateChange", damage: 10, onSelf: true } 
         ];
       } 
       return [];

@@ -29,6 +29,8 @@ class BattleEvent {
 
   // Methods
   // this is where def, atk, etc would be changed
+
+  // add buffs for increases to armor or strength
   async stateChange(resolve) {
     const { caster, target, damage, recover, status, action, calculateDamage } =
       this.event;
@@ -169,14 +171,12 @@ class BattleEvent {
       if (amount > 0) {
         amount -= 1;
         combatant.xp += 1;
-
+        // check if xp levels up (hits max xp)
         if (combatant.xp === combatant.maxXp) {
           combatant.xp = 0;
           combatant.maxXp = 100;
           combatant.levelUp();
         }
-        // check if xp levels up (hits max xp)
-
         combatant.update();
         requestAnimationFrame(step);
         return;
