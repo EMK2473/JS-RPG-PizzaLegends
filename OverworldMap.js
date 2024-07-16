@@ -298,10 +298,10 @@ window.OverworldMaps = {
           events: [
             {
               type: "changeMap",
-              map: "Crypt",
-              x: utils.withGrid(2),
-              y: utils.withGrid(11),
-              direction: "up",
+              map: "Ruins",
+              x: utils.withGrid(8),
+              y: utils.withGrid(18),
+              direction: "right",
             },
           ],
         },
@@ -310,7 +310,7 @@ window.OverworldMaps = {
   },
   Ruins: {
     id: "Ruins",
-    lowerSrc: "./images/maps/ruins.png",
+    lowerSrc: "./images/maps/shoresTest.png",
     upperSrc: "./images/maps/blankUpper.png",
     gameObjects: {
       hero: new Person({
@@ -720,19 +720,32 @@ window.OverworldMaps = {
       [utils.asGridCoord(0, 36)]: true,
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(35, 39)]: [
+      [utils.asGridCoord(10, 16)]: [
         {
           events: [
             {
               type: "changeMap",
-              map: "Spiral",
-              x: utils.withGrid(0),
-              y: utils.withGrid(2),
-              direction: "right",
+              map: "Crypt",
+              x: utils.withGrid(1),
+              y: utils.withGrid(11),
+              direction: "up",
             },
           ],
         },
       ],
+      [utils.asGridCoord(11, 16)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "Crypt",
+              x: utils.withGrid(2),
+              y: utils.withGrid(11),
+              direction: "up",
+            },
+          ],
+        }
+      ]
     },
   },
   WorldBase: {
@@ -995,14 +1008,27 @@ window.OverworldMaps = {
       }),
     },
     cutsceneSpaces: {
-      [utils.asGridCoord(29, 9)]: [
+      [utils.asGridCoord(1, 11)]: [
         {
           events: [
             {
               type: "changeMap",
-              map: "Kitchen",
-              x: utils.withGrid(5),
-              y: utils.withGrid(10),
+              map: "Ruins",
+              x: utils.withGrid(8),
+              y: utils.withGrid(18),
+              direction: "up",
+            },
+          ],
+        },
+      ],
+      [utils.asGridCoord(2, 11)]: [
+        {
+          events: [
+            {
+              type: "changeMap",
+              map: "Ruins",
+              x: utils.withGrid(8),
+              y: utils.withGrid(18),
               direction: "up",
             },
           ],
