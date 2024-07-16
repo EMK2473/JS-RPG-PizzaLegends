@@ -37,7 +37,7 @@ class KeyboardMenu {
         chosenOption.handler();
       });
 
-      // sets focus on the specified element, if it can be focused. The focused element is the element that will receive keyboard and similar events by default.
+      // sets focus on the specified element, if it can be focused. the focused element is the element that will receive keyboard and similar events by default.
       button.addEventListener("mouseenter", () => {
         button.focus();
       });

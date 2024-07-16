@@ -1,7 +1,7 @@
-// Window level Object, contains different Pizzas/Units/Types
-// Pizzas are essentially "units", or "pokemon"
-// This will not include default and base values, as those are defined in the constructor
-// This will include individual properties, such as icons, img src, types, and name
+// window level Object, contains different Pizzas/Units/Types
+// pizzas are essentially "units", or "pokemon"
+// this will not include default and base values, as those are defined in the constructor
+// this will include individual properties, such as icons, img src, types, and name
 
 window.PizzaTypes = {
   normal: "normal",

@@ -76,7 +76,6 @@ class TurnCycle {
     });
 
     // stop here if we are replacing this pizza
-    // TODO Potentially refactor so that if you swap, you can still do an action/item
     if (submission.replacement) {
       await this.onNewEvent({
         type: "replace",
@@ -113,7 +112,7 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
-    // Check if target died?
+    // check if target died?
     const targetDead = submission.target.hp <= 0;
     if (targetDead) {
       await this.onNewEvent({
@@ -138,7 +137,7 @@ class TurnCycle {
       }
     }
 
-    // Check if a team won?
+    // check if a team won?
     const winner = this.getWinningTeam();
     if (winner) {
       this.removeTurnCounterElement();
@@ -147,12 +146,10 @@ class TurnCycle {
         text: `Winner!`,
       });
       this.onWinner(winner);
-      // ToDo: end battle and return to overworld
-      // end battle when someone wins
       return;
     }
 
-    // If we have dead target, but no winner, bring in replacement
+    // if dead target and no winner, then bring in replacement
     if (targetDead) {
       const replacement = await this.onNewEvent({
         type: "replacementMenu",
@@ -168,9 +165,9 @@ class TurnCycle {
       });
     }
 
-    //Check for post events
-    //(Do things AFTER your original turn submission)
-      // Apply post events after the action
+    // check for post events
+    //(do things AFTER original turn submission)
+      // apply post events after the action
   const postEvents = caster.getPostEvents();
   for (let i = 0; i < postEvents.length; i++) {
     const event = {
@@ -184,7 +181,7 @@ class TurnCycle {
   }
     
 
-    //Check for status expire
+    // check for status expire
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
@@ -223,7 +220,7 @@ class TurnCycle {
       text: `${this.battle.enemy.name} wants to throw down!`,
     });
 
-    //Start the first turn!
+    // start the first turn
     this.turn();
   }
 }

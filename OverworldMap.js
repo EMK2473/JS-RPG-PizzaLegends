@@ -52,7 +52,6 @@ class OverworldMap {
     Object.keys(this.gameObjects).forEach((key) => {
       let object = this.gameObjects[key];
       object.id = key;
-      // TODO: determine if this object should actually mount
       object.mount(this);
     });
   }
@@ -75,7 +74,7 @@ class OverworldMap {
 
     this.isCutscenePlaying = false;
 
-    // Reset NPCs to do their idle behavior
+    // reset NPCs to do their idle behavior
     Object.values(this.gameObjects).forEach((object) =>
       object.doBehaviorEvent(this)
     );
@@ -122,15 +121,6 @@ class OverworldMap {
     this.addWall(x, y);
   }
 
-  // mountObjects() {
-  //   Object.keys(this.gameObjects).forEach((key) => {
-  //     let object = this.gameObjects[key];
-  //     object.id = key;
-
-  //     // TODO: determine if this object should actually mount
-  //     object.mount(this);
-  //   });
-  // }
 }
 
 window.OverworldMaps = {

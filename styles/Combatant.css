@@ -54,7 +54,7 @@
     white-space: nowrap;
     background: var(--menu-font-color);
     color: #fff;
-    font-size: 5px; /*This is only so small because the component is scaled 2x in battle which is weird */
+    font-size: 5px; 
     padding-left: 2px;
     padding-right: 2px;
     margin: 0;
@@ -138,7 +138,6 @@
   }
   
   /* adjust to move enemy pizza/unit in battle scene */
-
   .Pizza[data-team="enemy"] {
     top: 65px;
     right: 80px;

@@ -1,10 +1,5 @@
-// Window level Object, contains different actions
+// window level Object, contains different actions
 
-
-// {
-//   type: "stateChange",
-//   damage: (caster, target) => window.calculateDamage(10, 1.2) // Example multiplier
-// },
 
 window.Actions = {
   slice: {
@@ -109,11 +104,11 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "triple_Bite"},
-      { type: "stateChange", damage: 5  },
+      { type: "stateChange", calculateDamage: true  },
       { type: "animation", animation: "triple_Bite"},
-      { type: "stateChange", damage: 10  },
+      { type: "stateChange", calculateDamage: true  },
       { type: "animation", animation: "triple_Bite"},
-      { type: "stateChange", damage: 15  },
+      { type: "stateChange", calculateDamage: true  },
 
     ],
   },

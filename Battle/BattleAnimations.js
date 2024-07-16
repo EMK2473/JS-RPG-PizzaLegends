@@ -7,7 +7,7 @@ window.BattleAnimations = {
       event.caster.team === "player" ? "battle-spin-right" : "battle-spin-left";
     element.classList.add(animationClassName);
 
-    //Remove class when animation is fully complete
+    //remove class when animation is fully complete
     element.addEventListener(
       "animationend",
       () => {
@@ -16,7 +16,7 @@ window.BattleAnimations = {
       { once: true }
     );
 
-    //Continue battle cycle right around when the pizzas collide
+    //continue battle cycle right around when the pizzas collide
     await utils.wait(100);
     onComplete();
   },
@@ -27,7 +27,7 @@ window.BattleAnimations = {
       event.caster.team === "player" ? "triple-bite-right" : "battle-spin-left";
     element.classList.add(animationClassName);
 
-    //Remove class when animation is fully complete
+    //remove class when animation is fully complete
     element.addEventListener(
       "animationend",
       () => {
@@ -36,7 +36,7 @@ window.BattleAnimations = {
       { once: true }
     );
 
-    //Continue battle cycle right around when the pizzas collide
+    //continue battle cycle right around when the pizzas collide
     await utils.wait(100);
     onComplete();
   },

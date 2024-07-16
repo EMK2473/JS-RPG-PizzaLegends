@@ -16,14 +16,14 @@ class Combatant {
       this.hp = typeof(this.hp) ==="undefined" ? this.maxHp : this.hp;
       this.name = config.name || 'Unknown';
       this.level = config.level || 1;
-      this.maxHp = config.maxHp || 100;
+      this.maxHp = config.maxHp || (this.level * 20) + 100;
       this.xp = config.xp || 0;
       this.maxXp = config.maxXp || 100;
-      this.attackPower = config.attackPower || 10;
+      this.attackPower = config.attackPower || (this.level * 2) + 10;
       this.armor = config.armor || 5;
       this.defense = config.defense || 5;
       this.speed = config.speed || 10;
-      this.power = config.power || 10;
+      this.power = config.power || (this.level * 2) + 5;
 
 
       //  automatically assigns any properties to the object
@@ -53,13 +53,13 @@ class Combatant {
       this.effectiveAttackPower = this.attackPower + (this.power * 0.5);
       let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
   
-      // Calculate random modifier based on current power
+      // calculate random modifier based on current power
       let randomModifier = Math.floor(Math.random() * (this.power + 1));
   
-      // Add the random modifier to the base damage
+      // add the random modifier to the base damage
       let totalDamage = baseDamage + randomModifier;
   
-      // Round the total damage based on the decimal part
+      // round the total damage based on the decimal part
       let decimalPart = totalDamage - Math.floor(totalDamage);
       if (decimalPart > 0.66) {
         return Math.ceil(totalDamage);
@@ -139,11 +139,11 @@ class Combatant {
       this.hudElement.setAttribute("data-active", this.isActive);
       this.pizzaElement.setAttribute("data-active", this.isActive);
   
-      //Update HP & XP percent fills
+      //update HP & XP percent fills
       this.hpFills.forEach((rect) => (rect.style.width = `${this.hpPercent}%`));
       this.xpFills.forEach((rect) => (rect.style.width = `${this.xpPercent}%`));
   
-      //Update level on screen
+      //update level on screen
       this.hudElement.querySelector(".Combatant_level").innerText = this.level;
   
       // update status

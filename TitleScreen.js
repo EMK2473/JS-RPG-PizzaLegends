@@ -29,7 +29,7 @@ class TitleScreen {
           }
         : null,
 
-      // Continue option here
+      // continue option here
     ].filter((v) => v);
   }
 

@@ -12,8 +12,10 @@ class CraftingMenu {
         description: base.description,
         handler: () => {
           playerState.addPizza(id);
-          const pizzaName = base.name; // Get the pizza's name
-          this.close(pizzaName); // Pass pizzaName to close method
+          // get the pizza's name
+          const pizzaName = base.name; 
+          // pass pizzaName to close method
+          this.close(pizzaName); 
         },
       };
     });
@@ -31,7 +33,8 @@ class CraftingMenu {
   close(pizzaName) {
     this.keyboardMenu.end();
     this.element.remove();
-    this.onComplete(`${pizzaName}'s soul was absorbed.`); // Pass message with pizzaName
+    // pass message with pizzaName
+    this.onComplete(`${pizzaName}'s soul was absorbed.`); 
   }
 
   init(container) {

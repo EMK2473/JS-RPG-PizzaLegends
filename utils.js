@@ -32,7 +32,7 @@ const utils = {
         return {x, y};
     },
     
-    // more optimal code
+    // more optimal code?
     // oppositeDirection(direction) {
     //     const opposites = {
     //         left: "right",
@@ -42,10 +42,11 @@ const utils = {
     //     };
         
     //     return opposites[direction] || null; 
-    // Return null or another default if the direction is invalid
     // },
 
-    // multiple conditional checks hinders performance
+    // multiple conditional checks hinders performance?
+
+    
     oppositeDirection(direction){
         if(direction === "left"){return "right"}
         if(direction === "right"){return "left"}

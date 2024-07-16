@@ -55,11 +55,10 @@ class Overworld {
 
   bindActionInput() {
     new KeyPressListener("Enter", () => {
-      // checks for cutscene at a postion,
-      // look through the map's game objects
+      // checks for cutscene at a postion, and look through the map's game objects
 
+         // is there a cutscene?
       this.map.checkForActionCutscene();
-      // is there a person here to talk to ?
     });
     new KeyPressListener("Escape", () => {
       if (!this.map.isCutscenePlaying) {
@@ -79,7 +78,7 @@ class Overworld {
     });
   }
 
-  // on init, startMap sets overworld to be itself(mapConfig ), no longer null
+  // on init, startMap sets overworld to be itself(mapConfig), no longer null
   startMap(mapConfig, heroInitialState = null) {
     this.map = new OverworldMap(mapConfig);
     this.map.overworld = this;
@@ -105,16 +104,16 @@ class Overworld {
   async init() {
     const container = document.querySelector(".game-container");
 
-    // Create a new progress tracker
+    // create a new progress tracker
     this.progress = new Progress();
 
-    // Display Title Screen
+    // display Title Screen
     this.titleScreen = new TitleScreen({
       progress: this.progress,
     });
     const useSaveFile = await this.titleScreen.init(container);
 
-    // Check for saved data
+    // check for saved data
     let initialHeroState = null;
     // const saveFile = this.progress.getSaveFile();
     if (useSaveFile) {
@@ -146,12 +145,9 @@ class Overworld {
     // fire game
     this.startGameLoop();
 
-    // firing cutscene
+    // firing cutscene or event on launch
     // this.map.startCutscene([
     // {type: "battle", enemyId: "lyle"},
-
-    //   {type: "textMessage", text: "This is the first cutscene!!!!!"},
-    //   {type: "changeMap", map: "WorldBase"}
     // ])
   }
 }

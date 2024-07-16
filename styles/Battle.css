@@ -30,7 +30,6 @@
 /* targets sprite sheet for hero position (-64 faces up) */
 .Battle_hero img {
   transform: translateY(-32px); 
-  /* Nudge hero spritesheet */
 }
 .Battle_enemy {
   top: 42px;
@@ -56,7 +55,7 @@
 
 .damage-container {
   display: flex;
-  justify-content: start; /* Aligns items to the start horizontally */
+  justify-content: start; 
   width: 50px
 }
 
@@ -73,7 +72,6 @@
   padding: 5px;
   border-radius: 5px;
   transition: opacity 1s ease-out;
-  gap: 25px; /* Adds space between damage elements */
 
 }
 

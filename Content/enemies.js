@@ -1,4 +1,4 @@
-// Window level Object, contains different enemies and their properties
+// window level Object, contains different enemies and their properties
 
 
 window.Enemies = {

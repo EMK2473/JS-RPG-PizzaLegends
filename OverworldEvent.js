@@ -1,5 +1,4 @@
 // contains all overworld Events
-//
 
 class OverworldEvent {
   constructor({ map, event }) {
@@ -9,7 +8,6 @@ class OverworldEvent {
   
   
   // Methods
-
   idle(resolve) {
     const who = this.map.gameObjects[this.event.who];
     who.startBehavior(

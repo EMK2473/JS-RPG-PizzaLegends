@@ -54,15 +54,15 @@ class BattleEvent {
     }
 
     if (finalDamage) {
-      // Display the damage value
+      // display the damage value
       const damageElement = document.createElement("div");
       damageElement.classList.add("damage-value");
-      damageElement.textContent =finalDamage +`!` ;
+      damageElement.textContent = finalDamage +`!` ;
       const gameContainer = document.querySelector(".game-container");
       gameContainer.appendChild(damageElement);
       console.log("damage element created");
 
-      // Remove the damage value after 2 seconds
+      // remove the damage value after 2 seconds
       setTimeout(() => {
         damageElement.remove();
       }, 900);
