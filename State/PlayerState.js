@@ -1,8 +1,7 @@
 class PlayerState {
   constructor() {
-    this.pizzas = {
-    };
-    this.lineup = [].slice(0,3);
+    this.pizzas = {};
+    this.lineup = [].slice(0, 3);
     this.items = [
       { actionId: "item_recoverHp", instanceId: "item1" },
       { actionId: "item_recoverHp", instanceId: "item2" },
@@ -12,17 +11,12 @@ class PlayerState {
   }
 
   // Methods
-  // extend the system to pass in what level you want to start pizza at
+  // extend the system to pass in level with pizza
   addPizza(pizzaId) {
     const newId = `p${Date.now()}` + Math.floor(Math.random() * 99999);
     this.pizzas[newId] = {
       pizzaId,
-      hp: 100,
-      maxHp: 100,
-      xp: 0,
-      maxXp: 100,
       level: 1,
-      status: null,
     };
     if (this.lineup.length < 3) {
       this.lineup.push(newId);
@@ -32,14 +26,13 @@ class PlayerState {
     console.log(this);
   }
 
-
-  removePizza(pizzaId){
+  removePizza(pizzaId) {
     delete this.pizzas[pizzaId];
     const lineupIndex = this.lineup.indexOf(pizzaId);
-    if(lineupIndex !== -1){
-      this.lineup.splice(lineupIndex, 1)
+    if (lineupIndex !== -1) {
+      this.lineup.splice(lineupIndex, 1);
     }
-    utils.emitEvent("LineupChanged")
+    utils.emitEvent("LineupChanged");
   }
 
   swapLineup(oldId, incomingId) {

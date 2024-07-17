@@ -12,18 +12,17 @@ class Combatant {
     constructor(config, battle) {  
       this.battle = battle;
 
-
-      this.hp = typeof(this.hp) ==="undefined" ? this.maxHp : this.hp;
       this.name = config.name || 'Unknown';
       this.level = config.level || 1;
-      this.maxHp = config.maxHp || (this.level * 20) + 100;
+      this.hp = config.hp || 100 + (this.level * 10);
+      this.maxHp = config.maxHp || 100 + (this.level * 10);
       this.xp = config.xp || 0;
       this.maxXp = config.maxXp || 100;
-      this.attackPower = config.attackPower || (this.level * 2) + 10;
+      this.attackPower = config.attackPower || 8 + (this.level * 2);
       this.armor = config.armor || 5;
       this.defense = config.defense || 5;
       this.speed = config.speed || 10;
-      this.power = config.power || (this.level * 2) + 5;
+      this.power = config.power || 5 + (this.level * 2);
 
 
       //  automatically assigns any properties to the object
@@ -42,7 +41,7 @@ class Combatant {
       this.defense += 1;
       this.speed += 2.5;
       this.power += 2;
-
+      this.hp = this.maxHp
     }
 
     // calculateNextLevelXp() {
@@ -50,7 +49,7 @@ class Combatant {
     // }
 
     calculateDamage() {
-      this.effectiveAttackPower = this.attackPower + (this.power * 0.5);
+      this.effectiveAttackPower = this.attackPower + (this.power * .75);
       let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
   
       // calculate random modifier based on current power
@@ -89,7 +88,7 @@ class Combatant {
     }
   
     get givesXp() {
-      return this.level * 20;
+      return Math.ceil(this.level * 33) +((this.level - 1) * 1);
     }
 
   

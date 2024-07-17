@@ -25,8 +25,7 @@ class ObjectStone extends GameObject {
            },
            {
             events: [
-                { type: "textMessage", text: "A frozen orb resonating with energy..."},
-                { type: "textMessage", text: "It's freezing cold."},
+                { type: "textMessage", text: "Use this to help you on your journey..."},
                 { type: "craftingMenu", pizzas: this.pizzas},
                 {type: "addStoryFlag", flag: this.storyFlag }
             ]

@@ -51,7 +51,7 @@ window.Pizzas = {
     icon: fighterIcon,
     actions: ["slice", "confusedStatus", "saucyStatus"],
   },memorial: {
-    name: "Memorial",
+    name: "Memory",
     description: "What's left",
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/memorial.png",

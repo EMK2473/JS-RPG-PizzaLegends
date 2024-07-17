@@ -130,6 +130,9 @@ class Battle {
       return;
     }
 
+    console.log("combatants", this.combatants);
+
+
     // sets up turn cycle upon initialization
     this.turnCycle = new TurnCycle({
       battle: this,
