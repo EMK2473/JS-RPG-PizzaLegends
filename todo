@@ -1,8 +1,8 @@
 - Remove dead Spawn (pizzas) after battle ✅
 - Create animation state and define animation frames ✅
 - Resolve issue, if hp is over a certain percentage it disappears off screen ✅
-- Create Stat increase or decrese statuses ✅
-- Burn Status (Damage per turn on enemy. Currently damages player)
+- Burn Status (Damage per turn on enemy. Currently damages player) ✅
+- Create Stat increase or decrese statuses --In Progress--
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. ) ✅
 - Case for if all Spawn die, display death screen/restart game?
 - New Object Stone Art (design for Spawns)
