@@ -132,7 +132,7 @@ window.Pizzas = {
     name: "Thantos",
     description: "Very old druid.",
     type: PizzaTypes.spicy,
-    src: "./images/characters/pizzas/thanatosRight.png",
+    src: "./images/characters/pizzas/thanatos32.png",
     icon: "./images/icons/spicy.png",
     actions: ["gigaFlare"],
   },

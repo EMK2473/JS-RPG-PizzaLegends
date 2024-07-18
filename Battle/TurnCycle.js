@@ -1,5 +1,6 @@
 // turn cycle object that receives instructions as new events
 // battle event handler will handle each different event in sequences
+// use caster and target to specify when building actions
 
 class TurnCycle {
   constructor({ battle, onNewEvent, onWinner }) {
@@ -8,31 +9,30 @@ class TurnCycle {
     this.onWinner = onWinner;
     this.currentTeam = "player"; //or "enemy"
 
-    this.turnCounter = 0; 
+    this.turnCounter = 0;
     this.turnCounterElement = this.createTurnCounterElement();
     this.updateTurnCounterDisplay();
   }
 
-
   // Methods
   createTurnCounterElement() {
-    // Create the turn counter element
+    // create the turn counter element
     const turnCounterElement = document.createElement("div");
     turnCounterElement.id = "turn-counter";
 
-    // Find the game-container element and append the turn counter to it
+    // find the game-container element and append the turn counter to it
     const gameContainer = document.querySelector(".game-container");
     if (gameContainer) {
       gameContainer.appendChild(turnCounterElement);
     } else {
-      // Fallback: if .game-container is not found, append to body
+      // fallback: if .game-container is not found, append to body
       document.body.appendChild(turnCounterElement);
     }
     return turnCounterElement;
   }
 
   updateTurnCounterDisplay() {
-    // Update the turn counter element
+    // update the turn counter element
     if (this.turnCounterElement) {
       this.turnCounterElement.textContent = `Turn: ${this.turnCounter}`;
     }
@@ -45,7 +45,7 @@ class TurnCycle {
   }
 
   async turn() {
-    // Check if the current team is player and then increment the TurnCounter
+    // check if the current team is player and then increment the TurnCounter
 
     if (this.currentTeam === "player") {
       this.turnCounter += 1;
@@ -55,7 +55,8 @@ class TurnCycle {
       //   text: `Turn ${this.turnCounter} begins!`,
       // });
     }
-    //Get the caster
+
+    //get the caster, enemy, and target,
     const casterId = this.battle.activeCombatants[this.currentTeam];
     const caster = this.battle.combatants[casterId];
     const enemyId =
@@ -63,11 +64,24 @@ class TurnCycle {
         caster.team === "player" ? "enemy" : "player"
       ];
     const enemy = this.battle.combatants[enemyId];
-
     const targetTeam = this.currentTeam === "player" ? "enemy" : "player";
     const targetId = this.battle.activeCombatants[targetTeam];
     const target = this.battle.combatants[targetId];
 
+    // check for statuses
+    caster.logStatus();
+    target.logStatus();
+
+
+
+    // check for status expire
+    const expiredEvent = caster.decrementStatus();
+    if (expiredEvent) {
+      await this.onNewEvent(expiredEvent);
+      caster.update()
+    }
+
+    // new submission event
     const submission = await this.onNewEvent({
       type: "submissionMenu",
       caster,
@@ -173,26 +187,23 @@ class TurnCycle {
       caster.update();
     }
 
+    if (caster.status?.type === "defUp") {
+      caster.update();
+    }
+
     // check for post events
     //(do things AFTER original turn submission)
-      // apply post events after the action
-  const postEvents = caster.getPostEvents();
-  for (let i = 0; i < postEvents.length; i++) {
-    const event = {
-      ...postEvents[i],
-      submission,
-      action: submission.action,
-      caster,
-      target: submission.target,
-    };
-    await this.onNewEvent(event);
-  }
-    
-
-    // check for status expire
-    const expiredEvent = caster.decrementStatus();
-    if (expiredEvent) {
-      await this.onNewEvent(expiredEvent);
+    // apply post events after the action
+    const postEvents = caster.getPostEvents();
+    for (let i = 0; i < postEvents.length; i++) {
+      const event = {
+        ...postEvents[i],
+        submission,
+        action: submission.action,
+        caster,
+        target: submission.target,
+      };
+      await this.onNewEvent(event);
     }
 
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";

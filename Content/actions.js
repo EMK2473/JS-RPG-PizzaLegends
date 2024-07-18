@@ -1,6 +1,5 @@
 // window level Object, contains different actions
 
-
 window.Actions = {
   slice: {
     name: "Slice!",
@@ -8,7 +7,7 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", calculateDamage:true },
+      { type: "stateChange", calculateDamage: true },
     ],
   },
   saucyStatus: {
@@ -33,15 +32,14 @@ window.Actions = {
     ],
   },
   burnStatus: {
-    name: "Burn",
+    name: "Fireball",
     description: "Burning damage over time",
     targetType: "enemy",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "fastGlob", color: "#dafd2a" },
-      { type: "stateChange", status: { type: "burn", expiresIn: 1 }},
-      { type: "stateChange", burn :true },
-
+      { type: "stateChange", damage: 20, burn: true },
+      { type: "stateChange", status: { type: "burn", expiresIn: 4 } },
     ],
   },
   defenseUpStatus: {
@@ -50,7 +48,17 @@ window.Actions = {
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "stateChange", status: { type: "defUp", expiresIn: 2 } },
+      { type: "stateChange", defUp: true },
+      { type: "stateChange", status: { type: "defUp", expiresIn: 3 } },
+    ],
+  },
+  defenseDownStatus: {
+    name: "Defense Down",
+    description: "Reduce Opponents def",
+    targetType: "enemy",
+    success: [
+      { type: "textMessage", text: "{CASTER} used {ACTION}!" },
+      { type: "stateChange", status: { type: "defDown", expiresIn: 3 } },
     ],
   },
   item_recoverStatus: {
@@ -61,7 +69,6 @@ window.Actions = {
       { type: "textMessage", text: "{CASTER} used a {ACTION}!" },
       { type: "stateChange", status: null },
       { type: "textMessage", text: "{CASTER} is all warmed up!" },
-
     ],
   },
   item_recoverHp: {
@@ -73,7 +80,6 @@ window.Actions = {
       { type: "stateChange", recover: 15 },
       { type: "textMessage", text: "{CASTER} recovered some HP!" },
       { type: "stateChange", status: { type: "saucy", expiresIn: 3 } },
-
     ],
   },
   item_defenseUp: {
@@ -83,7 +89,6 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} {ACTION}!" },
       { type: "stateChange", status: { type: "DEF ^", expiresIn: 4 } },
-
     ],
   },
   gigaFlare: {
@@ -97,7 +102,6 @@ window.Actions = {
       { type: "stateChange", calculateDamage: true },
       { type: "animation", animation: "glob", color: "#bca0dc" },
       { type: "stateChange", calculateDamage: true },
-
     ],
   },
   tripleBite: {
@@ -105,13 +109,12 @@ window.Actions = {
     description: "Three times the bite!",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "animation", animation: "triple_Bite"},
-      { type: "stateChange", calculateDamage: true  },
-      { type: "animation", animation: "triple_Bite"},
-      { type: "stateChange", calculateDamage: true  },
-      { type: "animation", animation: "triple_Bite"},
-      { type: "stateChange", calculateDamage: true  },
-
+      { type: "animation", animation: "triple_Bite" },
+      { type: "stateChange", calculateDamage: true },
+      { type: "animation", animation: "triple_Bite" },
+      { type: "stateChange", calculateDamage: true },
+      { type: "animation", animation: "triple_Bite" },
+      { type: "stateChange", calculateDamage: true },
     ],
   },
   extraCrispy: {
@@ -121,9 +124,8 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "spin" },
-      { type: "stateChange", damage: 15,  },
+      { type: "stateChange", damage: 15 },
       // { type: "stateChange", recover: 25  },
-
     ],
   },
   smokedApplewood: {
@@ -133,9 +135,8 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       // { type: "animation", animation: "spin" },
-      { type: "stateChange", recover: 25,  },
+      { type: "stateChange", recover: 25 },
       // { type: "stateChange", recover: 25  },
-
     ],
   },
 };

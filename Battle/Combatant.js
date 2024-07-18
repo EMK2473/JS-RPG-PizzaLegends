@@ -16,8 +16,8 @@ class Combatant {
     this.xp = config.xp || 0;
     this.maxXp = config.maxXp || 100;
     this.attackPower = config.attackPower || 8 + this.level * 2;
-    this.armor = config.armor || 5;
-    this.defense = config.defense || 5;
+    this.armor = config.armor || this.level * 1;
+    this.defense = config.defense || this.level * 2;
     this.speed = config.speed || 10;
     this.power = config.power || 5 + this.level * 2;
     this.originalDefense = this.defense;
@@ -45,6 +45,19 @@ class Combatant {
   //   return this.level * 100; // adjust later
   // }
 
+
+
+    // checks for statuses
+  logStatus() {
+    if (this.status) {
+      console.log(`Status of ${this.name}: ${this.status.type}`);
+    } else {
+      console.log(`${this.name} has no status.`);
+    }
+  }
+
+  // statuses
+
   burn() {
     this.hp -= 10;
     if (this.hp < 0) {
@@ -54,6 +67,13 @@ class Combatant {
 
   
   defUp() {
+    this.originalDefense = this.defense; // Store the current defense
+    let newDef = this.defense + (20 * this.level);
+    this.defense = newDef;
+    console.log("Combatant Defense", this);
+  }
+
+  defDown() {
     this.originalDefense = this.defense; // Store the current defense
     let newDef = this.defense + (20 * this.level);
     this.defense = newDef;
@@ -215,6 +235,14 @@ class Combatant {
         { type: "textMessage", text: `${this.name} is burning!` },
         { type: "stateChange", burn: true },
       ];
+    }
+    if (this.status?.type === "defDown") {
+      return [
+        { type: "textMessage", text: `${this.name}'s defense is down!` },
+        { type: "stateChange", defDown: true },
+      ];
+    } else {
+
     }
     return [];
   }

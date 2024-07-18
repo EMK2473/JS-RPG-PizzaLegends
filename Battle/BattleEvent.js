@@ -67,9 +67,7 @@ class BattleEvent {
       const gameContainer = document.querySelector(".game-container");
       gameContainer.appendChild(damageElement);
       console.log("damage element created");
-      if(finalDamage <= 0){
-        finalDamage = 0;
-      }
+
 
       // remove the damage value after 2 seconds
       setTimeout(() => {
@@ -107,7 +105,7 @@ class BattleEvent {
 
     if(defUp){
       let newDef = caster.defense + (25 * caster.level);
-      who.update({
+      caster.update({
         defense: newDef,
       });
 
@@ -118,7 +116,6 @@ class BattleEvent {
         status: { ...status },
       });
     }
-
 
     if (status === null) {
       who.update({
