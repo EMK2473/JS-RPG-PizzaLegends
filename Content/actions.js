@@ -51,7 +51,6 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "stateChange", status: { type: "defUp", expiresIn: 2 } },
-      { type: "stateChange", defUp: true },
     ],
   },
   item_recoverStatus: {

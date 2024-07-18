@@ -75,6 +75,15 @@
 
 }
 
+.Combatant_battleStats {
+  margin-top: 10px;
+}
+
+.Combatant_stat {
+  color: rgb(64, 245, 32);
+  font-size: 3px;
+}
+
 
 
 
@@ -228,3 +237,4 @@
   top: 56px;
   animation: battle-glob-left 1.5s forwards;
 }
+

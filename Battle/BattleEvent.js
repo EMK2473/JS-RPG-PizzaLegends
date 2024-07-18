@@ -32,7 +32,7 @@ class BattleEvent {
 
   // add buffs for increases to armor or strength
   async stateChange(resolve) {
-    const { caster, target, damage, recover, burn, status, action, calculateDamage } =
+    const { caster, target, damage, recover, burn, defUp, status, action, calculateDamage } =
       this.event;
     let who = this.event.onCaster ? caster : target;
 
@@ -47,6 +47,9 @@ class BattleEvent {
       const targetArmor = target.calculateArmor();
       console.log( `Target's Armor: ${targetArmor}`)
       console.log(`Damage Before Armor: ${finalDamage}`)
+      if(finalDamage <= 0){
+        finalDamage = 0;
+      }
 
       // resolve damage and armor
       finalDamage -= targetArmor;
@@ -54,6 +57,9 @@ class BattleEvent {
     }
 
     if (finalDamage) {
+      if(finalDamage <= 0){
+        finalDamage = 0;
+      }
       // display the damage value
       const damageElement = document.createElement("div");
       damageElement.classList.add("damage-value");
@@ -61,6 +67,9 @@ class BattleEvent {
       const gameContainer = document.querySelector(".game-container");
       gameContainer.appendChild(damageElement);
       console.log("damage element created");
+      if(finalDamage <= 0){
+        finalDamage = 0;
+      }
 
       // remove the damage value after 2 seconds
       setTimeout(() => {
@@ -92,6 +101,14 @@ class BattleEvent {
       let newHp = target.hp - burn;
       who.update({
         hp: newHp,
+      });
+
+    }
+
+    if(defUp){
+      let newDef = caster.defense + (25 * caster.level);
+      who.update({
+        defense: newDef,
       });
 
     }
