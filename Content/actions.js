@@ -39,18 +39,19 @@ window.Actions = {
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
       { type: "animation", animation: "fastGlob", color: "#dafd2a" },
-      { type: "stateChange", status: { type: "burn", expiresIn: 3 }},
+      { type: "stateChange", status: { type: "burn", expiresIn: 1 }},
       { type: "stateChange", burn :true },
 
     ],
   },
   defenseUpStatus: {
-    name: "DEF ^",
+    name: "Defense Up",
     description: "Increase your def",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "stateChange", status: { type: "DEF ^", expiresIn: 4 } },
+      { type: "stateChange", status: { type: "defUp", expiresIn: 2 } },
+      { type: "stateChange", defUp: true },
     ],
   },
   item_recoverStatus: {

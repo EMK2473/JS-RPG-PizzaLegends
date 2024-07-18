@@ -164,6 +164,15 @@ class TurnCycle {
       });
     }
 
+    if (caster.status?.type === "burn") {
+      caster.burn();
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `${caster.name} takes burn damage!`,
+      });
+      caster.update();
+    }
+
     // check for post events
     //(do things AFTER original turn submission)
       // apply post events after the action
@@ -184,15 +193,6 @@ class TurnCycle {
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
-    }
-
-    if (caster.status?.type === "burn") {
-      caster.burn();
-      await this.onNewEvent({
-        type: "textMessage",
-        text: `${caster.name} takes burn damage!`,
-      });
-      caster.update();
     }
 
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";

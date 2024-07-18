@@ -55,6 +55,15 @@ class Combatant {
       }
     }
 
+    defUp(){
+      this.defense + (10 * this.level) ;
+      console.log(this)
+    }
+
+    removeDefUp(){
+      this.defense -= (10 * this.level);
+    }
+
     calculateDamage() {
       this.effectiveAttackPower = this.attackPower + (this.power * .75);
       let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
@@ -181,9 +190,10 @@ class Combatant {
           { type: "stateChange", recover: 5, onCaster: true }
         ]
       } 
-      if (this.status?.type === "DEF ^") {
+      if (this.status?.type === "defUp") {
         return [
-          { type: "textMessage", text: `${this.name} DEF went up!` },
+          { type: "textMessage", text: `${this.name}'s defense went up!` },
+          { type: "stateChange", defUp: true },
         ]
       }
       if (this.status?.type === "burn" ) {
@@ -201,6 +211,9 @@ class Combatant {
       if (this.status?.expiresIn > 0) {
         this.status.expiresIn -= 1;
         if (this.status.expiresIn === 0) {
+          if (this.status.type === "DEF ^") {
+            this.removeDefUp();
+          }
           this.update({
             status: null
           })
