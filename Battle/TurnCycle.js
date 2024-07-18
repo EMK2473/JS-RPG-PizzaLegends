@@ -8,7 +8,7 @@ class TurnCycle {
     this.onWinner = onWinner;
     this.currentTeam = "player"; //or "enemy"
 
-    this.turnCounter = 0; // Create and display the TurnCounter in the DOM
+    this.turnCounter = 0; 
     this.turnCounterElement = this.createTurnCounterElement();
     this.updateTurnCounterDisplay();
   }
@@ -119,7 +119,6 @@ class TurnCycle {
         type: "textMessage",
         text: `${submission.target.name} died X_X !`,
       });
-      // TODO: remove dead pizzas from lineup and playerstate on battle resolution. not on turn end.
 
       if (submission.target.team === "enemy") {
         const playerActivePizzaId = this.battle.activeCombatants.player;
@@ -185,6 +184,15 @@ class TurnCycle {
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
+    }
+
+    if (caster.status?.type === "burn") {
+      caster.burn();
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `${caster.name} takes burn damage!`,
+      });
+      caster.update();
     }
 
     this.currentTeam = this.currentTeam === "player" ? "enemy" : "player";

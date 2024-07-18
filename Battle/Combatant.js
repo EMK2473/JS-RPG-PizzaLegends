@@ -48,6 +48,13 @@ class Combatant {
     //   return this.level * 100; // adjust later
     // }
 
+    burn() {
+      this.hp -= 10;
+      if (this.hp < 0) {
+        this.hp = 0;
+      }
+    }
+
     calculateDamage() {
       this.effectiveAttackPower = this.attackPower + (this.power * .75);
       let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
@@ -182,6 +189,8 @@ class Combatant {
       if (this.status?.type === "burn" ) {
         return [
           { type: "textMessage", text: `${this.name} is burning!` },
+          { type: "stateChange", burn: true },
+
         ];
       } 
       return [];

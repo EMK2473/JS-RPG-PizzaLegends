@@ -32,7 +32,7 @@ class BattleEvent {
 
   // add buffs for increases to armor or strength
   async stateChange(resolve) {
-    const { caster, target, damage, recover, status, action, calculateDamage } =
+    const { caster, target, damage, recover, burn, status, action, calculateDamage } =
       this.event;
     let who = this.event.onCaster ? caster : target;
 
@@ -65,7 +65,7 @@ class BattleEvent {
       // remove the damage value after 2 seconds
       setTimeout(() => {
         damageElement.remove();
-      }, 900);
+      }, 750);
       // modify hp when hit and blink
       target.update({
         hp: target.hp - finalDamage,
@@ -88,11 +88,20 @@ class BattleEvent {
       console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
 
+    if(burn){
+      let newHp = target.hp - burn;
+      who.update({
+        hp: newHp,
+      });
+
+    }
+
     if (status) {
       who.update({
         status: { ...status },
       });
     }
+
 
     if (status === null) {
       who.update({

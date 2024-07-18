@@ -86,7 +86,7 @@ window.Pizzas = {
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/thanatos32.png",
     icon: fighterIcon,
-    actions: ["gigaFlare", "confusedStatus", ],
+    actions: ["gigaFlare", "burnStatus", "confusedStatus", ],
   },
   bahamut: {
     name: "Bahamut",
