@@ -144,6 +144,10 @@ class TurnCycle {
     if (caster.status?.type === "defUp" && caster.status.expiresIn === 3) {
       caster.update();
     }
+    
+    if (caster.status?.type === "defDown") {
+      caster.update();
+    }
 
 
     // check if target died?

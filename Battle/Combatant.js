@@ -72,10 +72,10 @@ class Combatant {
   }
 
   defDown() {
-    this.originalDefense = this.defense;
-    let newDef = this.defense - 5 * this.level;
-    this.defense = newDef;
-    console.log("Combatant Defense", this);
+    this.defense -= 50
+    if (this.defense < 0) {
+      this.defense = 0;
+    }
   }
 
   removeDefUp() {
@@ -102,6 +102,9 @@ class Combatant {
   }
 
   calculateArmor() {
+    if(this.armor <= 0){
+      this.armor === 0
+    }
     let armor = this.armor + Math.floor(this.defense * 0.5);
     return armor;
   }

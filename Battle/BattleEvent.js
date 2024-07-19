@@ -32,12 +32,24 @@ class BattleEvent {
 
   // add buffs for increases to armor or strength
   async stateChange(resolve) {
-    const { caster, target, damage, recover, burn, defUp, status, action, calculateDamage } =
+    const { caster, target, damage, recover, burn, defUp, defDown, status, armor, action, calculateDamage } =
       this.event;
     let who = this.event.onCaster ? caster : target;
 
     let finalDamage = damage; // default to static damage if no calculation needed
 
+    if(caster.defense <= 0){
+      caster.defense === 0
+    }
+    if(target.defense <= 0){
+      target.defense === 0
+    }
+    if(caster.armor <= 0){
+      caster.armor === 0
+    }
+    if(target.armor <= 0){
+      target.armor === 0
+    }
 
     if (calculateDamage) {
       // calculate caster damage
@@ -100,7 +112,6 @@ class BattleEvent {
       who.update({
         hp: newHp,
       });
-
     }
 
     if(defUp){
@@ -108,7 +119,11 @@ class BattleEvent {
       caster.update({
         defense: newDef,
       });
+    }
 
+    if(defDown){
+caster.defDown()
+caster.update()
     }
 
     if (status) {

@@ -33,7 +33,7 @@ window.Actions = {
   },
   burnStatus: {
     name: "Fireball",
-    description: "Burning damage over time",
+    description: "Targets enemy. Deals burning damage over time.",
     targetType: "enemy",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
@@ -44,7 +44,7 @@ window.Actions = {
   },
   defenseUpStatus: {
     name: "Defense Up",
-    description: "Increase your def",
+    description: "Targets self. Increase player DEF stat.",
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
@@ -53,7 +53,7 @@ window.Actions = {
   },
   defenseDownStatus: {
     name: "Defense Down",
-    description: "Reduce Opponents def",
+    description: "Targets enemy. Reduces enemy DEF stat.",
     targetType: "enemy",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },

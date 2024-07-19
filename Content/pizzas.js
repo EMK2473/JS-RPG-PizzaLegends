@@ -78,7 +78,8 @@ window.Pizzas = {
     type: PizzaTypes.offensive,
     src: "./images/characters/pizzas/thanatos32.png",
     icon: defenderIcon,
-    actions: ["tripleBite","burnStatus", "confusedStatus", "defenseUpStatus","gigaFlare" ],
+    actions: ["tripleBite","burnStatus", "confusedStatus", "defenseUpStatus", "defenseDownStatus", "gigaFlare" ],
+    level: 5,
   },
   thanatos: {
     name: "Thanatos",

@@ -1,10 +1,15 @@
+Recently Completed:
 - Remove dead Spawn (pizzas) after battle ✅
 - Create animation state and define animation frames ✅
 - Resolve issue, if hp is over a certain percentage it disappears off screen ✅
 - Burn Status (Damage per turn on enemy. Currently damages player) ✅
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. ) ✅
 - fix defenseUp from calling each turn ✅
-- Create Stat increase or decrese statuses --In Progress-- ✅
+
+
+
+TODO: 
+- Create Stat increase or decrese statuses --In Progress-- 
     - Create powerUp() and removePowerUp()
     - Create powerDown() and removePowerDown()
     - Create healAndDefUp()
