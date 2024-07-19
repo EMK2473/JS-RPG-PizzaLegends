@@ -28,6 +28,9 @@ class Overworld {
         });
       });
 
+      // draw background layer  
+      // this.map.drawBackgroundImage(this.ctx, cameraPerson)
+
       // draw lower layer
       this.map.drawLowerImage(this.ctx, cameraPerson);
 

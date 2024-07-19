@@ -19,7 +19,10 @@ class OverworldMap {
     this.lowerImage.src = config.lowerSrc; // floor
 
     this.upperImage = new Image();
-    this.upperImage.src = config.upperSrc; // ceiling
+    this.upperImage.src = config.upperSrc; // ceiling\
+
+    // this.backgroundImage = new Image();
+    // this.backgroundImage.src = config.backgroundSrc;
 
     this.isCutscenePlaying = false;
 
@@ -42,6 +45,15 @@ class OverworldMap {
       utils.withGrid(6) - cameraPerson.y
     );
   }
+
+  // drawBackgroundImage(ctx, cameraPerson) {
+  //   ctx.drawImage(
+  //     this.backgroundImage,
+  //     utils.withGrid(10.5) - cameraPerson.x,
+  //     utils.withGrid(6) - cameraPerson.y
+  //   );
+  // }
+
 
   isSpaceTaken(currentX, currentY, direction) {
     const { x, y } = utils.nextPosition(currentX, currentY, direction);
@@ -279,6 +291,7 @@ window.OverworldMaps = {
   },
   Ruins: {
     id: "Ruins",
+    backgroundSrc: "./images/maps/shoresTest.png",
     lowerSrc: "./images/maps/shoresTest.png",
     upperSrc: "./images/maps/blankUpper.png",
     gameObjects: {
