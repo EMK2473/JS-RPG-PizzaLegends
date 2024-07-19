@@ -4,6 +4,7 @@
 - Burn Status (Damage per turn on enemy. Currently damages player) ✅
 - Create stable background image for overworld maps
 - Create Stat increase or decrese statuses --In Progress--
+- fix defenseUp from calling each turn
 - Create object class for non-person objects with idle animations
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. ) ✅
 - Find solution for overworldmap walls

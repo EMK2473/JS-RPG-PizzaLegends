@@ -74,7 +74,7 @@ class TurnCycle {
 
 
 
-    // check for status expire
+    // check for status expire before new submission
     const expiredEvent = caster.decrementStatus();
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
@@ -89,7 +89,7 @@ class TurnCycle {
       enemy,
     });
 
-    // stop here if we are replacing this pizza
+    // stop here if we are replacing pizza
     if (submission.replacement) {
       await this.onNewEvent({
         type: "replace",
@@ -125,6 +125,22 @@ class TurnCycle {
       };
       await this.onNewEvent(event);
     }
+
+
+    // statuses 
+    if (caster.status?.type === "burn") {
+      caster.burn();
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `${caster.name} takes burn damage!`,
+      });
+      caster.update();
+    }
+
+    if (caster.status?.type === "defUp") {
+      caster.update();
+    }
+
 
     // check if target died?
     const targetDead = submission.target.hp <= 0;
@@ -178,22 +194,22 @@ class TurnCycle {
       });
     }
 
-    if (caster.status?.type === "burn") {
-      caster.burn();
-      await this.onNewEvent({
-        type: "textMessage",
-        text: `${caster.name} takes burn damage!`,
-      });
-      caster.update();
-    }
+    // if (caster.status?.type === "burn") {
+    //   caster.burn();
+    //   await this.onNewEvent({
+    //     type: "textMessage",
+    //     text: `${caster.name} takes burn damage!`,
+    //   });
+    //   caster.update();
+    // }
 
-    if (caster.status?.type === "defUp") {
-      caster.update();
-    }
+    // if (caster.status?.type === "defUp") {
+    //   caster.update();
+    // }
 
     // check for post events
     //(do things AFTER original turn submission)
-    // apply post events after the action
+    // applies post events after the action
     const postEvents = caster.getPostEvents();
     for (let i = 0; i < postEvents.length; i++) {
       const event = {

@@ -57,7 +57,6 @@ class Combatant {
   }
 
   // statuses
-
   burn() {
     this.hp -= 10;
     if (this.hp < 0) {
