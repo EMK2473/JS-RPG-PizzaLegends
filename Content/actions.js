@@ -60,6 +60,25 @@ window.Actions = {
       { type: "stateChange", status: { type: "defDown", expiresIn: 3 } },
     ],
   },
+  healHp: {
+    name: "Heal",
+    description: "Heal yourself 60 hp",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} {ACTION}s themselves!" },
+      { type: "stateChange", recover: 60 },
+    ],
+  },
+  healAndDefUp: {
+    name: "Bunker Down",
+    description: "Heal yourself 30 hp and increase Def",
+    targetType: "friendly",
+    success: [
+      { type: "textMessage", text: "{CASTER} {ACTION}s themselves!" },
+      { type: "stateChange", recover: 30 },
+      { type: "stateChange", status: { type: "defUp", expiresIn: 3 }},
+    ],
+  },
   item_recoverStatus: {
     name: "Heating Lamp",
     description: "Warming up removes statuses",

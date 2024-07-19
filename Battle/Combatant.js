@@ -82,6 +82,10 @@ class Combatant {
     this.defense = this.level * 5;
   }
 
+  removeDefDown() {
+    this.defense = this.level * 5;
+  }
+
   calculateDamage() {
     this.effectiveAttackPower = this.attackPower + this.power * 0.75;
     let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
@@ -232,19 +236,27 @@ class Combatant {
         { type: "stateChange", defUp: true },
       ];
     }
+
+    // statuses on enemy combatants are checked -1 less turns than statuses on player combatants
+    if (this.status?.type === "defDown" && this.status.expiresIn === 2) {
+      return [
+        { type: "textMessage", text: `${this.name}'s defense went down!` },
+        { type: "stateChange", defDown: true },
+      ];
+    }
     if (this.status?.type === "burn") {
       return [
         { type: "textMessage", text: `${this.name} is burning!` },
         { type: "stateChange", burn: true },
       ];
     }
-    if (this.status?.type === "defDown") {
-      return [
-        { type: "textMessage", text: `${this.name}'s defense is down!` },
-        { type: "stateChange", defDown: true },
-      ];
-    } else {
-    }
+    // if (this.status?.type === "defDown") {
+    //   return [
+    //     { type: "textMessage", text: `${this.name}'s defense is down!` },
+    //     { type: "stateChange", defDown: true },
+    //   ];
+    // } else {
+    // }
     return [];
   }
 
@@ -254,6 +266,9 @@ class Combatant {
       if (this.status.expiresIn === 0) {
         if (this.status.type === "defUp") {
           this.removeDefUp();
+        }
+        if (this.status.type === "defDown") {
+          this.removeDefDown();
         }
         this.update({
           status: null,
