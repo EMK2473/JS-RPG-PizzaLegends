@@ -3,7 +3,9 @@
 - Resolve issue, if hp is over a certain percentage it disappears off screen ✅
 - Burn Status (Damage per turn on enemy. Currently damages player) ✅
 - Create Stat increase or decrese statuses --In Progress--
+- Create object class for non-person objects with idle animations
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. ) ✅
+- Find solution for overworldmap walls
 - Case for if all Spawn die, display death screen/restart game?
 - New Object Stone Art (design for Spawns)
 - New Level Art / New Spawn Art
