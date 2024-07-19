@@ -31,3 +31,275 @@ TODO:
 - Design Menu Color Schemes/Organize Css Variables/
 - Clean Up Code/Remove Console Logs/ 
 - Check for DRY, SOLID, and Big0 principles 
+
+
+
+Completed: 
+- Create Overworld✅
+- Create Game-Container✅
+    - target canvas elemnt ✅
+    - set context for canvas (requires context to draw)✅
+    - create game loop to recursively run✅
+    - call draw methods for upper/lower images✅
+    - Map game objects to overworld at their set positions✅
+    - apply pause menu logic✅
+    - Bind action inputs to key press listeners✅
+        - create keypress (enter) for interacting✅
+        - keypress for exiting pause menu (escape)✅
+    - Bind hero position and check for cutscenes at current position✅
+    - create Start map method (pass new Overworld Map object(with a map config object))✅
+    - add logic to handles creating and removing walls from player position/state✅
+    - create init method for initializing overworld✅
+        - add save data logic✅
+        - init and load the hud for overworld✅
+        - start game loop✅
+- Create OverworldMap class and config it✅
+    - pass the overworld map:
+        - gameObjects✅
+        - cutscene spaces✅
+        - lower image✅
+        - upper image✅
+        - isCutscenePlaying value✅
+        - isPaused value✅
+    - Create draw methods for upper and lower ✅images
+    - method to check if space is taken by object or wall✅
+    - method to mount game objects in the overworldmap✅
+    - method to start a cutscene✅
+    - method to check for actionCutscene✅
+    - method to check for cutscene spaces (footstep cutscenes)✅
+    - method to add walls✅
+    - method to remove walls✅
+    - method to move walls (players and npcs contain walls that need to move as players/npcs move)✅
+    - Create window object that contains OverworldMaps✅
+    - Define and Build 3 OverworldMaps with objects, npcs, events, cutscenes, and battles✅
+
+- Overworld events✅
+    - uses a map and an event✅
+    - define overworld event behaviors✅
+        - method to resolve overworld events:
+        - idle behavior✅
+            - define on complete handler✅
+        - stand behavior✅
+            -  define on complete handler✅
+        - walk behavior✅
+            -  define on complete handler✅
+        - resolve text message event✅
+            -  define on complete handler✅
+        - change maps event✅
+            -  define on complete handler✅
+            - include scene transitions✅
+        - battle event✅
+            - initialize battle in game-container✅
+            - on complete handler for ifWon✅
+        - pause event✅
+            - define on comeplete handler✅
+        - adding a story flag✅
+            - define resolver✅
+        - crafting menu event✅
+            - define on complete handler✅
+        - init method to initialize overworld events✅
+            -  async promise handling✅
+            - resolver for events✅
+
+- Direction Input✅
+    - Define array for holding direction ✅(heldDirections) inputs held down ( help handle multiple inputs at once)✅
+    - map key binds✅
+    - getter method for held direction value✅
+    - init method✅
+        -  add event listeners to map key down presses as events and reference the index of heldDirections for value✅
+        - add event listener to map key up press (release) as events that reference the index of heldDirections to auto adjust to held values✅
+
+- Game Objects✅
+    - Accept config object for definition of properties✅
+        - base value of isMounted = false✅
+        - define game object x and y positioning ✅
+        - define direction config for passing overworld event directions as key value pairs (gives instructions in events on how to move objects)✅
+        - create a new Sprite Class with default character image if none is provided. set gameObject key to be itself✅
+        - define behaviorLoop as [] and behavior loop index = 0✅
+        - define talking events for gameObjects as empty array []✅
+    - Method to mount gameObjects✅
+        - change isMounted value to true✅
+        - add walls at x and y positions✅
+        - add async setTimeout delay to firing of behaviors as mounting takes place (timing issue)✅
+        - update method to update gameObjects✅
+        - doBehavior method✅
+            - if cutscne is playing, exit out (return)✅
+            - define event config as this game object's behaviorLoop (index)✅
+            - set next game event to fine in behaviorLoop (index += 1)✅
+            - reset behaviorLoop once loop hits behaviorLoop.length (end) ✅
+
+- Person Object✅
+    - extend from gameObject (specific type of gameObject)✅
+    - accept the same configuration object (super extension)✅
+    - set value for moving and moving progress✅
+    - set property for 
+        - isStanding ✅
+        - isIdle✅
+        - isPlayerControlled✅
+    - direction Update object to handle coordinates for updating direction events✅
+
+    - update method to update movingProgress✅
+        - call update Position method when movingProgress is greater than 0 (if it's moving, update it)✅
+            - pass directions as keys for moving events✅
+        - conditional for ifCutsceneIsPlaying = false, and is player controlled, and has a direction✅
+            - updateSprite after✅
+        - conditional for ifPaused✅
+        - Method to Start Behavior loops✅
+            - define behavior types:
+                - walk✅
+                    - requires move wall✅
+                - stand✅
+                - idle✅
+        - Method for updating person Position✅
+            - decrement moving progress value as move inputs ✅
+            - have walking complete handler✅
+        - Method for updating sprite✅
+            - define idle position, and idle instructions (facing down, facing up, etc.)✅
+
+
+
+
+- Sprite Object✅
+    - accept config object✅
+    - reference the gameObject as this.gameObject✅
+    - create new Image✅
+        - assign image as image.src✅
+        - image onload callback✅
+            - sets image isLoaded = true✅
+    - create shadow image as new Image✅
+        - define if object uses a shadow✅
+        - if it is using a shadow, pass shadow image as shadow.src✅
+    - create shadow onLoad callback✅
+        - define isShadowLoaded as true✅
+    - set useShadow as true for objects (FIX)
+    - define sprite animations (movement animations)✅
+        - define animation for :
+            - idle-down✅
+            - idle-right✅
+            - idle-left✅
+            - idle-up✅
+            - idle (static animation for game objects that don't move)✅
+            - walk-down✅
+            - walk-right✅
+            - walk-left✅
+            - walk-up✅
+    - Define current animation✅
+        - use config object✅
+        - set default value to idle-down✅
+    - Define animation frames✅
+        - set to 0 (default)✅
+    - Define animation frame limits✅
+        - 8 per frame (fits 16 bit grid)✅
+    - Method for getting current frame✅
+        - define as getter method✅
+    - Method to setAnimation✅
+        - Pass method a (key)✅
+        - set value to the currentAnimation (key)✅
+        - set currentFrame to 0✅
+        - define animationFrameProgess limit✅
+    - Method to update Animations progress (through event object/animation array)✅
+        - decrement the animationFrameProgress if animationFrameProgress is greater than 0✅
+        - reset frame progress counter✅
+        - define catch if frame is undefined✅
+            - reset to 0✅
+    - Method to draw the sprite✅
+        - accepts context (2d for canvas) and cameraPerson position (x & y coords)✅
+        - define x and y position✅
+        - use drawImage method and pass sprite shadow at cameraPerson x and y position✅
+    - Configure sprite sheet for 32 x 32 pixel art png file (Aseprite image)✅
+        -  configure size of sprite (32 x 32)✅
+
+- KeyPressListener✅
+    -  define keySafe property to handle conditional for if key matches keyCode✅
+        -  if the event matches the keycode we've passed in, and the keysafe flag is true, then call✅
+    - add event listeners for key up and key down presses✅
+    - define unbind method to remove event listeners if  not needed (menu screens up and down selections vs overworld up, down, left and right movement)✅
+
+
+- PauseMenu✅
+    - accepts progress (save file data) and OnComplete Callback function✅
+        - define progress (saving position)✅
+        - define onComplete callback✅
+    - Method to getOptions for menu page✅
+        - if the page is at the root, show options✅
+        - map lineup as options (map pizzas as options to select)✅
+        - save option✅
+            - description, and callback handler()✅
+                - this. progress. save() on complete✅
+                - close on complete✅
+        - Close Option✅
+            - close the menu✅
+            - close handler callback✅
+        - if only one pizza -1 of lineup index✅
+        - Define equipped as index 0 of lineup✅
+        - Define unequipped as rest of lineup ✅
+        - Method to move unequipped to front of lineup "Move to front"✅
+        - inclue back option✅
+    - Method to create the menu element createElement()✅
+        - set html class as PauseMenu✅
+        - set class as overlayMenu✅
+    - Method to close menus✅
+        - unbind keys✅
+        - remove the menu/element✅
+        - onComplete Callback✅
+    - Method to init menu✅
+        - call createElement✅
+        - create new KeyBoard Menu (new keybinds)✅
+        - init new Keyboard menu✅
+        - setOptions for keyboard menu✅
+        - append the element to the child container✅
+        - define esc as instant back out keypress✅
+
+        
+- Scene Transitions✅
+    - Method to createElement✅
+        - create div✅
+        - class SceneTransition✅
+    - Method to hande effects✅
+        - fadeOut method✅
+        - add class "fade-out"✅
+        - add eventListener to listen for an "on animation end" callback to remove element created✅
+        - define number of times this to add event listener✅
+    - Method to initialize the sceneTransition✅
+        - createElement✅
+        - append element✅
+        - callback to end✅
+
+
+- Revealing Text Effect✅
+    - accept a config option✅
+    - define properties of text effect✅
+        - text✅
+        - speed✅
+        - isDone✅
+    - Method to revealOneCharacter at a time✅
+        - accept an array of texts✅
+        - splice array inbetween each character and set as "span" element✅
+        - add class list "revealed" to those that are revealed✅
+        - add delay for timing of revealed text✅
+        - set isDone to true for all revealed text✅
+    - Method to go force push through animation✅
+        - warpToDone✅
+            - set isDone to true✅
+            - for each span element, set to "revealed"✅
+    - Method for initializing the revealingText animation✅
+        -  set characters to an empty []✅
+        - split each character for each span element✅
+        - append the span elements✅
+        - push the characters array, passing it:
+            - spans, delay timer, and speed✅
+        - Call revealOneCharacter passing it [characters] array✅
+        
+- Object Crafting
+- Battle Instance
+- Battle Container (Draw to DOM)
+- Battle Object
+- Battle Events
+- Combatants
+- Turn Cycle
+- Battle Animations
+- Submission Menu (select actions)
+- Replacement Menu (replace combatants)
+- Team Hud Display
+- Utility Functions
+

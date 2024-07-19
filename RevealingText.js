@@ -9,13 +9,13 @@ class RevealingText {
   }
 
   // Methods
-  revealOneCharacter(list) {
-    const next = list.splice(0, 1)[0];
+  revealOneCharacter(array) {
+    const next = array.splice(0, 1)[0];
     next.span.classList.add("revealed");
 
-    if (list.length > 0) {
+    if (array.length > 0) {
       this.timeout = setTimeout(() => {
-        this.revealOneCharacter(list);
+        this.revealOneCharacter(array);
       }, next.delayAfter);
     } else {
       this.isDone = true;
