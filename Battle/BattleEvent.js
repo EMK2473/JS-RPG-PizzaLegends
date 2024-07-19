@@ -104,7 +104,7 @@ class BattleEvent {
     }
 
     if(defUp){
-      let newDef = caster.defense + (25 * caster.level);
+      let newDef = caster.defense + 50;
       caster.update({
         defense: newDef,
       });

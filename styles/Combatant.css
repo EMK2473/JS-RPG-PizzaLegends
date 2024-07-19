@@ -104,10 +104,15 @@
   }
   
   .Combatant_status {
+  font-family: 'Aldrich', sans-serif;
+  border-radius: 3px;
+    /* width: 28px; */
+    display: inline-block;
+    white-space: nowrap;
     position: absolute;
-    font-size: 5px;
+    font-size: 4px;
     left: 47px;
-    bottom: -3px;
+    bottom: -2px;
     padding-left: 2px;
     padding-right: 2px;
     background: rgba(0,0,0,0.8);

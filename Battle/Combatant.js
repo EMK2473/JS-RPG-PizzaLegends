@@ -55,23 +55,20 @@ class Combatant {
 
   // statuses
   burn() {
-    this.hp -= 10;
+    this.hp -= 20;
     if (this.hp < 0) {
       this.hp = 0;
     }
   }
 
   defUp() {
-    // check if this is the first turn of the status effect
-    if (this.status && this.status.expiresIn < 3) {
-      console.log("DEF UNCHANGED");
-    } else {
-      // store the current defense
-      this.originalDefense = this.defense;
-      let newDef = this.defense + 5 * this.level;
-      this.defense = newDef;
-      console.log("DEF INCREASED", this);
-    }
+    // // check if this is the first turn of the status effect
+    //   // store the current defense
+    //   this.originalDefense = this.defense;
+    //   let newDef = this.originalDefense + 50;
+    //   this.defense = newDef;
+    //   console.log("DEF INCREASED", this);
+    
   }
 
   defDown() {
@@ -188,7 +185,7 @@ class Combatant {
     // update status
     const statusElement = this.hudElement.querySelector(".Combatant_status");
     if (this.status) {
-      statusElement.innerText = this.status.type;
+      statusElement.innerText = `${this.status.type} + (${this.status.expiresIn})`;
       statusElement.style.display = "block";
     } else {
       statusElement.innerText = "";
@@ -199,10 +196,10 @@ class Combatant {
       ".Combatant_battleStats"
     );
     battleStatsElement.innerHTML = `
+    <p class="Combatant_stat">HP: ${this.hp} / ${this.maxHp}</p>
     <p class="Combatant_stat">Power: ${this.power}</p>
     <p class="Combatant_stat">Defense: ${this.defense}</p>
     <p class="Combatant_stat">Speed: ${this.speed}</p>
-    <p class="Combatant_stat">HP: ${this.hp} / ${this.maxHp}</p>
     <p class="Combatant_stat">XP: ${this.xp} / ${this.maxXp}</p>
   `;
   }
@@ -225,6 +222,7 @@ class Combatant {
         { type: "stateChange", recover: 5, onCaster: true },
       ];
     }
+    // only increase def on first turn called
     if (this.status?.type === "defUp" && this.status.expiresIn === 3) {
       return [
         { type: "textMessage", text: `${this.name}'s defense went up!` },

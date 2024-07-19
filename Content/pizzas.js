@@ -73,10 +73,10 @@ window.Pizzas = {
     actions: ["slice", "confusedStatus", "saucyStatus"],
   },
   cerberus: {
-    name: "Cerberus",
+    name: "Thanatos",
     description: "Three Headed Guard Dog of Hell.",
     type: PizzaTypes.offensive,
-    src: "./images/characters/pizzas/cerberus.png",
+    src: "./images/characters/pizzas/thanatos32.png",
     icon: defenderIcon,
     actions: ["tripleBite","burnStatus", "confusedStatus", "defenseUpStatus","gigaFlare" ],
   },
