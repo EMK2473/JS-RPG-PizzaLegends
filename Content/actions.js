@@ -48,7 +48,6 @@ window.Actions = {
     targetType: "friendly",
     success: [
       { type: "textMessage", text: "{CASTER} used {ACTION}!" },
-      { type: "stateChange", defUp: true },
       { type: "stateChange", status: { type: "defUp", expiresIn: 3 } },
     ],
   },

@@ -72,6 +72,10 @@ class TurnCycle {
     caster.logStatus();
     target.logStatus();
 
+  //     // apply defense up if applicable
+  // if (caster.status?.type === "defUp") {
+  //   caster.defUp();
+  // }
 
 
     // check for status expire before new submission
@@ -137,7 +141,7 @@ class TurnCycle {
       caster.update();
     }
 
-    if (caster.status?.type === "defUp") {
+    if (caster.status?.type === "defUp" && caster.status.expiresIn === 3) {
       caster.update();
     }
 

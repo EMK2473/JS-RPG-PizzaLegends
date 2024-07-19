@@ -17,7 +17,7 @@ class Combatant {
     this.maxXp = config.maxXp || 100;
     this.attackPower = config.attackPower || 8 + this.level * 2;
     this.armor = config.armor || this.level * 1;
-    this.defense = config.defense || this.level * 2;
+    this.defense = config.defense || this.level * 5;
     this.speed = config.speed || 10;
     this.power = config.power || 5 + this.level * 2;
     this.originalDefense = this.defense;
@@ -28,7 +28,6 @@ class Combatant {
     });
   }
 
-  
   levelUp() {
     this.level += 1;
     this.hp += 20;
@@ -45,9 +44,7 @@ class Combatant {
   //   return this.level * 100; // adjust later
   // }
 
-
-
-    // checks for statuses
+  // checks for statuses
   logStatus() {
     if (this.status) {
       console.log(`Status of ${this.name}: ${this.status.type}`);
@@ -64,23 +61,28 @@ class Combatant {
     }
   }
 
-  
   defUp() {
-    this.originalDefense = this.defense; // Store the current defense
-    let newDef = this.defense + (20 * this.level);
-    this.defense = newDef;
-    console.log("Combatant Defense", this);
+    // check if this is the first turn of the status effect
+    if (this.status && this.status.expiresIn < 3) {
+      console.log("DEF UNCHANGED");
+    } else {
+      // store the current defense
+      this.originalDefense = this.defense;
+      let newDef = this.defense + 5 * this.level;
+      this.defense = newDef;
+      console.log("DEF INCREASED", this);
+    }
   }
 
   defDown() {
-    this.originalDefense = this.defense; // Store the current defense
-    let newDef = this.defense + (20 * this.level);
+    this.originalDefense = this.defense;
+    let newDef = this.defense - 5 * this.level;
     this.defense = newDef;
     console.log("Combatant Defense", this);
   }
 
   removeDefUp() {
-    this.defense = this.originalDefense;
+    this.defense = this.level * 5;
   }
 
   calculateDamage() {
@@ -223,7 +225,7 @@ class Combatant {
         { type: "stateChange", recover: 5, onCaster: true },
       ];
     }
-    if (this.status?.type === "defUp") {
+    if (this.status?.type === "defUp" && this.status.expiresIn === 3) {
       return [
         { type: "textMessage", text: `${this.name}'s defense went up!` },
         { type: "stateChange", defUp: true },
@@ -241,7 +243,6 @@ class Combatant {
         { type: "stateChange", defDown: true },
       ];
     } else {
-
     }
     return [];
   }
@@ -251,17 +252,16 @@ class Combatant {
       this.status.expiresIn -= 1;
       if (this.status.expiresIn === 0) {
         if (this.status.type === "defUp") {
+          this.removeDefUp();
         }
         this.update({
           status: null,
         });
-        this.removeDefUp();
         return {
           type: "textMessage",
           text: "Status expired!",
         };
       }
-      
     }
     return null;
   }
