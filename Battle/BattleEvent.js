@@ -32,24 +32,24 @@ class BattleEvent {
 
   // add buffs for increases to armor or strength
   async stateChange(resolve) {
-    const { caster, target, damage, recover, burn, defUp, defDown, status, armor, action, calculateDamage } =
-      this.event;
+    const {
+      caster,
+      target,
+      damage,
+      recover,
+      burn,
+      defUp,
+      defDown,
+      status,
+      armor,
+      action,
+      calculateDamage,
+    } = this.event;
     let who = this.event.onCaster ? caster : target;
 
     let finalDamage = damage; // default to static damage if no calculation needed
 
-    if(caster.defense <= 0){
-      caster.defense === 0
-    }
-    if(target.defense <= 0){
-      target.defense === 0
-    }
-    if(caster.armor <= 0){
-      caster.armor === 0
-    }
-    if(target.armor <= 0){
-      target.armor === 0
-    }
+
 
     if (calculateDamage) {
       // calculate caster damage
@@ -57,29 +57,28 @@ class BattleEvent {
 
       // calculate target's armor
       const targetArmor = target.calculateArmor();
-      console.log( `Target's Armor: ${targetArmor}`)
-      console.log(`Damage Before Armor: ${finalDamage}`)
-      if(finalDamage <= 0){
+      console.log(`Target's Armor: ${targetArmor}`);
+      console.log(`Damage Before Armor: ${finalDamage}`);
+      if (finalDamage <= 0) {
         finalDamage = 0;
       }
 
       // resolve damage and armor
       finalDamage -= targetArmor;
-      console.log(`Calculated Damage: ${finalDamage}`); 
+      console.log(`Calculated Damage: ${finalDamage}`);
     }
 
     if (finalDamage) {
-      if(finalDamage <= 0){
+      if (finalDamage <= 0) {
         finalDamage = 0;
       }
       // display the damage value
       const damageElement = document.createElement("div");
       damageElement.classList.add("damage-value");
-      damageElement.textContent = finalDamage +`!` ;
+      damageElement.textContent = finalDamage + `!`;
       const gameContainer = document.querySelector(".game-container");
       gameContainer.appendChild(damageElement);
       console.log("damage element created");
-
 
       // remove the damage value after 2 seconds
       setTimeout(() => {
@@ -87,7 +86,8 @@ class BattleEvent {
       }, 750);
       // modify hp when hit and blink
       target.update({
-        hp: target.hp - finalDamage,
+        // prevent target hp from falling below 0
+        hp: Math.max(0, target.hp - finalDamage),
       });
 
       target.pizzaElement.classList.add("battle-damage-blink");
@@ -107,23 +107,23 @@ class BattleEvent {
       console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
 
-    if(burn){
+    if (burn) {
       let newHp = target.hp - burn;
       who.update({
         hp: newHp,
       });
     }
 
-    if(defUp){
+    if (defUp) {
       let newDef = caster.defense + 50;
       caster.update({
         defense: newDef,
       });
     }
 
-    if(defDown){
-caster.defDown()
-caster.update()
+    if (defDown) {
+      caster.defDown();
+      caster.update();
     }
 
     if (status) {
