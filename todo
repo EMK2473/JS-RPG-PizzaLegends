@@ -34,7 +34,7 @@ TODO:
 
 
 
-Completed: 
+✅ Completed ✅: 
 - Create Overworld✅
 - Create Game-Container✅
     - target canvas elemnt ✅
@@ -289,17 +289,318 @@ Completed:
         - push the characters array, passing it:
             - spans, delay timer, and speed✅
         - Call revealOneCharacter passing it [characters] array✅
-        
-- Object Crafting
-- Battle Instance
-- Battle Container (Draw to DOM)
-- Battle Object
-- Battle Events
-- Combatants
-- Turn Cycle
-- Battle Animations
-- Submission Menu (select actions)
-- Replacement Menu (replace combatants)
-- Team Hud Display
-- Utility Functions
+
+- Object Crafting ✅
+    - extension of gameObjects✅
+    - super config✅
+    - create new Sprite(with config)
+        - define animation frames for:
+            - used instance✅
+            - unused instance✅
+    - define storyFlag (condition to keep track of if used or unused)✅
+    - define pizzas to be crafted✅
+    - define talking events (textmessages to display)✅
+        - include events✅
+            - pass event type as craftingMenu✅
+        - include pizzas as config pizzas✅
+        - include story flags✅
+    - Method to update() ✅
+        - update story flags as used or unused✅
+    - use init method from inheritence✅
+
+
+- Battle Instance/ Battle Class✅
+    - accepts an enemy✅
+    - accepts an onComplete callback (handles completion)✅
+
+    - Define combatants✅
+        - blank object until initialized✅
+    - define activeCombatants✅
+        - set to null until initialized✅
+    - Dynamically add combatants to player team✅
+        - for each combatant in playerstate.lineup, add combatant to the this battle✅
+    - Dynamically add enemies to the enemy team✅
+        - for each combatant in enemy object, add an enemy combatant to the this battle (use id e_, (eNEMy___ID))✅
+    - Define items ✅
+        - empty array [] until initialized✅
+        - forEach item in window.playerState.items, push them into items[]✅
+        - define usedItems✅
+            - usedInstanceIds = {} until initialized✅
+    - Method to add combatant✅
+    - Method to remove combatant✅
+    - Method to Create battle element✅
+        - createElement()✅
+            - create div✅
+            - add class "Battle" ✅
+            - set inner html to be images of combatants✅
+            - add class for css styling✅
+    - Method to initialize the Battle✅
+        - call createElement✅
+        - set playerTeam✅
+        - set enemyTeam✅
+        - Object-map trick for each combatant✅
+            - object.keys trick✅
+        - Conditionally sort combatants to team✅
+            - if team is player, push combatant into playerTeam✅
+            - if team is enemy, push combatant into enemyTeam✅
+        - initialize playerTeam✅
+        - initialize enemeyTeam✅
+
+        - Conditional for if no combatants✅
+            - create battle event to return out of battle✅
+        - Instantiate a new Turn Cycle✅
+            - include onNewEvent callback to handle new events in turn cycle✅
+            - include onWinner callback, passing it the winner✅
+            - set combatant battle values to playerState values post battle✅
+            - filter out usedInstanceIDs from items array✅
+            - set "PlayerStateUpdated" as event✅
+            - Remove elements on winner✅
+
+
+
+
+- Combatants✅
+    - accept config ✅
+    - accept relevant battle info✅
+    - define activeCombatants✅
+
+    - define combatant properties✅
+        - hp✅
+        - maxHp✅
+        - xp✅
+        - maxXp✅
+        - power✅
+        - defense✅
+        - etc.✅
+    - Object.keys trick to auto assign any config key values as properties to object✅
+
+    - Methods to define, and apply combatant status effects and remove combat effects✅
+        - defUp✅
+        - removeDefUp✅
+        - defDown✅
+        - removeDefDown✅
+        - etc.
+    - Method for calculating damage✅
+    - Method for calculating defense(armor?)✅
+    - getters for displaying✅
+        - hp%✅
+        - xp%✅
+        - getting status of isActiveCombatant ✅
+        - amount of xp Given✅
+    - Method for createELement()✅
+        - create div✅
+        - add "Combatant" class✅
+        - add "data-attributes" for data-combatant✅
+        - add data-attributes for data-team✅
+        - set innerHTML of element to be this combatant name, this combatant level, etc✅
+        - create div for battle stats sheet✅
+        - create image elements on the document✅
+        - set data-attributes for combatant team✅
+        - define properties for filling hp and xp bars with getter methods✅
+    - Method to update combatants✅
+        - accept changes object (reference to update to)✅
+        - modify data-active attributes for hud and battle display✅
+        - call hpFills and xpFills methods to update as values change✅
+        - upate status elements✅
+        - update combatant battle stats✅
+    - Method to get events if status replaces turn✅
+        - define confusion event✅
+    - Method to get events post turn✅
+        - define status effect conditionals✅
+    - Method to decrement status expiration✅
+        - remove methods if expiresIn === 0✅
+        - call update() Combatants✅
+    - Method to initialize the combatants ✅
+        - create elements✅
+        - append elemnts into child✅
+        - update()✅
+
+
+
+
+
+
+- Battle Animations✅
+    - accept a battle to reference and an onComplete callback✅
+    - Window level object containing each animation✅
+    - set animations an async to wait for animation to end before proceeding✅
+    - use onComplete callbacks to indicate animation completion✅
+    - define css classes for each animation✅
+    - define innerHTML for each animation✅
+    - define wait time for each animation✅
+
+- Battle Events✅
+    - accept an event and a battle to reference✅
+    - Method to handle textMessage events✅
+        - accepts a resolver as an onComplete callback✅
+    - Method to hande stateChange events (statuses, damage, etc)✅
+        - accepts a resolver as an onComplete callback✅
+        - define how to calculate damage✅
+        - define how to handle final damage ✅
+            - if < 0, set to = 0✅
+        - define how to handle status state changes (recover, burn, damage, etc)✅
+        - define handling status removal✅
+    - Method to handle submission menu events✅
+        - accepts a resolver as an onComplete callback✅
+        - create new submissionMenu✅
+        - setOptions✅
+        - onComplete callback resolver✅
+    - Method to handle replacement submissions✅
+        - accepts a resolver as an onComplete callback✅
+        - create new replacementMenu✅
+        - setOptions✅
+        - onComplete callback resolver✅
+    - Method to handle replacement as a battle event✅
+        - accepts resolver as an onComplete callback✅
+    - Method to handle giving xp✅
+        - if enemy loses, give X xp based on level✅
+    - Method to handle battle animations✅
+        - uses resolver to resolve animations✅
+    - Method to initialize a battle event✅
+
+- Replacement Menu (replace combatants)✅
+    - accepts replacements and an onComplete callback✅
+    - Method to decide who to replace✅
+        - for enemy ai to auto replace✅
+    - Method to submit replacement for menu✅
+    - Method to display menu✅
+        - create new KeyboardMenu✅
+        - setOptions for keyboard menu as replacements✅
+    - Method to initialize the replacementMenu✅
+        - Display menu to player✅
+        - call decide() for enemy✅
+
+- Submission Menu (select actions)✅
+    - accepts a caster, enemy, items, replacements, and an onComplete callback✅
+    - define quantityMap (quantity object for items to reference)✅
+        - forEach item, attach and id, ✅
+        - if the id exists, add an item for each quantity✅
+        - else, add one item✅
+        - set items to = Object.values(quantityMap)✅
+    - Method to get pages (dynamic options)✅
+        - define pages here✅
+            - back (return)✅
+            - attack moves✅
+            - items✅
+            - swap(replace) pizza✅
+                - map each array as options for ✅
+                - menuSubmit✅
+                - menuSubmitReplacements✅
+                - menuSubmitItems✅
+    - Method for handlingSubmissionReplacements✅
+        - accepts a replacement✅
+        - remove keyboardmenu✅
+        - call onComplete✅
+    - Method for handling menuSubmissions✅
+        - remove keyboardmenu✅
+        - set action, define caster, target, targetType, and instanceId✅
+        - call oncomplete✅
+    - Method for AI deciding actions✅
+        - auto use action[0]✅
+    - Method to showMenu for player✅
+        - show submission menu for player✅
+    - Method to showMenus to player✅
+        - create newKeyboard menu✅
+        - setOptions✅
+        - getPages from root✅
+    - Method to intialize Submission menu✅
+        - accepts a container to go in✅
+        - conditional check for if caster is playerControlled, show menu, otherwise ai decide()✅
+
+- Team Hud Display✅
+    - accepts a team and a name✅
+    - defines team and name✅
+    - defines combatants as emtpy [] before filling✅
+    - Method to createElement() (team hud overlay)✅
+        - create hud elemnt✅
+        - set icons✅
+        - set tracker for active Combatant with data attributes accordingly✅
+    - Method to update team data✅
+        - sets data-attributes to active or dead✅
+        - sets icon for active, inactive, or dead✅
+    - Method to initialize the Team Overlay✅
+        - createElement✅
+        - update✅
+        - appendElement into child✅
+
+- Turn Cycle✅
+    - accepts a battle reference, an onNewEvent object, and an onWinner callback✅
+    - define battle properties✅
+        - current team "player" or "enemy"✅
+        - turn counter set to 0 initially✅
+        - create turnCounter✅
+        - updateTurnCounter✅
+
+    - Method to createTurnCounter✅
+    - Method to updateTurnCounter✅
+    - Method to remove turnCounter✅
+    - Method to handle each Turn✅
+        - async to await event resolution✅
+        - Conditional to check who's team we're on✅
+        - if on player, update counter✅
+        - get all relevant information about the turn✅
+            - set caster, casterId✅
+            - set target, targetId✅
+            - set enemy, enemyId✅
+            - set targetTeam "player" or "enemy"✅
+        - Turn order:✅
+            - log statuses✅
+            - check for expired events (status)✅
+                - decrement status -= 1✅
+            - create and await on new submission event for player✅
+                - if submission event is a replacement event, then pass turn after replacement event✅
+            - conditional check to remove used items ✅
+                - if submission has an instanceID, then add it to the unsedInstanceIds✅
+            - Handle resulting events for targets✅
+                - set submissiona action✅
+                - set caster✅
+                - set target✅
+            - Conditional check for status effects to resolve after actions resolve✅
+                - run checks for certain statuses✅
+                - check for burn✅
+                - check for defUp✅
+                    - update() caster✅
+            - Conditional check for if target is dead✅
+                - if dead, new submission event for replacement event✅
+                - if no replacements, call onWinner callback✅
+            - Conditional check for if winner exists✅
+                - if winner exists, and it is player✅
+                    - give xp, and set combatant values to playerState.lineup values✅
+                    - if any pizza has 0 hp, remove from playerstate lineup✅
+                - if winner is enemy✅
+                    - return out of battle ✅
+                    - set combatant values to playerState.lineup values✅
+            - Conditional check for post events to resolve (if there are no dead combatants and we want statuses to resolve at the end of the the action is selected)✅
+        - Method for checking winning team✅
+            - getWinningTeam()
+                - capture aliveTeams✅
+                - forEach combatant, check if there are aliveTeams✅
+                - if no alive team for player, return enemy✅
+                - if no alive team for enemy,
+                return player✅
+        - Method to handle going to the next turn✅
+            - if currentTeam is "player", call turn for "enemy"✅
+            - if currentTeam is "enemy", call turn for "player"✅
+        - Method to initialize TurnCycle✅
+            - async battleEvent text message to display battle is starting ✅
+
+
+
+- Utility Functions Information
+    - withGrid ✅
+        - to align grid values to 16 x 16 and 32 x 32 values
+    - asGridCoord✅
+        - takes x value * 16
+        - takes y value * 16
+    - nextPosition✅
+        - method to handle direction input with x/y grid coordinates
+    - oppositeDirection✅
+        - method to return opposite directions
+    - wait✅
+        - asnyc method to add timing before firing new events
+    - randomFromArray✅
+        - method to calculate probablity from array
+        - fill array with truth or false values to determine probability of arrayItems\length
+    - emitEvent✅
+        - method to handle dispatching certain events
 
