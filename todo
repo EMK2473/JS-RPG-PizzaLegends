@@ -5,6 +5,10 @@ Recently Completed:
 - Burn Status (Damage per turn on enemy. Currently damages player) ✅
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. ) ✅
 - fix defenseUp from calling each turn ✅
+- Create Stat increase or decrese statuses --In Progress-- ✅ 
+    - Create powerUp() and removePowerUp() ✅
+    - Create powerDown() and removePowerDown() ✅
+    - Create healAndDefUp() ✅
 
 
 
@@ -12,10 +16,6 @@ TODO:
 - Refactor Stats to only be Power and Def (for now)
 - Add 5% crit modifier and stat increase
     - Consider adding crit chance as stat
-- Create Stat increase or decrese statuses --In Progress-- 
-    - Create powerUp() and removePowerUp() ✅
-    - Create powerDown() and removePowerDown() ✅
-    - Create healAndDefUp()
 - Create solution for having multiple status effects [array of status]
     - change statuses to array, 
     - create method to handle array and expiresIn
