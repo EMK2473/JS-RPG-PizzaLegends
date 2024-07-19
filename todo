@@ -2,11 +2,11 @@
 - Create animation state and define animation frames ✅
 - Resolve issue, if hp is over a certain percentage it disappears off screen ✅
 - Burn Status (Damage per turn on enemy. Currently damages player) ✅
-- Create stable background image for overworld maps
-- Create Stat increase or decrese statuses --In Progress--
-- fix defenseUp from calling each turn
-- Create object class for non-person objects with idle animations
+- Create Stat increase or decrese statuses --In Progress-- ✅
 - Objects with looping animations (torch, smoke, stance animation, breathing, combat stance, etc. ) ✅
+- fix defenseUp from calling each turn ✅
+- Create object class for non-person objects with idle animations
+- Create stable background image for overworld maps
 - Find solution for overworldmap walls
 - Case for if all Spawn die, display death screen/restart game?
 - New Object Stone Art (design for Spawns)
