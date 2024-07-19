@@ -83,6 +83,7 @@ class TurnCycle {
     if (expiredEvent) {
       await this.onNewEvent(expiredEvent);
       caster.update()
+      target.update()
     }
 
     // new submission event
@@ -107,6 +108,10 @@ class TurnCycle {
       return;
     }
 
+    // if (caster.status?.type === "defDown") {
+    //   caster.update();
+    // }
+
     if (submission.instanceId) {
       // add to list to persist to player state post battle
       this.battle.usedInstanceIds[submission.instanceId] = true;
@@ -117,6 +122,7 @@ class TurnCycle {
       );
     }
 
+    
     const resultingEvents = caster.getReplacedEvents(submission.action.success);
 
     for (let i = 0; i < resultingEvents.length; i++) {
