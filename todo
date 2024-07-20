@@ -9,11 +9,11 @@ Recently Completed:
     - Create powerUp() and removePowerUp() ✅
     - Create powerDown() and removePowerDown() ✅
     - Create healAndDefUp() ✅
+- Create buttons for mobile ✅
 
 
 
 TODO: 
-- Create buttons for mobile
 - Refactor Stats to only be Power and Def (for now)
 - Add 5% crit modifier and stat increase
     - Consider adding crit chance as stat
