@@ -54,7 +54,7 @@ TODO:
 - Create Game-Container✅
     - target canvas elemnt ✅
     - set context for canvas (requires context to draw)✅
-    - create game loop to recursively run✅
+    - Method for game loop to recursively run✅
     - call draw methods for upper/lower images✅
     - Map game objects to overworld at their set positions✅
     - apply pause menu logic✅
