@@ -33,7 +33,6 @@ class CraftingMenu {
   close(pizzaName) {
     this.keyboardMenu.end();
     this.element.remove();
-    // pass message with pizzaName
     this.onComplete(`${pizzaName}'s soul was absorbed.`); 
   }
 
