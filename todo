@@ -371,9 +371,6 @@ TODO:
             - set "PlayerStateUpdated" as event✅
             - Remove elements on winner✅
 
-
-
-
 - Combatants✅
     - accept config ✅
     - accept relevant battle info✅
@@ -429,10 +426,6 @@ TODO:
         - create elements✅
         - append elemnts into child✅
         - update()✅
-
-
-
-
 
 
 - Battle Animations✅
@@ -599,9 +592,7 @@ TODO:
         - Method to initialize TurnCycle✅
             - async battleEvent text message to display battle is starting ✅
 
-
-
-- Utility Functions Information
+- Utility Functions 
     - withGrid ✅
         - to align grid values to 16 x 16 and 32 x 32 values
     - asGridCoord✅
