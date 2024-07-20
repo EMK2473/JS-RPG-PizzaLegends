@@ -13,6 +13,7 @@ Recently Completed:
 
 
 TODO: 
+- Create buttons for mobile
 - Refactor Stats to only be Power and Def (for now)
 - Add 5% crit modifier and stat increase
     - Consider adding crit chance as stat

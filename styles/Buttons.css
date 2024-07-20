@@ -1,0 +1,48 @@
+.ButtonsContainer {
+    display: grid;
+    grid-template-areas:
+        ". up ."
+        "left enter right"
+        ". down .";
+    gap: 10px;
+    justify-items: center;
+    align-items: center;
+    margin: 20px auto;
+    width: 150px;
+    transform: translateX(500px);
+}
+
+.DirectionButton {
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 2px solid #000;
+    background-color: #f0f0f0;
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.DirectionButton:hover {
+    background-color: #ddd;
+}
+
+.DirectionButton[data-action="up"] {
+    grid-area: up;
+}
+
+.DirectionButton[data-action="down"] {
+    grid-area: down;
+}
+
+.DirectionButton[data-action="left"] {
+    grid-area: left;
+}
+
+.DirectionButton[data-action="right"] {
+    grid-area: right;
+}
+
+.DirectionButton[data-action="enter"] {
+    grid-area: enter;
+}
