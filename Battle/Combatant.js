@@ -17,9 +17,9 @@ class Combatant {
     this.maxXp = config.maxXp || 100;
     this.attackPower = config.attackPower || 8 + this.level * 2;
     this.armor = config.armor || this.level * 1;
-    this.defense = config.defense || this.level * 5;
+    this.defense = config.defense || this.level * 2;
     this.speed = config.speed || 10;
-    this.power = config.power || 5 + this.level * 2;
+    this.power = config.power || 8 + this.level * 2;
     this.originalDefense = this.defense;
 
     //  automatically assigns any properties to the object
@@ -87,24 +87,23 @@ class Combatant {
   }
 
   calculateDamage() {
-    this.effectiveAttackPower = this.attackPower + this.power * 0.75;
-    let baseDamage = this.attackPower * (this.effectiveAttackPower * 0.1);
-
-    // calculate random modifier based on current power
-    let randomModifier = Math.floor(Math.random() * (this.power + 1));
-
-    // add the random modifier to the base damage
-    let totalDamage = baseDamage + randomModifier;
-
+    let baseDamage = this.power;
+    let randomModifier = this.power * 0.25;
+    let d20 = Math.floor(Math.random() * 20) + 1;
+    let critChance = d20 <= 5;
+    let totalDamage = critChance ? baseDamage + randomModifier : baseDamage;
+    if(critChance){
+      console.log("CRITICAL HIT")
+    }
+  
     // round the total damage at 2/3 threshold
     let threshold = totalDamage - Math.floor(totalDamage);
-    if (threshold > 0.66) {
-      return Math.ceil(totalDamage);
-    } else {
-      return Math.floor(totalDamage);
-    }
+    totalDamage = threshold > 0.66 ? Math.ceil(totalDamage) : Math.floor(totalDamage);
+  
+    return totalDamage
   }
-
+  
+  
   calculateArmor() {
     if(this.armor <= 0){
       this.armor === 0

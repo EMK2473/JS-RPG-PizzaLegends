@@ -76,6 +76,8 @@ class BattleEvent {
       const damageElement = document.createElement("div");
       damageElement.classList.add("damage-value");
       damageElement.textContent = finalDamage + `!`;
+
+
       const gameContainer = document.querySelector(".game-container");
       gameContainer.appendChild(damageElement);
       console.log("damage element created");
