@@ -14,8 +14,6 @@ Recently Completed:
     - append elements
     - 
 
-
-
 TODO: 
 - Refactor Stats to only be Power and Def (for now)
 - Add 5% crit modifier and stat increase
@@ -35,22 +33,6 @@ TODO:
 - Design Menu Color Schemes/Organize Css Variables/
 - Clean Up Code/Remove Console Logs/ 
 - Check for DRY, SOLID, and Big0 principles 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ✅ Completed ✅: 
 - Create Overworld✅

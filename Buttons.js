@@ -30,7 +30,6 @@ class Buttons {
     }
 
     // Methods
-    // method to create a button
     createButton(label, action) {
         const button = document.createElement("button");
         button.innerText = label;
