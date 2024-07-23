@@ -11,7 +11,6 @@ class BattleEvent {
 
   // adds text messages to events
   textMessage(resolve) {
-    console.log("Message Test Success!");
 
     const text = this.event.text
       .replace("{CASTER}", this.event.caster?.name)
@@ -57,15 +56,13 @@ class BattleEvent {
 
       // calculate target's armor
       const targetArmor = target.calculateArmor();
-      console.log(`Target's Armor: ${targetArmor}`);
-      console.log(`Damage Before Armor: ${finalDamage}`);
+
       if (finalDamage <= 0) {
         finalDamage = 0;
       }
 
       // resolve damage and armor
       finalDamage -= targetArmor;
-      console.log(`Calculated Damage: ${finalDamage}`);
     }
 
     if (finalDamage) {
@@ -80,7 +77,6 @@ class BattleEvent {
 
       const gameContainer = document.querySelector(".game-container");
       gameContainer.appendChild(damageElement);
-      console.log("damage element created");
 
       // remove the damage value after 2 seconds
       setTimeout(() => {
@@ -93,7 +89,6 @@ class BattleEvent {
       });
 
       target.pizzaElement.classList.add("battle-damage-blink");
-      console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
 
     if (recover) {
@@ -106,7 +101,6 @@ class BattleEvent {
       });
 
       target.pizzaElement.classList.add("battle-damage-blink");
-      console.log(`Adding class: ${"battle-damage-blink"} to element`);
     }
 
     if (burn) {
@@ -145,8 +139,6 @@ class BattleEvent {
 
     // stop animation
     target.pizzaElement.classList.remove("battle-damage-blink");
-    console.log(`Removing class: ${"battle-damage-blink"} from element`);
-
     // resolve event
     resolve();
   }
@@ -222,7 +214,6 @@ class BattleEvent {
         return;
       }
       resolve();
-      console.log(combatant.xp);
     };
     requestAnimationFrame(step);
   }

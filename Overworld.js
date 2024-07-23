@@ -47,7 +47,6 @@ class Overworld {
       this.map.drawUpperImage(this.ctx, cameraPerson);
 
       if (!this.map.isPaused) {
-        // console.log("stepping");
         requestAnimationFrame(() => {
           step();
         });
@@ -73,9 +72,6 @@ class Overworld {
   bindHeroPositionCheck() {
     document.addEventListener("PersonWalkingComplete", (e) => {
       if (e.detail.whoId === "hero") {
-        console.log("New Hero Position!");
-        // the hero's position has changed
-        // defined on OverworldMap.js
         this.map.checkForFootstepCutscene();
       }
     });
@@ -100,8 +96,6 @@ class Overworld {
     this.progress.startingHeroX = this.map.gameObjects.hero.x;
     this.progress.startingHeroY = this.map.gameObjects.hero.y;
     this.progress.startingHeroDirection = this.map.gameObjects.hero.direction;
-
-    console.log(this.map.walls);
   }
 
   async init() {

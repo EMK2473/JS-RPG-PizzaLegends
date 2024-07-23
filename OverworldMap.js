@@ -6,6 +6,7 @@
 // contains events (talking)
 // contains check for if space is taken
 
+
 class OverworldMap {
   constructor(config) {
     this.overworld = null;
@@ -98,7 +99,6 @@ class OverworldMap {
     const match = Object.values(this.gameObjects).find((object) => {
       return `${object.x},${object.y}` === `${nextCoords.x},${nextCoords.y}`;
     });
-    console.log({ match });
     if (!this.isCutscenePlaying && match && match.talking.length) {
       const relevantScenario = match.talking.find((scenario) => {
         return (scenario.required || []).every((sf) => {
@@ -113,7 +113,6 @@ class OverworldMap {
   checkForFootstepCutscene() {
     const hero = this.gameObjects["hero"];
     const match = this.cutsceneSpaces[`${hero.x},${hero.y}`];
-    console.log({ match });
     if (!this.isCutscenePlaying && match) {
       this.startCutscene(match[0].events);
     }

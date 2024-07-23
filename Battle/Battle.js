@@ -130,9 +130,6 @@ class Battle {
       return;
     }
 
-    console.log("combatants", this.combatants);
-
-
     // sets up turn cycle upon initialization
     this.turnCycle = new TurnCycle({
       battle: this,
@@ -143,7 +140,6 @@ class Battle {
         });
       },
       onWinner: (winner) => {
-        console.log("Before updating playerState.pizzas:", playerState.pizzas);
         if (winner === "player") {
           Object.keys(playerState.pizzas).forEach((id) => {
             const playerStatePizzza = playerState.pizzas[id];
@@ -197,8 +193,7 @@ class Battle {
           utils.emitEvent("PlayerStateUpdated");
         }
 
-        console.log("After updating playerState.pizzas:", playerState.pizzas);
-        console.log("combatants", this.combatants);
+
 
         this.element.remove();
         this.onComplete(winner === "player");

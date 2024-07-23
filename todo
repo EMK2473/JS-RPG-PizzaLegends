@@ -10,28 +10,26 @@ Recently Completed:
     - Create powerDown() and removePowerDown() ✅
     - Create healAndDefUp() ✅
 - Create buttons for mobile ✅
-    - Create element()
-    - append elements
-    - 
+- Refactor Stats to only be Power and Def (for now)✅
+- Add 5% crit modifier and stat increase✅
+    - Consider adding crit chance as stat✅
+    
 
 TODO: 
-- Refactor Stats to only be Power and Def (for now)
-- Add 5% crit modifier and stat increase
-    - Consider adding crit chance as stat
 - Create solution for having multiple status effects [array of status]
     - change statuses to array, 
-    - create method to handle array and expiresIn
+    - create method to accept statusArray and expiresIn
     - decrement each for expiresIn
-- Create object class for non-person objects with idle animations
+- Create object class for non-person objects with idle animations 
 - Create stable background image for overworld maps
 - Find solution for overworldmap walls
 - Case for if all Spawn die, display death screen/restart game?
-- New Object Stone Art (design for Spawns)
+- New Object Stone Art (design for Spawns) 
 - New Level Art / New Spawn Art
 - Story Cutscenes (Start basic, use transitions)
 - Story Script ( basic script to develop )
-- Design Menu Color Schemes/Organize Css Variables/
-- Clean Up Code/Remove Console Logs/ 
+- Design Menu Color Schemes/Organize Css Variables
+- Clean Up Code/Remove Console Logs
 - Check for DRY, SOLID, and Big0 principles 
 
 ✅ Completed ✅: 

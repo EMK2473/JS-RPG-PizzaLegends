@@ -31,7 +31,6 @@ class TextMessage {
 
     // text message events listen for enter keydown
     this.actionListener = new KeyPressListener("Enter", () => {
-      console.log("enter working");
       this.done();
     });
   }

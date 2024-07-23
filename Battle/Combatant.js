@@ -61,14 +61,7 @@ class Combatant {
     }
   }
 
-  defUp() {
-    // // check if this is the first turn of the status effect
-    //   // store the current defense
-    //   this.originalDefense = this.defense;
-    //   let newDef = this.originalDefense + 50;
-    //   this.defense = newDef;
-    //   console.log("DEF INCREASED", this);
-    
+  defUp() { 
   }
 
   defDown() {
