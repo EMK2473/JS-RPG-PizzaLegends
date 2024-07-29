@@ -136,22 +136,42 @@ class TurnCycle {
       await this.onNewEvent(event);
     }
 
+    if(caster.statuses){
+      caster.update();
+    }
 
     // statuses 
-    if (caster.status?.type === "burn") {
+    if (caster.status?.type === "burn" && caster.status.expiresIn < 3 ) {
       caster.burn();
       await this.onNewEvent({
         type: "textMessage",
         text: `${caster.name} takes burn damage!`,
       });
       caster.update();
+    } 
+
+    
+    if (caster.status?.type === "burn" && caster.status.expiresIn >= 3) {
+      caster.applyStatus({ type: "burn", expiresIn: 3 });
+      caster.burn();
+      await this.onNewEvent({
+        type: "textMessage",
+        text: `${caster.name} takes burn damage!`,
+      });
+      caster.update();
+      
     }
 
     if (caster.status?.type === "defUp" && caster.status.expiresIn === 3) {
+      caster.statuses.push({ type: "defUp", expiresIn: 3 });
       caster.update();
     }
     
     if (caster.status?.type === "defDown") {
+      caster.applyStatus({ type: "defDown", expiresIn: 3 });
+      if(caster.status.expiresIn === 0){
+        caster.removeDefDown()
+      }
       caster.update();
     }
 

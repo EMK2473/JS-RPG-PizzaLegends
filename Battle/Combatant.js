@@ -21,6 +21,7 @@ class Combatant {
     this.speed = config.speed || 10;
     this.power = config.power || 8 + this.level * 2;
     this.originalDefense = this.defense;
+    this.statuses = config.statuses || [];
 
     //  automatically assigns any properties to the object
     Object.keys(config).forEach((key) => {
@@ -46,8 +47,8 @@ class Combatant {
 
   // checks for statuses
   logStatus() {
-    if (this.status) {
-      console.log(`Status of ${this.name}: ${this.status.type}`);
+    if (this.statuses.length > 0) {
+      console.log(`Statuses of ${this.name}: ${this.statuses.map(s => s.type).join(", ")}`);
     } else {
       console.log(`${this.name} has no status.`);
     }
@@ -88,7 +89,6 @@ class Combatant {
     if(critChance){
       console.log("CRITICAL HIT")
     }
-  
     // round the total damage at 2/3 threshold
     let threshold = totalDamage - Math.floor(totalDamage);
     totalDamage = threshold > 0.66 ? Math.ceil(totalDamage) : Math.floor(totalDamage);
@@ -101,7 +101,7 @@ class Combatant {
     if(this.armor <= 0){
       this.armor === 0
     }
-    let armor = this.armor + Math.floor(this.defense * 0.5);
+    let armor = this.defense;
     return armor;
   }
 
@@ -181,10 +181,12 @@ class Combatant {
     //update level on screen
     this.hudElement.querySelector(".Combatant_level").innerText = this.level;
 
+
+    // status element
     // update status
     const statusElement = this.hudElement.querySelector(".Combatant_status");
-    if (this.status) {
-      statusElement.innerText = `${this.status.type} + (${this.status.expiresIn})`;
+    if (this.statuses.length > 0) {
+      statusElement.innerHTML = this.statuses.map(s => `<div>${s.type} (${s.expiresIn})</div>`).join("");
       statusElement.style.display = "block";
     } else {
       statusElement.innerText = "";
@@ -205,74 +207,74 @@ class Combatant {
 
   // gets events for changing status conditions
   getReplacedEvents(originalEvents) {
-    if (
-      this.status?.type === "confused" &&
-      utils.randomFromArray([true, false, false])
-    ) {
+    const confusedStatus = this.statuses.find(s => s.type === "confused");
+    if (confusedStatus && utils.randomFromArray([true, false, false])) {
       return [{ type: "textMessage", text: `${this.name} flops over!` }];
     }
     return originalEvents;
   }
 
-  getPostEvents() {
-    if (this.status?.type === "saucy") {
-      return [
-        { type: "textMessage", text: "Feelin' saucy!" },
-        { type: "stateChange", recover: 5, onCaster: true },
-      ];
-    }
-    // only increase def on first turn called
-    if (this.status?.type === "defUp" && this.status.expiresIn === 3) {
-      return [
-        { type: "textMessage", text: `${this.name}'s defense went up!` },
-        { type: "stateChange", defUp: true },
-      ];
-    }
-
-    // statuses on enemy combatants are checked -1 less turns than statuses on player combatants
-    if (this.status?.type === "defDown" && this.status.expiresIn === 2) {
-      return [
-        { type: "textMessage", text: `${this.name}'s defense went down!` },
-        { type: "stateChange", defDown: true },
-      ];
-    }
-    if (this.status?.type === "burn") {
-      return [
-        { type: "textMessage", text: `${this.name} is burning!` },
-        { type: "stateChange", burn: true },
-      ];
-    }
-    // if (this.status?.type === "defDown") {
-    //   return [
-    //     { type: "textMessage", text: `${this.name}'s defense is down!` },
-    //     { type: "stateChange", defDown: true },
-    //   ];
-    // } else {
-    // }
-    return [];
+  applyStatus(newStatus) {
+    const existingStatus = this.statuses.find(status => status.type === newStatus.type);
+    if (!existingStatus) {
+      this.statuses.push(newStatus);
+    } 
   }
+
+  
+  getPostEvents() {
+    const events = [];
+    this.statuses.forEach(status => {
+      if (status.type === "saucy") {
+        events.push(
+          { type: "textMessage", text: "Feelin' saucy!" },
+          { type: "stateChange", recover: 5, onCaster: true }
+        );
+      }
+      if (status.type === "defUp" && status.expiresIn === 3) {
+        events.push(
+          { type: "textMessage", text: `${this.name}'s defense went up!` },
+          { type: "stateChange", defUp: true }
+        );
+        this.applyStatus({ type: "defUp", expiresIn: 3 });
+      }
+      if (status.type === "defDown" && status.expiresIn === 3) {
+        events.push(
+          { type: "textMessage", text: `${this.name}'s defense went down!` },
+          { type: "stateChange", defDown: true }
+        );
+        // this.applyStatus({ type: "defDown", expiresIn: 3 });
+      }
+      if (status.type === "burn") {
+        events.push(
+          { type: "textMessage", text: `${this.name} is burning!` },
+          { type: "stateChange", burn: true }
+        );
+        this.applyStatus({ type: "burn", expiresIn: 3 });
+      }
+    });
+    return events;
+  }
+  
+  
+
 
   decrementStatus() {
-    if (this.status?.expiresIn > 0) {
-      this.status.expiresIn -= 1;
-      if (this.status.expiresIn === 0) {
-        if (this.status.type === "defUp") {
-          this.removeDefUp();
+this.statuses = this.statuses.map(status => {
+      if (status.expiresIn > 0) {
+        status.expiresIn -= 1;
+        if (status.expiresIn === 0) {
+          if (status.type === "defUp") {
+            this.removeDefUp();
+          } else if (status.type === "defDown") {
+            this.removeDefDown();
+          }
         }
-        if (this.status.type === "defDown") {
-          this.removeDefDown();
-        }
-        this.update({
-          status: null,
-        });
-        return {
-          type: "textMessage",
-          text: "Status expired!",
-        };
       }
-    }
-    return null;
+      return status;
+    }).filter(status => status.expiresIn > 0);
   }
+
 
   init(container) {
     this.createElement();
